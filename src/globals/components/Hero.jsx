@@ -9,6 +9,8 @@ const Hero = () => {
     display: 'flex',
     justifyContent: 'center',
     gap: theme.spacing(10),
+    alignItems: 'flex-start',
+
     marginTop: theme.spacing(7),
     [theme.breakpoints.down('md')]: {
       flexDirection: 'column',
@@ -28,31 +30,27 @@ const Hero = () => {
     },
   }));
 
+  const CustomTitleBox = styled(Box)(({ theme }) => {
+    return {
+      [theme.breakpoints.up('lg')]: {
+        textAlign: 'center',
+        margin: 0,
+      },
+    };
+  });
+
   return (
-    <Box sx={{ backgroundColor: 'whitesmoke', minHeight: '80vh' }}>
+    <Box sx={{ backgroundColor: 'whitesmoke', minHeight: '70vh' }}>
       {/* <Container> */}
       <Navbar />
       <CustomBox>
-        <Box>
-          <Typography
-            variant='body2'
-            sx={{
-              fontSize: '32px',
-              color: '#000336',
-              fontWeight: 'bold',
-              mt: 4,
-              mb: 4,
-            }}
-          >
-            {/* Welcome to FYINNOVEA */}
-          </Typography>
+        <CustomTitleBox>
           <Title variant='h1'>PORTFOLIO ANALYTICS</Title>
           <Typography variant='body2' sx={{ fontSize: '18px', color: '#5A6473', my: 4, fontStyle: 'italic' }}>
             A platform by FYINNOVEA
           </Typography>
           <CustomButton backgroundColor='#0F1B4C' color='#fff' buttonText='More About Us' heroBtn={true} />
-        </Box>
-
+        </CustomTitleBox>
         <Box>
           <img src={heroImg} alt='heroImg' style={{ maxWidth: '100%', marginBottom: '2rem' }} />
         </Box>
