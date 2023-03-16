@@ -34,7 +34,7 @@ export const Navbar = () => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Home', 'Features', 'Services', 'Listed', 'Contact'].map((text, index) => (
+        {['What we do', 'Solutions', 'Market Place', 'Partner with us', 'Connect us'].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
