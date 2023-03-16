@@ -8,7 +8,6 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 import HomeIcon from '@mui/icons-material/Home';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import logoImg from '../../media/new_logo.png';
-import { Container } from '@mui/system';
 import CustomButton from './CustomButton';
 import { Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, styled } from '@mui/material';
 import { useState } from 'react';
@@ -53,7 +52,7 @@ export const Navbar = () => {
   );
 
   const NavLink = styled(Typography)(({ theme }) => ({
-    fontSize: '14px',
+    fontSize: '16px',
     color: '#4F5361',
     fontWeight: 'bold',
     cursor: 'pointer',
@@ -82,11 +81,12 @@ export const Navbar = () => {
     },
   }));
 
-  const NavbarContainer = styled(Container)(({ theme }) => ({
+  const NavbarContainer = styled(Box)(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: theme.spacing(5),
+    background: 'white',
+    padding: theme.spacing(2),
     [theme.breakpoints.down('md')]: {
       padding: theme.spacing(2),
     },
@@ -117,14 +117,6 @@ export const Navbar = () => {
           </Drawer>
           <NavbarLogo src={logoImg} alt='logo' />
         </Box>
-
-        <NavbarLinksBox>
-          <NavLink variant='body2'>What we do</NavLink>
-          <NavLink variant='body2'>Solutions</NavLink>
-          <NavLink variant='body2'>Market Place</NavLink>
-          <NavLink variant='body2'>Partner with us</NavLink>
-          <NavLink variant='body2'>Connect us</NavLink>
-        </NavbarLinksBox>
       </Box>
 
       <Box
@@ -136,6 +128,13 @@ export const Navbar = () => {
         }}
       >
         {/* <NavLink variant='body2'>Sign Up</NavLink> */}
+        <NavbarLinksBox>
+          <NavLink variant='body2'>What we do</NavLink>
+          <NavLink variant='body2'>Solutions</NavLink>
+          <NavLink variant='body2'>Market Place</NavLink>
+          <NavLink variant='body2'>Partner with us</NavLink>
+          <NavLink variant='body2'>Connect us</NavLink>
+        </NavbarLinksBox>
         <CustomButton backgroundColor='#0F1B4C' color='#fff' buttonText='Login' />
       </Box>
     </NavbarContainer>
