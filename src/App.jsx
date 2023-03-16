@@ -1,18 +1,11 @@
-import Details from './components/Details';
-import Footer from './components/Footer';
-import GetStarted from './components/GetStarted';
-import Guide from './components/Guide';
-import Hero from './components/Hero';
+import { Routes, Route } from 'react-router-dom';
+import Landing from './pages/Landing/Landing';
 
 const App = () => {
   return (
-    <>
-      <Hero />
-      <Guide />
-      <Details />
-      <GetStarted />
-      <Footer />
-    </>
+    <Routes>
+      <Route path='/' element={<Landing />} />
+    </Routes>
   );
 };
 

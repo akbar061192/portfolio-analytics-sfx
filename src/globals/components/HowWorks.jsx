@@ -1,8 +1,8 @@
 import { Box, styled, Typography } from '@mui/material';
 import React from 'react';
-import port from '../media/port.png';
-import dashboard from '../media/tech.png';
-import ana from '../media/ana.png';
+import port from '../../media/port.png';
+import dashboard from '../../media/tech.png';
+import ana from '../../media/ana.png';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 
 const Guide = () => {

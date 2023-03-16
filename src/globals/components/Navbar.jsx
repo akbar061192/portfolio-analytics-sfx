@@ -7,7 +7,7 @@ import MiscellaneousServicesIcon from '@mui/icons-material/MiscellaneousServices
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import HomeIcon from '@mui/icons-material/Home';
 import ContactsIcon from '@mui/icons-material/Contacts';
-import logoImg from '../media/new_logo.png';
+import logoImg from '../../media/new_logo.png';
 import { Container } from '@mui/system';
 import CustomButton from './CustomButton';
 import { Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, styled } from '@mui/material';

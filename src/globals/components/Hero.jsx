@@ -2,15 +2,16 @@ import { Box, styled, Typography } from '@mui/material';
 import { Container } from '@mui/system';
 import React from 'react';
 import Navbar from './Navbar';
-import heroImg from '../media/hero_img1.png';
+import heroImg from '../../media/analytical.png';
 import CustomButton from './CustomButton';
 
 const Hero = () => {
   const CustomBox = styled(Box)(({ theme }) => ({
     display: 'flex',
     justifyContent: 'center',
+    alignItems: 'center',
     gap: theme.spacing(5),
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(1),
     [theme.breakpoints.down('md')]: {
       flexDirection: 'column',
       alignItems: 'center',
@@ -54,7 +55,7 @@ const Hero = () => {
             <CustomButton backgroundColor='#0F1B4C' color='#fff' buttonText='More About Us' heroBtn={true} />
           </Box>
 
-          <Box sx={{ flex: '1' }}>
+          <Box sx={{ flex: '1.25' }}>
             <img src={heroImg} alt='heroImg' style={{ maxWidth: '100%', marginBottom: '2rem' }} />
           </Box>
         </CustomBox>
