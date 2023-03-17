@@ -11,6 +11,7 @@ import logoImg from '../../media/new_logo.png';
 import CustomButton from './CustomButton';
 import { Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, styled } from '@mui/material';
 import { useState } from 'react';
+import { Container } from '@mui/system';
 
 export const Navbar = () => {
   const [mobileMenu, setMobileMenu] = useState({
@@ -56,6 +57,7 @@ export const Navbar = () => {
     color: '#4F5361',
     fontWeight: 'bold',
     cursor: 'pointer',
+    // letterSpacing: '1px',
     '&:hover': {
       color: '#0F1B4C',
       borderBottom: '2px solid green',
@@ -66,7 +68,7 @@ export const Navbar = () => {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: theme.spacing(3),
+    gap: theme.spacing(2),
     [theme.breakpoints.down('lg')]: {
       display: 'none',
     },
@@ -81,7 +83,7 @@ export const Navbar = () => {
     },
   }));
 
-  const NavbarContainer = styled(Box)(({ theme }) => ({
+  const NavbarContainer = styled(Container)(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -96,7 +98,7 @@ export const Navbar = () => {
     cursor: 'pointer',
     width: '250px',
     [theme.breakpoints.down('md')]: {
-      display: 'none',
+      // display: 'none',
     },
   }));
 
@@ -111,9 +113,8 @@ export const Navbar = () => {
         }}
       >
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <CustomMenuIcon onClick={toggleDrawer('left', true)} />
-          <Drawer anchor='left' open={mobileMenu['left']} onClose={toggleDrawer('left', false)}>
-            {list('left')}
+          <Drawer anchor='right' open={mobileMenu['right']} onClose={toggleDrawer('right', false)}>
+            {list('right')}
           </Drawer>
           <NavbarLogo src={logoImg} alt='logo' />
         </Box>
@@ -136,6 +137,7 @@ export const Navbar = () => {
           <NavLink variant='body2'>Connect us</NavLink>
         </NavbarLinksBox>
         <CustomButton backgroundColor='#1c9bef' color='#fff' buttonText='Login' />
+        <CustomMenuIcon onClick={toggleDrawer('right', true)} />
       </Box>
     </NavbarContainer>
   );

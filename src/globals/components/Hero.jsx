@@ -20,10 +20,10 @@ const Hero = () => {
   }));
 
   const Title = styled(Typography)(({ theme }) => ({
-    fontSize: '75px',
+    fontSize: '64px',
     // color: '#17275F',
     fontWeight: 'bold',
-    letterSpacing: 6,
+    letterSpacing: 2.5,
     margin: theme.spacing(4, 0, 4, 0),
     [theme.breakpoints.down('sm')]: {
       fontSize: '40px',
@@ -45,8 +45,12 @@ const Hero = () => {
       <Navbar />
       <Container>
         <CustomBox>
-          <CustomTitleBox>
-            <Title variant='h1'>PORTFOLIO ANALYTICS</Title>
+          <CustomTitleBox sx={{ flex: 2 }}>
+            <Title variant='h1'>Portfolio Analytics</Title>
+            <Typography variant='h6'>
+              With FYINNOVEA, you get the best advice on investment. Understand your market, get answers to
+              your burning questions, and inveset wisely, all at the same place.
+            </Typography>
             <Typography
               variant='body2'
               sx={{ fontSize: '18px', color: '#5A6473', my: 4, fontStyle: 'italic' }}
@@ -55,7 +59,7 @@ const Hero = () => {
             </Typography>
             <CustomButton backgroundColor='#1c9bef' color='#fff' buttonText='More About Us' heroBtn={true} />
           </CustomTitleBox>
-          <Box>
+          <Box sx={{ flex: '1.25' }}>
             <img src={portfolio} alt='heroImg' style={{ maxWidth: '100%', marginBottom: '2rem' }} />
           </Box>
         </CustomBox>
