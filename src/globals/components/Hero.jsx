@@ -2,7 +2,6 @@ import { Box, styled, Typography, Container } from '@mui/material';
 import React from 'react';
 import Navbar from './Navbar';
 import CustomButton from './CustomButton';
-import portfolioAnalytics from '../../media/portfolio_analytics_video.mp4';
 import portfolio from '../../media/demo.gif';
 
 const Hero = () => {
@@ -39,7 +38,6 @@ const Hero = () => {
     };
   });
 
-  console.log(portfolioAnalytics);
   return (
     <Box sx={{ minHeight: '70vh' }}>
       <Navbar />

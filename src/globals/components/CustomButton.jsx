@@ -4,7 +4,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import ConstructionIcon from '@mui/icons-material/Construction';
 
 const CustomButton = props => {
-  const { backgroundColor, color, buttonText, heroBtn, guideBtn, getStartedBtn } = props;
+  const { backgroundColor, color, buttonText, heroBtn, guideBtn, getStartedBtn, onBtnClick } = props;
 
   const buttonIcon =
     buttonText === 'Login' ? (
@@ -47,7 +47,11 @@ const CustomButton = props => {
     };
   });
 
-  return <CustomBtn endIcon={buttonIcon}>{buttonText}</CustomBtn>;
+  return (
+    <CustomBtn onClick={onBtnClick} endIcon={buttonIcon}>
+      {buttonText}
+    </CustomBtn>
+  );
 };
 
 export default CustomButton;
