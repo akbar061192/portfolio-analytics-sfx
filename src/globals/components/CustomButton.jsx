@@ -1,12 +1,19 @@
 import { Button, styled } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import LoginIcon from '@mui/icons-material/Login';
+import ConstructionIcon from '@mui/icons-material/Construction';
 
 const CustomButton = props => {
   const { backgroundColor, color, buttonText, heroBtn, guideBtn, getStartedBtn } = props;
 
   const buttonIcon =
-    buttonText === 'Login' ? <LoginIcon /> : buttonText === 'More About Us' ? <ArrowForwardIcon /> : null;
+    buttonText === 'Login' ? (
+      <LoginIcon />
+    ) : buttonText === 'More About Us' ? (
+      <ArrowForwardIcon />
+    ) : 'Request Demo' ? (
+      <ConstructionIcon />
+    ) : null;
 
   const CustomBtn = styled(Button)(({ theme }) => {
     return {
@@ -19,12 +26,14 @@ const CustomButton = props => {
       borderRadius: '7px',
       textTransform: 'none',
       border: '2px solid transparent',
-      transition: `${buttonText === 'Login' ? '' : 'all .6s ease-in-out'}`,
+      transition: `${
+        (buttonText === 'Login') | (buttonText === 'Request Demo') ? '' : 'all .6s ease-in-out'
+      }`,
       '&:hover': {
         backgroundColor: color,
         color: backgroundColor,
         borderColor: backgroundColor,
-        transform: `${buttonText === 'Login' ? '' : 'scale(1.1)'}`,
+        transform: `${(buttonText === 'Login') | (buttonText === 'Request Demo') ? '' : 'scale(1.1)'}`,
       },
       [theme.breakpoints.down('md')]: {
         margin: (heroBtn || getStartedBtn) && theme.spacing(0, 'auto', 3, 'auto'),

@@ -49,7 +49,7 @@ const Hero = () => {
             <Title variant='h1'>Portfolio Analytics</Title>
             <Typography variant='h6'>
               With FYINNOVEA, you get the best advice on investment. Understand your market, get answers to
-              your burning questions, and inveset wisely, all at the same place.
+              your burning questions, and invest wisely, all at the same place.
             </Typography>
             <Typography
               variant='body2'
