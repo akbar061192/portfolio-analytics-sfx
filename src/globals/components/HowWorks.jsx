@@ -46,6 +46,8 @@ const Guide = () => {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
+        background: 'whitesmoke',
+        paddingTop: '20px',
       }}
     >
       <div

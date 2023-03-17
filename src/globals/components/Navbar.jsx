@@ -135,7 +135,7 @@ export const Navbar = () => {
           <NavLink variant='body2'>Partner with us</NavLink>
           <NavLink variant='body2'>Connect us</NavLink>
         </NavbarLinksBox>
-        <CustomButton backgroundColor='#0F1B4C' color='#fff' buttonText='Login' />
+        <CustomButton backgroundColor='#1c9bef' color='#fff' buttonText='Login' />
       </Box>
     </NavbarContainer>
   );

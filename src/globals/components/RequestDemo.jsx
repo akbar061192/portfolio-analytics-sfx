@@ -42,7 +42,7 @@ const GetStarted = () => {
 
           <CustomButton
             backgroundColor='#fff'
-            color='#17275F'
+            color='#1c9bef'
             buttonText='Request Demo'
             getStartedBtn={true}
           />
