@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { Divider, IconButton, OutlinedInput, FormControl, styled } from '@mui/material';
 import CustomButton from '../CustomButton';
 import CloseIcon from '@mui/icons-material/Close';
+import ForgotPassword from '../ForgotPassword/ForgotPassword';
 
 const CustomForgotLink = styled(Box)(() => {
   return {
@@ -73,109 +74,117 @@ const Login = props => {
     }
   };
 
-  console.log(openForgotPassword, handleCloseForgotPassword);
   return (
-    <Dialog
-      open={openLogin}
-      onClose={() => {
-        setUserInputs({
-          email: '',
-          password: '',
-        });
-        setUserErrors({
-          email: '',
-          password: '',
-        });
-        handleLoginClose();
-      }}
-    >
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', m: 1, mb: 0 }}>
-        <div></div>
-        <IconButton
-          onClick={() => {
-            setUserInputs({
-              email: '',
-              password: '',
-            });
-            setUserErrors({
-              email: '',
-              password: '',
-            });
-            handleLoginClose();
-          }}
-        >
-          <CloseIcon />
-        </IconButton>
-      </Box>
-      <DialogContent sx={{ paddingTop: 0 }}>
-        <Container component='main' maxWidth='xs'>
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
+    <>
+      {openForgotPassword ? (
+        <ForgotPassword
+          openForgotPassword={openForgotPassword}
+          handleCloseForgotPassword={handleCloseForgotPassword}
+        />
+      ) : null}
+      <Dialog
+        open={openLogin}
+        onClose={() => {
+          setUserInputs({
+            email: '',
+            password: '',
+          });
+          setUserErrors({
+            email: '',
+            password: '',
+          });
+          handleLoginClose();
+        }}
+      >
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', m: 1, mb: 0 }}>
+          <div></div>
+          <IconButton
+            onClick={() => {
+              setUserInputs({
+                email: '',
+                password: '',
+              });
+              setUserErrors({
+                email: '',
+                password: '',
+              });
+              handleLoginClose();
             }}
           >
-            <Box component='form' noValidate sx={{ mt: 1 }}>
-              <Box>
-                <FormControl fullWidth>
-                  <OutlinedInput
-                    sx={{ fontSize: '1.2rem', mb: '1rem' }}
-                    placeholder='Email*'
-                    name='email'
-                    value={userInputs.email}
-                    onChange={handleInputChange}
-                    error={userErrors.email ? true : false}
-                  />
-                </FormControl>
-                <FormControl fullWidth>
-                  <OutlinedInput
-                    sx={{ fontSize: '1.2rem' }}
-                    type='password'
-                    name='password'
-                    placeholder='Password*'
-                    value={userInputs.password}
-                    onChange={handleInputChange}
-                    error={userErrors.password ? true : false}
-                  />
-                </FormControl>
-              </Box>
+            <CloseIcon />
+          </IconButton>
+        </Box>
+        <DialogContent sx={{ paddingTop: 0 }}>
+          <Container component='main' maxWidth='xs'>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
+              <Box component='form' noValidate sx={{ mt: 1 }}>
+                <Box>
+                  <FormControl fullWidth>
+                    <OutlinedInput
+                      sx={{ fontSize: '1.2rem', mb: '1rem' }}
+                      placeholder='Email*'
+                      name='email'
+                      value={userInputs.email}
+                      onChange={handleInputChange}
+                      error={userErrors.email ? true : false}
+                    />
+                  </FormControl>
+                  <FormControl fullWidth>
+                    <OutlinedInput
+                      sx={{ fontSize: '1.2rem' }}
+                      type='password'
+                      name='password'
+                      placeholder='Password*'
+                      value={userInputs.password}
+                      onChange={handleInputChange}
+                      error={userErrors.password ? true : false}
+                    />
+                  </FormControl>
+                </Box>
 
-              <Box sx={{ textAlign: 'center', my: 1 }}>
-                <CustomButton
-                  backgroundColor='#1c9bef'
-                  color='#fff'
-                  buttonText='Log in'
-                  fullWidth={true}
-                  onBtnClick={handleLoginUser}
-                />
-              </Box>
+                <Box sx={{ textAlign: 'center', my: 1 }}>
+                  <CustomButton
+                    backgroundColor='#1c9bef'
+                    color='#fff'
+                    buttonText='Log in'
+                    fullWidth={true}
+                    onBtnClick={handleLoginUser}
+                  />
+                </Box>
 
-              <CustomForgotLink sx={{ textAlign: 'center', mb: '1rem' }}>
-                <Link
-                  style={{ textDecoration: 'none', color: '#1877f2', fontWeight: '500' }}
-                  variant='body2'
-                  onClick={() => {
-                    setOpenForgotPassword(true);
-                  }}
-                >
-                  Forgot password?
-                </Link>
-              </CustomForgotLink>
-              <Divider sx={{ mb: '1rem' }} />
-              <Box sx={{ textAlign: 'center', my: 2 }}>
-                <CustomButton
-                  backgroundColor='#36a420'
-                  color='#fff'
-                  buttonText='Create new account'
-                  getStartedBtn={false}
-                />
+                <CustomForgotLink sx={{ textAlign: 'center', mb: '1rem' }}>
+                  <Link
+                    style={{ textDecoration: 'none', color: '#1877f2', fontWeight: '500' }}
+                    variant='body2'
+                    onClick={() => {
+                      setOpenForgotPassword(true);
+                      handleLoginClose();
+                    }}
+                  >
+                    Forgot password?
+                  </Link>
+                </CustomForgotLink>
+                <Divider sx={{ mb: '1rem' }} />
+                <Box sx={{ textAlign: 'center', my: 2 }}>
+                  <CustomButton
+                    backgroundColor='#36a420'
+                    color='#fff'
+                    buttonText='Create new account'
+                    getStartedBtn={false}
+                  />
+                </Box>
               </Box>
             </Box>
-          </Box>
-        </Container>
-      </DialogContent>
-    </Dialog>
+          </Container>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 };
 
