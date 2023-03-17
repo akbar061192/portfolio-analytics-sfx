@@ -140,7 +140,7 @@ const GetStarted = () => {
                 backgroundColor='#1c9bef'
                 color='#fff'
                 buttonText='Request Demo'
-                getStartedBtn={true}
+                getStartedBtn={false}
               />
             </Box>
           </form>
