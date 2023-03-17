@@ -17,6 +17,9 @@ const GetStarted = () => {
     display: 'flex',
     justifyContent: 'space-around',
     alignItems: 'center',
+    [theme.breakpoints.down('lg')]: {
+      height: '500px',
+    },
     [theme.breakpoints.down('md')]: {
       height: 'auto',
       flexDirection: 'column',

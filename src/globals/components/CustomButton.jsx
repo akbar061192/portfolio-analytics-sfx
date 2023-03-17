@@ -38,6 +38,7 @@ const CustomButton = props => {
       [theme.breakpoints.down('md')]: {
         margin: (heroBtn || getStartedBtn) && theme.spacing(0, 'auto', 3, 'auto'),
         width: (heroBtn || getStartedBtn) && '90%',
+        padding: '0.8rem',
       },
       [theme.breakpoints.down('sm')]: {
         margin: guideBtn && theme.spacing(3),
