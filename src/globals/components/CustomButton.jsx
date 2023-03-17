@@ -2,17 +2,21 @@ import { Button, styled } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import LoginIcon from '@mui/icons-material/Login';
 import ConstructionIcon from '@mui/icons-material/Construction';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 
 const CustomButton = props => {
-  const { backgroundColor, color, buttonText, heroBtn, guideBtn, getStartedBtn, onBtnClick } = props;
+  const { backgroundColor, color, buttonText, heroBtn, guideBtn, getStartedBtn, onBtnClick, fullWidth } =
+    props;
 
   const buttonIcon =
     buttonText === 'Login' ? (
       <LoginIcon />
     ) : buttonText === 'More About Us' ? (
       <ArrowForwardIcon />
-    ) : 'Request Demo' ? (
+    ) : buttonText === 'Request Demo' ? (
       <ConstructionIcon />
+    ) : buttonText === 'Create new account' ? (
+      <AccountBalanceIcon />
     ) : null;
 
   const CustomBtn = styled(Button)(({ theme }) => {
@@ -26,14 +30,12 @@ const CustomButton = props => {
       borderRadius: '7px',
       textTransform: 'none',
       border: '2px solid transparent',
-      transition: `${
-        (buttonText === 'Login') | (buttonText === 'Request Demo') ? '' : 'all .6s ease-in-out'
-      }`,
+      transition: `${buttonText === 'More About Us' ? 'all .6s ease-in-out' : 'none'}`,
       '&:hover': {
         backgroundColor: color,
         color: backgroundColor,
         borderColor: backgroundColor,
-        transform: `${(buttonText === 'Login') | (buttonText === 'Request Demo') ? '' : 'scale(1.1)'}`,
+        transform: `${buttonText === 'More About Us' ? 'scale(1.1)' : 'none'}`,
       },
       [theme.breakpoints.down('md')]: {
         margin: (heroBtn || getStartedBtn) && theme.spacing(0, 'auto', 3, 'auto'),
@@ -48,7 +50,7 @@ const CustomButton = props => {
   });
 
   return (
-    <CustomBtn onClick={onBtnClick} endIcon={buttonIcon}>
+    <CustomBtn fullWidth={fullWidth} onClick={onBtnClick} endIcon={buttonIcon}>
       {buttonText}
     </CustomBtn>
   );
