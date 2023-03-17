@@ -3,7 +3,7 @@ import React from 'react';
 import Navbar from './Navbar';
 import CustomButton from './CustomButton';
 import portfolioAnalytics from '../../media/portfolio_analytics_video.mp4';
-import portfolio from '../../media/portfolio.gif';
+import portfolio from '../../media/demo.gif';
 
 const Hero = () => {
   const CustomBox = styled(Box)(({ theme }) => ({
