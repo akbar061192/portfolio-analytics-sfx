@@ -180,7 +180,7 @@ const Login = props => {
                     variant='body2'
                     onClick={() => {
                       setOpenForgotPassword(true);
-                      handleLoginClose();
+                      // handleLoginClose();
                     }}
                   >
                     Forgot password?
@@ -194,7 +194,7 @@ const Login = props => {
                     buttonText='Create new account'
                     getStartedBtn={false}
                     onBtnClick={() => {
-                      handleLoginClose();
+                      // handleLoginClose();
                       setOpenCreateNewAccount(true);
                     }}
                   />
