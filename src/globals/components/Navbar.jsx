@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -9,8 +9,17 @@ import HomeIcon from '@mui/icons-material/Home';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import logoImg from '../../media/new_logo.png';
 import CustomButton from './CustomButton';
-import { Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, styled } from '@mui/material';
-import { useState } from 'react';
+import {
+  AppBar,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  styled,
+  Toolbar,
+} from '@mui/material';
 import { Container } from '@mui/system';
 import Login from './Login/Login';
 
@@ -45,23 +54,9 @@ const CustomMenuIcon = styled(MenuIcon)(({ theme }) => ({
   },
 }));
 
-const NavbarContainer = styled(Container)(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  background: 'white',
-  padding: theme.spacing(2),
-  [theme.breakpoints.down('md')]: {
-    padding: theme.spacing(2),
-  },
-}));
-
 const NavbarLogo = styled('img')(({ theme }) => ({
   cursor: 'pointer',
   width: '250px',
-  [theme.breakpoints.down('md')]: {
-    // display: 'none',
-  },
 }));
 
 export const Navbar = () => {
@@ -113,51 +108,90 @@ export const Navbar = () => {
     </Box>
   );
 
+  const [scrolled, setScrolled] = useState(false);
+
+  const NavbarContainer = styled(Container)(({ theme }) => ({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    background: 'white',
+    padding: `${scrolled ? theme.spacing(1) : theme.spacing(3)}`,
+    [theme.breakpoints.down('md')]: {
+      padding: theme.spacing(2),
+    },
+  }));
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', onScroll);
+
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
     <>
-      <Login openLogin={openLogin} setOpenLogin={setOpenLogin} handleLoginClose={handleLoginClose} />
-      <NavbarContainer>
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '2.5rem',
-          }}
-        >
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Drawer anchor='right' open={mobileMenu['right']} onClose={toggleDrawer('right', false)}>
-              {list('right')}
-            </Drawer>
-            <NavbarLogo src={logoImg} alt='logo' />
-          </Box>
-        </Box>
+      {openLogin ? (
+        <Login openLogin={openLogin} setOpenLogin={setOpenLogin} handleLoginClose={handleLoginClose} />
+      ) : null}
 
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '1rem',
-          }}
-        >
-          {/* <NavLink variant='body2'>Sign Up</NavLink> */}
-          <NavbarLinksBox>
-            <NavLink variant='body2'>What we do</NavLink>
-            <NavLink variant='body2'>Solutions</NavLink>
-            <NavLink variant='body2'>Market Place</NavLink>
-            <NavLink variant='body2'>Partner with us</NavLink>
-            <NavLink variant='body2'>Connect us</NavLink>
-          </NavbarLinksBox>
-          <CustomButton
-            backgroundColor='#1c9bef'
-            color='#fff'
-            buttonText='Login'
-            onBtnClick={handleLoginOpen}
-          />
-          <CustomMenuIcon onClick={toggleDrawer('right', true)} />
-        </Box>
-      </NavbarContainer>
+      <AppBar
+        style={{
+          position: 'fixed',
+          top: 0,
+          background: 'white',
+        }}
+        elevation={scrolled ? 3 : 0}
+      >
+        <NavbarContainer>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '2.5rem',
+            }}
+          >
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Drawer anchor='right' open={mobileMenu['right']} onClose={toggleDrawer('right', false)}>
+                {list('right')}
+              </Drawer>
+              <NavbarLogo src={logoImg} alt='logo' />
+            </Box>
+          </Box>
+
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '1rem',
+            }}
+          >
+            <NavbarLinksBox>
+              <NavLink variant='body2'>What we do</NavLink>
+              <NavLink variant='body2'>Solutions</NavLink>
+              <NavLink variant='body2'>Market Place</NavLink>
+              <NavLink variant='body2'>Partner with us</NavLink>
+              <NavLink variant='body2'>Connect us</NavLink>
+            </NavbarLinksBox>
+            <CustomButton
+              backgroundColor='#1c9bef'
+              color='#fff'
+              buttonText='Login'
+              onBtnClick={handleLoginOpen}
+            />
+            <CustomMenuIcon onClick={toggleDrawer('right', true)} />
+          </Box>
+        </NavbarContainer>
+      </AppBar>
+      <Toolbar />
     </>
   );
 };
