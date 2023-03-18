@@ -176,26 +176,35 @@ const CreateNewAccount = props => {
             >
               <Box component='form' noValidate sx={{ mt: 1 }}>
                 <Box sx={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                  <FormControl sx={{ width: '100%' }}>
-                    <OutlinedInput
-                      sx={{ fontSize: '1.2rem' }}
-                      placeholder='First Name*'
-                      name='fName'
-                      value={newAccount.fName}
-                      onChange={handleInputChange}
-                      error={errors.email ? true : false}
-                    />
-                  </FormControl>
-                  <FormControl sx={{ width: '100%' }}>
-                    <OutlinedInput
-                      sx={{ fontSize: '1.2rem' }}
-                      name='lName'
-                      placeholder='Last Name*'
-                      value={newAccount.lName}
-                      onChange={handleInputChange}
-                      error={errors.lName ? true : false}
-                    />
-                  </FormControl>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      gap: '10px',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <FormControl sx={{ width: '100%' }}>
+                      <OutlinedInput
+                        sx={{ fontSize: '1.2rem' }}
+                        placeholder='First Name*'
+                        name='fName'
+                        value={newAccount.fName}
+                        onChange={handleInputChange}
+                        error={errors.email ? true : false}
+                      />
+                    </FormControl>
+                    <FormControl sx={{ width: '100%' }}>
+                      <OutlinedInput
+                        sx={{ fontSize: '1.2rem' }}
+                        name='lName'
+                        placeholder='Last Name*'
+                        value={newAccount.lName}
+                        onChange={handleInputChange}
+                        error={errors.lName ? true : false}
+                      />
+                    </FormControl>
+                  </Box>
 
                   <FormControl sx={{ width: '100%' }}>
                     <OutlinedInput
@@ -220,53 +229,62 @@ const CreateNewAccount = props => {
                     />
                   </FormControl>
 
-                  <FormControl sx={{ width: '100%' }}>
-                    <OutlinedInput
-                      sx={{ fontSize: '1.2rem' }}
-                      placeholder='Password*'
-                      type={showPassword ? 'text' : 'password'}
-                      name='password'
-                      value={newAccount.password}
-                      onChange={handleInputChange}
-                      error={errors.password ? true : false}
-                      endAdornment={
-                        <InputAdornment position='end'>
-                          <IconButton
-                            aria-label='toggle password visibility'
-                            onClick={() => setShowPassword(prev => !prev)}
-                            edge='end'
-                          >
-                            {showPassword ? <VisibilityOff /> : <Visibility />}
-                          </IconButton>
-                        </InputAdornment>
-                      }
-                    />
-                  </FormControl>
-                  <FormControl sx={{ width: '100%' }}>
-                    <OutlinedInput
-                      sx={{ fontSize: '1.2rem' }}
-                      name='confirmPassword'
-                      placeholder='Confirm Password*'
-                      value={newAccount.confirmPassword}
-                      onChange={handleInputChange}
-                      error={errors.confirmPassword ? true : false}
-                      type={showConfirmPassword ? 'text' : 'password'}
-                      endAdornment={
-                        <InputAdornment position='end'>
-                          <IconButton
-                            aria-label='toggle password visibility'
-                            onClick={() => setShowConfirmPassword(prev => !prev)}
-                            edge='end'
-                          >
-                            {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
-                          </IconButton>
-                        </InputAdornment>
-                      }
-                    />
-                    {errors.confirmPassword && errors.confirmPassword.includes('match') ? (
-                      <FormHelperText>{errors.confirmPassword}</FormHelperText>
-                    ) : null}
-                  </FormControl>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      gap: '10px',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <FormControl sx={{ width: '100%' }}>
+                      <OutlinedInput
+                        sx={{ fontSize: '1.2rem' }}
+                        placeholder='Password*'
+                        type={showPassword ? 'text' : 'password'}
+                        name='password'
+                        value={newAccount.password}
+                        onChange={handleInputChange}
+                        error={errors.password ? true : false}
+                        endAdornment={
+                          <InputAdornment position='end'>
+                            <IconButton
+                              aria-label='toggle password visibility'
+                              onClick={() => setShowPassword(prev => !prev)}
+                              edge='end'
+                            >
+                              {showPassword ? <VisibilityOff /> : <Visibility />}
+                            </IconButton>
+                          </InputAdornment>
+                        }
+                      />
+                    </FormControl>
+                    <FormControl sx={{ width: '100%' }}>
+                      <OutlinedInput
+                        sx={{ fontSize: '1.2rem' }}
+                        name='confirmPassword'
+                        placeholder='Confirm*'
+                        value={newAccount.confirmPassword}
+                        onChange={handleInputChange}
+                        error={errors.confirmPassword ? true : false}
+                        type={showConfirmPassword ? 'text' : 'password'}
+                        endAdornment={
+                          <InputAdornment position='end'>
+                            <IconButton
+                              aria-label='toggle password visibility'
+                              onClick={() => setShowConfirmPassword(prev => !prev)}
+                              edge='end'
+                            >
+                              {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                            </IconButton>
+                          </InputAdornment>
+                        }
+                      />
+                    </FormControl>
+                  </Box>
+                  {errors.confirmPassword && errors.confirmPassword.includes('match') ? (
+                    <FormHelperText sx={{ margin: 0 }}>{errors.confirmPassword}</FormHelperText>
+                  ) : null}
                 </Box>
 
                 <Box sx={{ textAlign: 'center', my: 3 }}>
