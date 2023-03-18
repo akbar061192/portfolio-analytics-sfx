@@ -176,7 +176,7 @@ const CreateNewAccount = props => {
             >
               <Box component='form' noValidate sx={{ mt: 1 }}>
                 <Box sx={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-                  <FormControl sx={{ width: '48%' }}>
+                  <FormControl sx={{ width: '100%' }}>
                     <OutlinedInput
                       sx={{ fontSize: '1.2rem' }}
                       placeholder='First Name*'
@@ -186,7 +186,7 @@ const CreateNewAccount = props => {
                       error={errors.email ? true : false}
                     />
                   </FormControl>
-                  <FormControl sx={{ width: '49%' }}>
+                  <FormControl sx={{ width: '100%' }}>
                     <OutlinedInput
                       sx={{ fontSize: '1.2rem' }}
                       name='lName'
@@ -220,9 +220,9 @@ const CreateNewAccount = props => {
                     />
                   </FormControl>
 
-                  <FormControl sx={{ width: '46%' }}>
+                  <FormControl sx={{ width: '100%' }}>
                     <OutlinedInput
-                      sx={{ fontSize: '1.1rem' }}
+                      sx={{ fontSize: '1.2rem' }}
                       placeholder='Password*'
                       type={showPassword ? 'text' : 'password'}
                       name='password'
@@ -242,9 +242,9 @@ const CreateNewAccount = props => {
                       }
                     />
                   </FormControl>
-                  <FormControl sx={{ width: '51%' }}>
+                  <FormControl sx={{ width: '100%' }}>
                     <OutlinedInput
-                      sx={{ fontSize: '0.95rem' }}
+                      sx={{ fontSize: '1.2rem' }}
                       name='confirmPassword'
                       placeholder='Confirm Password*'
                       value={newAccount.confirmPassword}
