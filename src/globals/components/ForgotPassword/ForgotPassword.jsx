@@ -83,6 +83,7 @@ const ForgotPassword = props => {
             sx={{ color: '#1c9bef', background: 'whitesmoke' }}
             onClick={() => {
               handleCloseForgotPassword();
+              setOpenLogin(prev => !prev);
             }}
           >
             <CloseIcon />

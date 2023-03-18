@@ -1,9 +1,8 @@
-import { Box, styled, Typography } from '@mui/material';
+import { Box, styled, Typography, Tooltip } from '@mui/material';
 import React from 'react';
 import port from '../../media/port.png';
 import dashboard from '../../media/tech.png';
 import ana from '../../media/ana.png';
-import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 
 const Guide = () => {
   const CustomBox = styled(Box)(({ theme }) => ({
@@ -35,6 +34,10 @@ const Guide = () => {
     marginTop: theme.spacing(5),
     [theme.breakpoints.down('sm')]: {
       margin: theme.spacing(2, 0, 2, 0),
+    },
+    transition: 'all .6s ease-in-out',
+    '&:hover': {
+      transform: 'scale(1.3)',
     },
   }));
 
@@ -78,89 +81,60 @@ const Guide = () => {
       </CustomBox>
 
       <GuidesBox>
-        <GuideBox>
-          <img src={port} alt='buyIcon' />
-          <Typography
-            variant='body2'
-            sx={{
-              fontWeight: '500',
-              fontSize: '20px',
-              color: '#3B3c45',
-              my: 1,
-            }}
-          >
-            Streamlined Portfolio Analysis
-          </Typography>
-          <Box
-            sx={{
-              cursor: 'pointer',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <Typography variant='body2' sx={{ fontWeight: 'bold', fontSize: '14px', color: '#0689FF' }}>
-              More
+        <Tooltip title='Analyze your holdings at a portfolio level, with data & actionable insights'>
+          <GuideBox>
+            <img src={port} alt='buyIcon' />
+            <Typography
+              variant='body2'
+              sx={{
+                fontWeight: '500',
+                fontSize: '20px',
+                color: '#3B3c45',
+                my: 1,
+              }}
+            >
+              Streamlined Portfolio Analysis
             </Typography>
-            <ArrowRightAltIcon style={{ color: '#0689FF' }} />
-          </Box>
-        </GuideBox>
+          </GuideBox>
+        </Tooltip>
 
-        <GuideBox>
-          <img src={dashboard} alt='buyIcon' />
-          <Typography
-            variant='body2'
-            sx={{
-              fontWeight: '500',
-              fontSize: '20px',
-              color: '#3B3c45',
-              my: 1,
-            }}
-          >
-            Customizable Dashboards
-          </Typography>
-          <Box
-            sx={{
-              cursor: 'pointer',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <Typography variant='body2' sx={{ fontWeight: 'bold', fontSize: '14px', color: '#0689FF' }}>
-              More
-            </Typography>
-            <ArrowRightAltIcon style={{ color: '#0689FF' }} />
-          </Box>
-        </GuideBox>
+        <Tooltip
+          title='Custom analytics dashboards for your cloud collaboration portfolio & predict future with Trend analysis techniques
 
-        <GuideBox>
-          <img src={ana} alt='buyIcon' />
-          <Typography
-            variant='body2'
-            sx={{
-              fontWeight: '500',
-              fontSize: '20px',
-              color: '#3B3c45',
-              my: 1,
-            }}
-          >
-            Innovative Tech
-          </Typography>
-          <Box
-            sx={{
-              cursor: 'pointer',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <Typography variant='body2' sx={{ fontWeight: 'bold', fontSize: '14px', color: '#0689FF' }}>
-              More
+'
+        >
+          <GuideBox>
+            <img src={dashboard} alt='buyIcon' />
+            <Typography
+              variant='body2'
+              sx={{
+                fontWeight: '500',
+                fontSize: '20px',
+                color: '#3B3c45',
+                my: 1,
+              }}
+            >
+              Customizable Dashboards
             </Typography>
-            <ArrowRightAltIcon style={{ color: '#0689FF' }} />
-          </Box>
-        </GuideBox>
+          </GuideBox>
+        </Tooltip>
+
+        <Tooltip title='Benefit from robust technology investment and potential to drive investment transformation ranging from mobile accessibility to an easy-to-use API'>
+          <GuideBox>
+            <img src={ana} alt='buyIcon' />
+            <Typography
+              variant='body2'
+              sx={{
+                fontWeight: '500',
+                fontSize: '20px',
+                color: '#3B3c45',
+                my: 1,
+              }}
+            >
+              Innovative Tech
+            </Typography>
+          </GuideBox>
+        </Tooltip>
       </GuidesBox>
     </Box>
   );

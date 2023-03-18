@@ -94,6 +94,7 @@ const Login = props => {
         <CreateNewAccount
           openCreateNewAccount={openCreateNewAccount}
           handleCloseCreateNewAccount={handleCloseCreateNewAccount}
+          setOpenLogin={setOpenLogin}
         />
       ) : null}
 

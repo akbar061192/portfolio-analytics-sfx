@@ -18,7 +18,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 const CreateNewAccount = props => {
-  const { openCreateNewAccount, handleCloseCreateNewAccount } = props;
+  const { openCreateNewAccount, handleCloseCreateNewAccount, setOpenLogin } = props;
 
   const [newAccount, setNewAccount] = useState({
     fName: '',
@@ -125,6 +125,7 @@ const CreateNewAccount = props => {
             confirmPassword: '',
           });
           handleCloseCreateNewAccount();
+          setOpenLogin(prev => !prev);
         }}
       >
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: '1.5rem' }}>
@@ -155,6 +156,7 @@ const CreateNewAccount = props => {
                   confirmPassword: '',
                 });
                 handleCloseCreateNewAccount();
+                setOpenLogin(prev => !prev);
               }}
             >
               <CloseIcon />

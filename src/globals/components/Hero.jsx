@@ -55,7 +55,7 @@ const Hero = () => {
             >
               A platform by FYINNOVEA
             </Typography>
-            <CustomButton backgroundColor='#1c9bef' color='#fff' buttonText='More About Us' heroBtn={true} />
+            <CustomButton backgroundColor='#1c9bef' color='#fff' buttonText='Begin Now' heroBtn={true} />
           </CustomTitleBox>
           <Box sx={{ flex: '1.25' }}>
             <img src={portfolio} alt='heroImg' style={{ maxWidth: '100%', marginBottom: '2rem' }} />

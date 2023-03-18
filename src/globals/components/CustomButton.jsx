@@ -30,12 +30,12 @@ const CustomButton = props => {
       borderRadius: '7px',
       textTransform: 'none',
       border: '2px solid transparent',
-      transition: `${buttonText === 'More About Us' ? 'all .6s ease-in-out' : 'none'}`,
+      transition: `${buttonText === 'Begin Now' ? 'all .6s ease-in-out' : 'none'}`,
       '&:hover': {
         backgroundColor: color,
         color: backgroundColor,
         borderColor: backgroundColor,
-        transform: `${buttonText === 'More About Us' ? 'scale(1.1)' : 'none'}`,
+        transform: `${buttonText === 'Begin Now' ? 'scale(1.1)' : 'none'}`,
       },
       [theme.breakpoints.down('md')]: {
         margin: (heroBtn || getStartedBtn) && theme.spacing(0, 'auto', 3, 'auto'),
