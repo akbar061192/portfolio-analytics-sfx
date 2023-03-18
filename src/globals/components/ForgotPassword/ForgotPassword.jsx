@@ -74,17 +74,22 @@ const ForgotPassword = props => {
 
   return (
     <Dialog open={openForgotPassword} onClose={handleCloseForgotPassword}>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', m: 1, mb: 0 }}>
-        <div></div>
-        <IconButton
-          onClick={() => {
-            handleCloseForgotPassword();
-          }}
-        >
-          <CloseIcon />
-        </IconButton>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: 2, mr: 2 }}>
+        <DialogTitle sx={{ paddingTop: 0, fontSize: '24px', fontWeight: '580' }}>
+          Forgot Password?
+        </DialogTitle>
+        <Box sx={{ mb: 2 }}>
+          <IconButton
+            sx={{ color: '#1c9bef', background: 'whitesmoke' }}
+            onClick={() => {
+              handleCloseForgotPassword();
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+        </Box>
       </Box>
-      <DialogTitle sx={{ paddingTop: 0, fontSize: '24px', fontWeight: '580' }}>Forgot Password?</DialogTitle>
+
       <Divider />
       <DialogContent sx={{ paddingTop: 0, mt: 2 }}>
         <DialogContentText>Please enter your email address to search for your account.</DialogContentText>
@@ -96,6 +101,7 @@ const ForgotPassword = props => {
             value={userInputs.email}
             onChange={handleInputChange}
             error={userErrors.email ? true : false}
+            type='email'
           />
         </FormControl>
       </DialogContent>

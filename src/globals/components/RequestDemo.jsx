@@ -2,7 +2,7 @@ import { FormControl, InputAdornment, OutlinedInput, styled, Typography } from '
 import { Box, Container } from '@mui/system';
 import { useState } from 'react';
 import CustomButton from './CustomButton';
-import demo from '../../media/portfolio.gif';
+import demo from '../../media/write.gif';
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
 import StayCurrentPortraitIcon from '@mui/icons-material/StayCurrentPortrait';
 import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice';

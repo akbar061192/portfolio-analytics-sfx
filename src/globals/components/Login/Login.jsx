@@ -8,6 +8,7 @@ import { Divider, IconButton, OutlinedInput, FormControl, styled } from '@mui/ma
 import CustomButton from '../CustomButton';
 import CloseIcon from '@mui/icons-material/Close';
 import ForgotPassword from '../ForgotPassword/ForgotPassword';
+import CreateNewAccount from '../CreateNewAccount/CreateNewAccount';
 
 const CustomForgotLink = styled(Box)(() => {
   return {
@@ -30,6 +31,9 @@ const Login = props => {
     email: '',
     password: '',
   });
+
+  const [openForgotPassword, setOpenForgotPassword] = useState(false);
+  const [openCreateNewAccount, setOpenCreateNewAccount] = useState(false);
 
   const formValidation = (values = userInputs) => {
     let errObj = {};
@@ -61,10 +65,12 @@ const Login = props => {
     });
   };
 
-  const [openForgotPassword, setOpenForgotPassword] = useState(false);
-
   const handleCloseForgotPassword = () => {
     setOpenForgotPassword(false);
+  };
+
+  const handleCloseCreateNewAccount = () => {
+    setOpenCreateNewAccount(false);
   };
 
   const handleLoginUser = event => {
@@ -83,6 +89,14 @@ const Login = props => {
           setOpenLogin={setOpenLogin}
         />
       ) : null}
+
+      {openCreateNewAccount ? (
+        <CreateNewAccount
+          openCreateNewAccount={openCreateNewAccount}
+          handleCloseCreateNewAccount={handleCloseCreateNewAccount}
+        />
+      ) : null}
+
       <Dialog
         open={openLogin}
         onClose={() => {
@@ -100,6 +114,7 @@ const Login = props => {
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', m: 1, mb: 0 }}>
           <div></div>
           <IconButton
+            sx={{ color: '#1c9bef', background: 'whitesmoke' }}
             onClick={() => {
               setUserInputs({
                 email: '',
@@ -178,6 +193,10 @@ const Login = props => {
                     color='#fff'
                     buttonText='Create new account'
                     getStartedBtn={false}
+                    onBtnClick={() => {
+                      handleLoginClose();
+                      setOpenCreateNewAccount(true);
+                    }}
                   />
                 </Box>
               </Box>
