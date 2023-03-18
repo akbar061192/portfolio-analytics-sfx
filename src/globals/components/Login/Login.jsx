@@ -19,7 +19,7 @@ const CustomForgotLink = styled(Box)(() => {
 });
 
 const Login = props => {
-  const { openLogin, handleLoginClose } = props;
+  const { openLogin, setOpenLogin, handleLoginClose } = props;
 
   const [userInputs, setUserInputs] = useState({
     email: '',
@@ -80,6 +80,7 @@ const Login = props => {
         <ForgotPassword
           openForgotPassword={openForgotPassword}
           handleCloseForgotPassword={handleCloseForgotPassword}
+          setOpenLogin={setOpenLogin}
         />
       ) : null}
       <Dialog
@@ -148,7 +149,7 @@ const Login = props => {
                   </FormControl>
                 </Box>
 
-                <Box sx={{ textAlign: 'center', my: 1 }}>
+                <Box sx={{ textAlign: 'center', my: 2 }}>
                   <CustomButton
                     backgroundColor='#1c9bef'
                     color='#fff'

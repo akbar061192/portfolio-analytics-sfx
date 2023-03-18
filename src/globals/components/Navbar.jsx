@@ -115,7 +115,7 @@ export const Navbar = () => {
 
   return (
     <>
-      <Login openLogin={openLogin} handleLoginClose={handleLoginClose} />
+      <Login openLogin={openLogin} setOpenLogin={setOpenLogin} handleLoginClose={handleLoginClose} />
       <NavbarContainer>
         <Box
           sx={{
