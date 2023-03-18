@@ -164,7 +164,7 @@ const CreateNewAccount = props => {
           </Box>
         </Box>
 
-        <DialogContent sx={{ m: 0, pt: 0 }}>It's quick and easy.</DialogContent>
+        <DialogContent sx={{ m: 0, pt: 0 }}>It's quick and easy</DialogContent>
         <Divider sx={{ mb: 1 }} />
 
         <DialogContent sx={{ paddingTop: 0 }}>
@@ -291,7 +291,7 @@ const CreateNewAccount = props => {
 
                 <Box sx={{ textAlign: 'center', my: 3 }}>
                   <CustomButton
-                    backgroundColor='#36a420'
+                    backgroundColor='#1c9bef'
                     color='#fff'
                     buttonText='Sign up'
                     getStartedBtn={false}

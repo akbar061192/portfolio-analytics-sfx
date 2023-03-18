@@ -1,41 +1,15 @@
-import { FormControl, InputAdornment, OutlinedInput, styled, Typography } from '@mui/material';
-import { Box, Container } from '@mui/system';
 import { useState } from 'react';
-import CustomButton from './CustomButton';
-import demo from '../../media/write.gif';
-import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
-import StayCurrentPortraitIcon from '@mui/icons-material/StayCurrentPortrait';
-import LocalPostOfficeIcon from '@mui/icons-material/LocalPostOffice';
-import LanguageIcon from '@mui/icons-material/Language';
-import PersonIcon from '@mui/icons-material/Person';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import { Divider, IconButton, OutlinedInput, FormControl, DialogTitle } from '@mui/material';
+import CustomButton from '../components/CustomButton';
+import CloseIcon from '@mui/icons-material/Close';
 
-const CustomContainer = styled(Container)(({ theme }) => ({
-  height: '410px',
-  borderRadius: '15px',
-  display: 'flex',
-  justifyContent: 'space-around',
-  alignItems: 'center',
-  [theme.breakpoints.down('lg')]: {
-    height: '500px',
-  },
-  [theme.breakpoints.down('md')]: {
-    height: 'auto',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: theme.spacing(3, 3, 0, 3),
-    width: '90%',
-  },
-}));
+const RequestDemo = props => {
+  const { openRequestDemo, handleCloseRequestDemo } = props;
 
-const CustomBox = styled(Box)(({ theme }) => ({
-  padding: theme.spacing(10, 0, 10, 0),
-  margin: theme.spacing(0, 2, 0, 2),
-  [theme.breakpoints.down('md')]: {
-    padding: '0',
-  },
-}));
-
-const GetStarted = () => {
   const [userInputs, setUserInputs] = useState({
     name: '',
     email: '',
@@ -44,7 +18,7 @@ const GetStarted = () => {
     profession: '',
   });
 
-  const [userErrors, setUserErrors] = useState({
+  const [userErrors, setUseruserErrors] = useState({
     name: '',
     email: '',
     mobile: '',
@@ -58,7 +32,7 @@ const GetStarted = () => {
     if ('mobile' in values) errObj.mobile = values.mobile ? '' : 'Required*';
     if ('profession' in values) errObj.profession = values.profession ? '' : 'Required*';
 
-    setUserErrors(prevState => {
+    setUseruserErrors(prevState => {
       return {
         ...prevState,
         ...errObj,
@@ -91,121 +65,126 @@ const GetStarted = () => {
   };
 
   return (
-    <CustomBox>
-      <CustomContainer>
-        <Box style={{ maxWidth: '100%', background: 'white', height: '100%', flex: '1.2' }}>
-          <img
-            src={demo}
-            alt='requestDemo'
-            style={{ maxWidth: '100%', background: 'white', height: '100%' }}
-          />
+    <>
+      <Dialog open={openRequestDemo}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: '1.5rem' }}>
+          <DialogTitle sx={{ paddingTop: 0, fontSize: '24px', fontWeight: '580', mb: 0, pb: 0 }}>
+            Request Demo
+          </DialogTitle>
+
+          <Box
+            sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 0, mr: '10px' }}
+          >
+            <IconButton
+              sx={{ color: '#1c9bef', background: 'whitesmoke' }}
+              onClick={() => {
+                setUserInputs({
+                  name: '',
+                  email: '',
+                  mobile: '',
+                  website: '',
+                  profession: '',
+                });
+                setUseruserErrors({
+                  name: '',
+                  email: '',
+                  mobile: '',
+                  profession: '',
+                });
+                handleCloseRequestDemo();
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
+          </Box>
         </Box>
 
-        <Box sx={{ flex: 1.25, padding: '2rem', borderRadius: '10px' }}>
-          <Box>
-            <Typography sx={{ fontSize: '35px', fontWeight: '700' }}>Write Us A Message</Typography>
-            <Typography variant='h6' sx={{ my: 3 }}>
-              Request us quick demo and we’ll get back to you in a jiffy.
-            </Typography>
-          </Box>
-          <form
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              gap: '15px',
-              flexWrap: 'wrap',
-            }}
-          >
-            <FormControl>
-              <OutlinedInput
-                sx={{ fontSize: '1.2rem' }}
-                endAdornment={
-                  <InputAdornment position='end'>
-                    <DriveFileRenameOutlineIcon />
-                  </InputAdornment>
-                }
-                placeholder='Name*'
-                name='name'
-                value={userInputs.name}
-                onChange={handleInputChange}
-                error={userErrors.name ? true : false}
-              />
-            </FormControl>
-            <FormControl>
-              <OutlinedInput
-                sx={{ fontSize: '1.2rem' }}
-                endAdornment={
-                  <InputAdornment position='end'>
-                    <LocalPostOfficeIcon />
-                  </InputAdornment>
-                }
-                name='email'
-                placeholder='Email*'
-                value={userInputs.email}
-                onChange={handleInputChange}
-                error={userErrors.email ? true : false}
-              />
-            </FormControl>
-            <FormControl>
-              <OutlinedInput
-                sx={{ fontSize: '1.2rem' }}
-                endAdornment={
-                  <InputAdornment position='end'>
-                    <LanguageIcon />
-                  </InputAdornment>
-                }
-                placeholder='Website'
-                name='website'
-                value={userInputs.website}
-                onChange={handleInputChange}
-                error={userErrors.website ? true : false}
-              />
-            </FormControl>
-            <FormControl>
-              <OutlinedInput
-                sx={{ fontSize: '1.2rem' }}
-                endAdornment={
-                  <InputAdornment position='end'>
-                    <StayCurrentPortraitIcon />
-                  </InputAdornment>
-                }
-                placeholder='Mobile*'
-                type='number'
-                name='mobile'
-                value={userInputs.mobile}
-                onChange={handleInputChange}
-                error={userErrors.mobile ? true : false}
-              />
-            </FormControl>
-            <FormControl fullWidth>
-              <OutlinedInput
-                sx={{ fontSize: '1.2rem' }}
-                endAdornment={
-                  <InputAdornment position='end'>
-                    <PersonIcon />
-                  </InputAdornment>
-                }
-                placeholder='You are an?*'
-                name='profession'
-                value={userInputs.profession}
-                onChange={handleInputChange}
-                error={userErrors.profession ? true : false}
-              />
-            </FormControl>
-            <Box sx={{ mt: 2 }}>
-              <CustomButton
-                backgroundColor='#1c9bef'
-                color='#fff'
-                buttonText='Request Demo'
-                getStartedBtn={false}
-                onBtnClick={handleSubmitDemo}
-              />
+        <DialogContent sx={{ m: 0, pt: 0 }}>Just one click away!</DialogContent>
+        <Divider sx={{ mb: 1 }} />
+
+        <DialogContent sx={{ paddingTop: 0 }}>
+          <Container component='main' maxWidth='xs'>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
+              <Box component='form' noValidate sx={{ mt: 1 }}>
+                <Box sx={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                  <FormControl sx={{ width: '100%' }}>
+                    <OutlinedInput
+                      sx={{ fontSize: '1.2rem' }}
+                      placeholder='Name*'
+                      name='name'
+                      value={userInputs.name}
+                      onChange={handleInputChange}
+                      error={userErrors.name ? true : false}
+                    />
+                  </FormControl>
+                  <FormControl sx={{ width: '100%' }}>
+                    <OutlinedInput
+                      sx={{ fontSize: '1.2rem' }}
+                      name='email'
+                      placeholder='Email*'
+                      value={userInputs.email}
+                      onChange={handleInputChange}
+                      error={userErrors.email ? true : false}
+                    />
+                  </FormControl>
+
+                  <FormControl sx={{ width: '100%' }}>
+                    <OutlinedInput
+                      sx={{ fontSize: '1.2rem' }}
+                      name='email'
+                      placeholder='Website'
+                      value={userInputs.website}
+                      onChange={handleInputChange}
+                    />
+                  </FormControl>
+
+                  <FormControl sx={{ width: '100%' }}>
+                    <OutlinedInput
+                      type='number'
+                      sx={{ fontSize: '1.2rem' }}
+                      name='mobile'
+                      placeholder='Mobile*'
+                      value={userInputs.mobile}
+                      onChange={handleInputChange}
+                      error={userErrors.mobile ? true : false}
+                    />
+                  </FormControl>
+
+                  <FormControl sx={{ width: '100%' }}>
+                    <OutlinedInput
+                      sx={{ fontSize: '1.2rem' }}
+                      placeholder='Profession*'
+                      name='profession'
+                      value={userInputs.profession}
+                      onChange={handleInputChange}
+                      error={userErrors.profession ? true : false}
+                    />
+                  </FormControl>
+                </Box>
+
+                <Box sx={{ textAlign: 'center', my: 3 }}>
+                  <CustomButton
+                    backgroundColor='#1c9bef'
+                    color='#fff'
+                    buttonText='Submit'
+                    getStartedBtn={false}
+                    fullWidth={true}
+                    onBtnClick={handleSubmitDemo}
+                  />
+                </Box>
+              </Box>
             </Box>
-          </form>
-        </Box>
-      </CustomContainer>
-    </CustomBox>
+          </Container>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 };
 
-export default GetStarted;
+export default RequestDemo;
