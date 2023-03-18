@@ -3,6 +3,14 @@ import React from 'react';
 import Navbar from './Navbar';
 import CustomButton from './CustomButton';
 import portfolio from '../../media/demo.gif';
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+import { useEffect } from 'react';
+
+const boxVariant = {
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
+  hidden: { opacity: 0, scale: 0 },
+};
 
 const Hero = () => {
   const CustomBox = styled(Box)(({ theme }) => ({
@@ -38,30 +46,43 @@ const Hero = () => {
     };
   });
 
+  const control = useAnimation();
+  const [ref, inView] = useInView();
+
+  useEffect(() => {
+    if (inView) {
+      control.start('visible');
+    } else {
+      control.start('hidden');
+    }
+  }, [control, inView]);
+
   return (
     <Box sx={{ minHeight: '70vh' }}>
       <Navbar />
-      <Container>
-        <CustomBox>
-          <CustomTitleBox sx={{ flex: 2 }}>
-            <Title variant='h1'>Portfolio Analytics</Title>
-            <Typography variant='h6'>
-              With FYINNOVEA, you get the best advice on investment. Understand your market, get answers to
-              your burning questions, and invest wisely, all at the same place.
-            </Typography>
-            <Typography
-              variant='body2'
-              sx={{ fontSize: '18px', color: '#5A6473', my: 4, fontStyle: 'italic' }}
-            >
-              A platform by FYINNOVEA
-            </Typography>
-            <CustomButton backgroundColor='#1c9bef' color='#fff' buttonText='Begin Now' heroBtn={true} />
-          </CustomTitleBox>
-          <Box sx={{ flex: '1.25' }}>
-            <img src={portfolio} alt='heroImg' style={{ maxWidth: '100%', marginBottom: '2rem' }} />
-          </Box>
-        </CustomBox>
-      </Container>
+      <motion.div className='box' ref={ref} variants={boxVariant} initial='hidden' animate={control}>
+        <Container>
+          <CustomBox>
+            <CustomTitleBox sx={{ flex: 2 }}>
+              <Title variant='h1'>Portfolio Analytics</Title>
+              <Typography variant='h6'>
+                With FYINNOVEA, you get the best advice on investment. Understand your market, get answers to
+                your burning questions, and invest wisely, all at the same place.
+              </Typography>
+              <Typography
+                variant='body2'
+                sx={{ fontSize: '18px', color: '#5A6473', my: 4, fontStyle: 'italic' }}
+              >
+                A platform by FYINNOVEA
+              </Typography>
+              <CustomButton backgroundColor='#1c9bef' color='#fff' buttonText='Begin Now' heroBtn={true} />
+            </CustomTitleBox>
+            <Box sx={{ flex: '1.25' }}>
+              <img src={portfolio} alt='heroImg' style={{ maxWidth: '100%', marginBottom: '2rem' }} />
+            </Box>
+          </CustomBox>
+        </Container>
+      </motion.div>
     </Box>
   );
 };

@@ -1,9 +1,20 @@
-import { styled, Typography } from '@mui/material';
+import { Divider, styled, Typography } from '@mui/material';
 import { Box, Container } from '@mui/system';
 import React from 'react';
-import fbIcon from '../../media/fbicon.png';
-import twitterIcon from '../../media/twittericon.png';
-import linkedinIcon from '../../media/linkedinicon.png';
+import { Link } from 'react-router-dom';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+
+function Copyright(props) {
+  return (
+    <Typography variant='body2' color='text.secondary' align='center' {...props}>
+      {'Copyright © '}
+      <Link to={'/'}>FYINNOVEA</Link> {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
 const Footer = () => {
   const CustomContainer = styled(Container)(({ theme }) => ({
@@ -37,7 +48,7 @@ const Footer = () => {
   }));
 
   return (
-    <Box sx={{ py: 10, background: 'lightgray' }}>
+    <Box sx={{ py: 5, background: 'lightgray' }}>
       <CustomContainer>
         <CustomContainer>
           <Box>
@@ -127,13 +138,16 @@ const Footer = () => {
             </Typography>
 
             <IconBox>
-              <img src={fbIcon} alt='fbIcon' style={{ cursor: 'pointer' }} />
-              <img src={twitterIcon} alt='twitterIcon' style={{ cursor: 'pointer' }} />
-              <img src={linkedinIcon} alt='linkedinIcon' style={{ cursor: 'pointer' }} />
+              <FacebookIcon color='primary' sx={{ cursor: 'pointer' }} />
+              <TwitterIcon color='primary' sx={{ cursor: 'pointer' }} />
+              <LinkedInIcon color='primary' sx={{ cursor: 'pointer' }} />
             </IconBox>
           </Box>
         </CustomContainer>
       </CustomContainer>
+
+      <Divider sx={{ my: 2 }} />
+      <Copyright sx={{ mt: 3, mb: 0 }} />
     </Box>
   );
 };
