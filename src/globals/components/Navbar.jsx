@@ -28,7 +28,6 @@ const NavLink = styled(Typography)(({ theme }) => ({
   color: '#4F5361',
   fontWeight: 'bold',
   cursor: 'pointer',
-  // letterSpacing: '1px',
   '&:hover': {
     color: '#0F1B4C',
     borderBottom: '2px solid green',
@@ -48,6 +47,7 @@ const NavbarLinksBox = styled(Box)(({ theme }) => ({
 const CustomMenuIcon = styled(MenuIcon)(({ theme }) => ({
   cursor: 'pointer',
   display: 'none',
+  color: 'black',
   marginRight: theme.spacing(2),
   [theme.breakpoints.down('lg')]: {
     display: 'block',
