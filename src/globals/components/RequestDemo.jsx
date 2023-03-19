@@ -137,7 +137,7 @@ const RequestDemo = props => {
                   <FormControl sx={{ width: '100%' }}>
                     <OutlinedInput
                       sx={{ fontSize: '1.2rem' }}
-                      name='email'
+                      name='website'
                       placeholder='Website'
                       value={userInputs.website}
                       onChange={handleInputChange}
