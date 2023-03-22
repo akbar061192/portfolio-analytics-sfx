@@ -6,9 +6,19 @@ import Container from '@mui/material/Container';
 import { Divider, IconButton, OutlinedInput, FormControl, DialogTitle } from '@mui/material';
 import CustomButton from '../components/CustomButton';
 import CloseIcon from '@mui/icons-material/Close';
+import { axiosInstance } from '../..';
 
 const RequestDemo = props => {
   const { openRequestDemo, handleCloseRequestDemo } = props;
+
+  const fetchUsers = async () => {
+    try {
+      const response = await axiosInstance.get('https://jsonplaceholder.typicode.com/userss');
+      console.log(response.data);
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
 
   const [userInputs, setUserInputs] = useState({
     name: '',
@@ -61,6 +71,7 @@ const RequestDemo = props => {
     e.preventDefault();
     if (formValidation()) {
       console.log(userInputs);
+      fetchUsers();
     }
   };
 
