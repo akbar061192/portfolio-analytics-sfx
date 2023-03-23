@@ -55,6 +55,8 @@ export const useAxiosInterceptors = () => {
 const GobalLoader = () => {
   const [loading, errorState] = useAxiosInterceptors();
 
+  console.log(errorState);
+
   const errorHandler = Object.keys(errorState).length > 1 ? true : false;
 
   return (
