@@ -1,17 +1,14 @@
-// export const requestDemo = () => {
-//   return fetch('https://jsonplaceholder.typicode.com/posts')
-//     .then(response => response.json())
-//     .then(json => json)
-//     .catch(error => Promise.reject(error));
-// };
+import { serviceConfig } from '../config/serviceConfig';
+import { axiosInstance } from '../../index';
 
-import axios from 'axios';
-
-export const requestDemo = async data => {
+const createRequestDemo = async data => {
+  const demoUrl = serviceConfig.BASE_URL.USER_SERVICE_URL + serviceConfig.apiEndPoints.USER_API.REQUEST_DEMO;
   try {
-    const response = await axios.post('https://jsonplaceholder.typicode.com/posts', data);
+    const response = await axiosInstance.post(demoUrl, data);
     return response.data;
   } catch (error) {
     return error;
   }
 };
+
+export { createRequestDemo };

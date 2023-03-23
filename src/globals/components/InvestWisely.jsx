@@ -4,6 +4,7 @@ import { useState } from 'react';
 import CustomButton from '../components/CustomButton';
 import CheckIcon from '@mui/icons-material/Check';
 import RequestDemo from './RequestDemo';
+import SnackBar from './SnackBar/SnackBar';
 
 const CustomContainer = styled(Container)(({ theme }) => ({
   backgroundColor: '#17275F',
@@ -42,6 +43,9 @@ const CustomIconBox = styled(Box)(({ theme }) => {
 const InvestWisely = () => {
   const [openRequestDemo, setOpenRequestDemo] = useState(false);
 
+  const [openSnackBar, setOpenSnackBar] = useState(false);
+  const [snackBarMessage, setSnackBarMessage] = useState('');
+
   const handleCloseRequestDemo = () => {
     setOpenRequestDemo(false);
   };
@@ -49,7 +53,20 @@ const InvestWisely = () => {
   return (
     <>
       {openRequestDemo ? (
-        <RequestDemo openRequestDemo={openRequestDemo} handleCloseRequestDemo={handleCloseRequestDemo} />
+        <RequestDemo
+          openRequestDemo={openRequestDemo}
+          handleCloseRequestDemo={handleCloseRequestDemo}
+          setOpenSnackBar={setOpenSnackBar}
+          setSnackBarMessage={setSnackBarMessage}
+        />
+      ) : null}
+
+      {openSnackBar ? (
+        <SnackBar
+          openSnackBar={openSnackBar}
+          handleCloseSnackBar={() => setOpenSnackBar(false)}
+          snackBarMessage={snackBarMessage}
+        />
       ) : null}
 
       <CustomBox>

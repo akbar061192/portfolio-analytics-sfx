@@ -6,19 +6,10 @@ import Container from '@mui/material/Container';
 import { Divider, IconButton, OutlinedInput, FormControl, DialogTitle } from '@mui/material';
 import CustomButton from '../components/CustomButton';
 import CloseIcon from '@mui/icons-material/Close';
-import { axiosInstance } from '../..';
+import { createRequestDemo } from '../apis/apis';
 
 const RequestDemo = props => {
-  const { openRequestDemo, handleCloseRequestDemo } = props;
-
-  const fetchUsers = async () => {
-    try {
-      const response = await axiosInstance.get('https://jsonplaceholder.typicode.com/userss');
-      console.log(response.data);
-    } catch (error) {
-      console.log(error.response);
-    }
-  };
+  const { openRequestDemo, handleCloseRequestDemo, setOpenSnackBar, setSnackBarMessage } = props;
 
   const [userInputs, setUserInputs] = useState({
     name: '',
@@ -67,11 +58,28 @@ const RequestDemo = props => {
     });
   };
 
-  const handleSubmitDemo = e => {
+  const handleSubmitDemo = async e => {
     e.preventDefault();
     if (formValidation()) {
-      console.log(userInputs);
-      fetchUsers();
+      const inputPayload = {
+        fullname: userInputs.name,
+        email: userInputs.email,
+        website: userInputs.website,
+        phone_number: userInputs.mobile,
+        message: userInputs.profession,
+      };
+
+      try {
+        const response = await createRequestDemo(inputPayload);
+        handleCloseRequestDemo();
+        setOpenSnackBar(true);
+        setSnackBarMessage('Request submitted successfully');
+        console.log(response);
+      } catch (error) {
+        setOpenSnackBar(false);
+        setSnackBarMessage('');
+        return error;
+      }
     }
   };
 
