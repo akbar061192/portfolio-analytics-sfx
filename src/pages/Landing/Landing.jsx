@@ -1,12 +1,16 @@
-import React from 'react';
-import HowWorks from '../../globals/components/HowWorks';
-import Hero from '../../globals/components/Hero';
-import Footer from '../../globals/components/Footer';
-import InvestWisely from '../../globals/components/InvestWisely';
 import { motion } from 'framer-motion';
-import Navbar from '../../globals/components/Navbar';
+import { useState } from 'react';
+import SnackBar from '../../globals/components/SnackBar/SnackBar';
+import PortfolioAnalytics from '../../globals/components/Home/PortfolioAnalytics';
+import HowWorks from '../../globals/components/Home/HowWorks';
+import InvestWisely from '../../globals/components/Home/InvestWisely';
+import Footer from '../../globals/components/Home/Footer';
+import { Navbar } from '../../globals/components/Home/Navbar';
 
 const Landing = () => {
+  const [openSnackBar, setOpenSnackBar] = useState(false);
+  const [snackBarMessage, setSnackBarMessage] = useState('');
+
   return (
     <>
       <Navbar />
@@ -16,11 +20,19 @@ const Landing = () => {
         transition={{ duration: 0.75, ease: 'easeOut' }}
         exit={{ opacity: 1 }}
       >
-        <Hero />
+        <PortfolioAnalytics />
         <HowWorks />
-        <InvestWisely />
+        <InvestWisely setOpenSnackBar={setOpenSnackBar} setSnackBarMessage={setSnackBarMessage} />
         <Footer />
       </motion.div>
+
+      {openSnackBar ? (
+        <SnackBar
+          openSnackBar={openSnackBar}
+          handleCloseSnackBar={() => setOpenSnackBar(false)}
+          snackBarMessage={snackBarMessage}
+        />
+      ) : null}
     </>
   );
 };

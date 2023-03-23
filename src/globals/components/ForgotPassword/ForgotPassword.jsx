@@ -1,7 +1,4 @@
 import { useState } from 'react';
-import Dialog from '@mui/material/Dialog';
-import DialogContent from '@mui/material/DialogContent';
-import Box from '@mui/material/Box';
 import {
   Divider,
   IconButton,
@@ -11,10 +8,13 @@ import {
   DialogContentText,
   DialogActions,
   styled,
-} from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
+  Box,
+  Dialog,
+  DialogContent,
+  CloseIcon,
+} from '../../common/MuiComponents';
 import { Link } from 'react-router-dom';
-import CustomButton from '../CustomButton';
+import CustomButton from '../CustomButton/CustomButton';
 
 const CustomForgotLink = styled(Box)(() => {
   return {

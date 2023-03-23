@@ -1,8 +1,4 @@
 import { useState, useEffect } from 'react';
-import Dialog from '@mui/material/Dialog';
-import DialogContent from '@mui/material/DialogContent';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 import {
   Divider,
   IconButton,
@@ -11,11 +7,15 @@ import {
   DialogTitle,
   InputAdornment,
   FormHelperText,
-} from '@mui/material';
-import CustomButton from '../CustomButton';
-import CloseIcon from '@mui/icons-material/Close';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
+  Visibility,
+  VisibilityOff,
+  CloseIcon,
+  Container,
+  Box,
+  Dialog,
+  DialogContent,
+} from '../../common/MuiComponents';
+import CustomButton from '../CustomButton/CustomButton';
 
 const CreateNewAccount = props => {
   const { openCreateNewAccount, handleCloseCreateNewAccount, setOpenLogin } = props;

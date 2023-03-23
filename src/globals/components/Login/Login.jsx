@@ -1,12 +1,18 @@
 import { useState } from 'react';
-import Dialog from '@mui/material/Dialog';
-import DialogContent from '@mui/material/DialogContent';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 import { Link } from 'react-router-dom';
-import { Divider, IconButton, OutlinedInput, FormControl, styled } from '@mui/material';
-import CustomButton from '../CustomButton';
-import CloseIcon from '@mui/icons-material/Close';
+import {
+  Divider,
+  IconButton,
+  OutlinedInput,
+  FormControl,
+  styled,
+  CloseIcon,
+  Box,
+  Container,
+  Dialog,
+  DialogContent,
+} from '../../common/MuiComponents';
+import CustomButton from '../CustomButton/CustomButton';
 import ForgotPassword from '../ForgotPassword/ForgotPassword';
 import CreateNewAccount from '../CreateNewAccount/CreateNewAccount';
 
@@ -181,7 +187,6 @@ const Login = props => {
                     variant='body2'
                     onClick={() => {
                       setOpenForgotPassword(true);
-                      // handleLoginClose();
                     }}
                   >
                     Forgot password?
@@ -195,7 +200,6 @@ const Login = props => {
                     buttonText='Create new account'
                     getStartedBtn={false}
                     onBtnClick={() => {
-                      // handleLoginClose();
                       setOpenCreateNewAccount(true);
                     }}
                   />

@@ -1,5 +1,4 @@
-import { Alert } from '@mui/material';
-import Snackbar from '@mui/material/Snackbar';
+import { Alert, Snackbar } from '../../common/MuiComponents';
 
 const SnackBar = props => {
   const { openSnackBar, handleCloseSnackBar, snackBarMessage } = props;
@@ -8,7 +7,6 @@ const SnackBar = props => {
     <>
       <Snackbar
         open={openSnackBar}
-        sx={{ marginBottom: '2rem' }}
         autoHideDuration={3000}
         onClose={handleCloseSnackBar}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}

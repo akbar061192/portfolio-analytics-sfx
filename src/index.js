@@ -5,7 +5,7 @@ import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import axios from 'axios';
 import { Backdrop, CircularProgress } from '@mui/material';
-import ErrorDialog from './globals/components/ErrorDialog';
+import ErrorDialog from './globals/components/ErrorDialog/ErrorDialog';
 
 export const axiosInstance = axios.create({});
 
