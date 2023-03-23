@@ -59,7 +59,9 @@ const NavbarLogo = styled('img')(({ theme }) => ({
   width: '250px',
 }));
 
-export const Navbar = () => {
+export const Navbar = props => {
+  const { setOpenSnackBar, setSnackBarMessage } = props;
+
   const [mobileMenu, setMobileMenu] = useState({
     right: false,
   });
@@ -138,7 +140,13 @@ export const Navbar = () => {
   return (
     <>
       {openLogin ? (
-        <Login openLogin={openLogin} setOpenLogin={setOpenLogin} handleLoginClose={handleLoginClose} />
+        <Login
+          openLogin={openLogin}
+          setOpenLogin={setOpenLogin}
+          handleLoginClose={handleLoginClose}
+          setOpenSnackBar={setOpenSnackBar}
+          setSnackBarMessage={setSnackBarMessage}
+        />
       ) : null}
 
       <AppBar

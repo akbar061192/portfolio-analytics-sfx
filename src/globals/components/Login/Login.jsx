@@ -11,10 +11,13 @@ import {
   Container,
   Dialog,
   DialogContent,
+  Typography,
 } from '../../common/MuiComponents';
 import CustomButton from '../CustomButton/CustomButton';
 import ForgotPassword from '../ForgotPassword/ForgotPassword';
 import CreateNewAccount from '../CreateNewAccount/CreateNewAccount';
+import { siginIn } from '../../apis/apis';
+import { ReportProblem } from '@mui/icons-material';
 
 const CustomForgotLink = styled(Box)(() => {
   return {
@@ -26,7 +29,7 @@ const CustomForgotLink = styled(Box)(() => {
 });
 
 const Login = props => {
-  const { openLogin, setOpenLogin, handleLoginClose } = props;
+  const { openLogin, setOpenLogin, handleLoginClose, setOpenSnackBar, setSnackBarMessage } = props;
 
   const [userInputs, setUserInputs] = useState({
     email: '',
@@ -40,6 +43,8 @@ const Login = props => {
 
   const [openForgotPassword, setOpenForgotPassword] = useState(false);
   const [openCreateNewAccount, setOpenCreateNewAccount] = useState(false);
+
+  const [loginSuccess, setLoginSuccess] = useState('');
 
   const formValidation = (values = userInputs) => {
     let errObj = {};
@@ -79,10 +84,19 @@ const Login = props => {
     setOpenCreateNewAccount(false);
   };
 
-  const handleLoginUser = event => {
+  const handleLoginUser = async event => {
     event.preventDefault();
     if (formValidation()) {
-      console.log(userInputs);
+      const inputPayload = {
+        userid: userInputs.email,
+        password: userInputs.password,
+      };
+      try {
+        const response = await siginIn(inputPayload);
+        setLoginSuccess(response);
+      } catch (error) {
+        return error;
+      }
     }
   };
 
@@ -101,6 +115,8 @@ const Login = props => {
           openCreateNewAccount={openCreateNewAccount}
           handleCloseCreateNewAccount={handleCloseCreateNewAccount}
           setOpenLogin={setOpenLogin}
+          setOpenSnackBar={setOpenSnackBar}
+          setSnackBarMessage={setSnackBarMessage}
         />
       ) : null}
 
@@ -180,6 +196,15 @@ const Login = props => {
                     onBtnClick={handleLoginUser}
                   />
                 </Box>
+
+                {loginSuccess && (
+                  <Box sx={{ display: 'flex', alignItems: 'center', mb: '1rem' }}>
+                    <ReportProblem style={{ color: 'red', marginRight: '5px' }} />
+                    <Typography style={{ color: 'red' }} variant='subtitle2'>
+                      {loginSuccess.msg}
+                    </Typography>
+                  </Box>
+                )}
 
                 <CustomForgotLink sx={{ textAlign: 'center', mb: '1rem' }}>
                   <Link

@@ -13,7 +13,7 @@ const Landing = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar setOpenSnackBar={setOpenSnackBar} setSnackBarMessage={setSnackBarMessage} />
       <motion.div
         initial={{ y: '100%' }}
         animate={{ y: 0 }}

@@ -11,4 +11,24 @@ const createRequestDemo = async data => {
   }
 };
 
-export { createRequestDemo };
+const siginIn = async data => {
+  const sigiInUrl = serviceConfig.BASE_URL.USER_SERVICE_URL + serviceConfig.apiEndPoints.USER_API.SIGN_IN;
+  try {
+    const response = await axiosInstance.post(sigiInUrl, data);
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+};
+
+const siginUp = async data => {
+  const sigiUpUrl = serviceConfig.BASE_URL.USER_SERVICE_URL + serviceConfig.apiEndPoints.USER_API.SIGN_UP;
+  try {
+    const response = await axiosInstance.post(sigiUpUrl, data);
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+};
+
+export { createRequestDemo, siginIn, siginUp };

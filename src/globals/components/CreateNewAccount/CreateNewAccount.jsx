@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { siginUp } from '../../apis/apis';
 import {
   Divider,
   IconButton,
@@ -18,7 +19,13 @@ import {
 import CustomButton from '../CustomButton/CustomButton';
 
 const CreateNewAccount = props => {
-  const { openCreateNewAccount, handleCloseCreateNewAccount, setOpenLogin } = props;
+  const {
+    openCreateNewAccount,
+    handleCloseCreateNewAccount,
+    setOpenLogin,
+    setOpenSnackBar,
+    setSnackBarMessage,
+  } = props;
 
   const [newAccount, setNewAccount] = useState({
     fName: '',
@@ -57,7 +64,7 @@ const CreateNewAccount = props => {
     });
   };
 
-  const handleCreateNewAccount = event => {
+  const handleCreateNewAccount = async event => {
     event.preventDefault();
     const validForm = formValidation();
     const formInput = {
@@ -69,7 +76,19 @@ const CreateNewAccount = props => {
       confirm_Password: newAccount.confirmPassword,
     };
     if (validForm) {
-      console.log(formInput);
+      try {
+        const response = await siginUp(formInput);
+        if (response) {
+          setOpenSnackBar(true);
+          setSnackBarMessage('New Account created successfully');
+          handleCloseCreateNewAccount();
+          setOpenLogin(false);
+        }
+      } catch (error) {
+        setOpenSnackBar(false);
+        setSnackBarMessage('');
+        return error;
+      }
     }
   };
 
