@@ -19,6 +19,8 @@ const ErrorDialog = props => {
     setOpen(false);
   };
 
+  console.log(errorState);
+
   return (
     <Dialog
       open={open}
@@ -32,7 +34,7 @@ const ErrorDialog = props => {
           <DialogContentText id='alert-dialog-description'>
             {errorState.response.data.summary.message.replaceAll("'", '')}
           </DialogContentText>
-        ) : errorState.response.data.message ? (
+        ) : errorState.response && errorState.response.data.message ? (
           <DialogContentText id='alert-dialog-description'>
             {errorState.response.data.message}
           </DialogContentText>

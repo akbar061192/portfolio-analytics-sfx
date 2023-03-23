@@ -203,7 +203,7 @@ const Login = props => {
                   <Box sx={{ display: 'flex', alignItems: 'center', mb: '1rem' }}>
                     <ReportProblem style={{ color: 'red', marginRight: '5px' }} />
                     <Typography style={{ color: 'red' }} variant='subtitle2'>
-                      {loginSuccess.msg}
+                      Invalid email or password
                     </Typography>
                   </Box>
                 )}
