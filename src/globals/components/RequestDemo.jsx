@@ -71,10 +71,12 @@ const RequestDemo = props => {
 
       try {
         const response = await createRequestDemo(inputPayload);
-        handleCloseRequestDemo();
-        setOpenSnackBar(true);
-        setSnackBarMessage('Request submitted successfully');
-        console.log(response);
+        if (response) {
+          handleCloseRequestDemo();
+          setOpenSnackBar(true);
+          setSnackBarMessage('Request submitted successfully');
+          console.log(response);
+        }
       } catch (error) {
         setOpenSnackBar(false);
         setSnackBarMessage('');

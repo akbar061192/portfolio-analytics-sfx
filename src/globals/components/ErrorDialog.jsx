@@ -17,6 +17,8 @@ const ErrorDialog = props => {
     setOpen(false);
   };
 
+  console.log(errorState);
+
   return (
     <Dialog
       open={open}
@@ -26,7 +28,7 @@ const ErrorDialog = props => {
     >
       <DialogTitle id='alert-dialog-title'>Oops! Something went wrong.</DialogTitle>
       <DialogContent>
-        {errorState.response.data.errors ? (
+        {errorState.response && errorState.response.data.errors ? (
           <DialogContentText id='alert-dialog-description'>
             {errorState.response.data.message}
           </DialogContentText>
