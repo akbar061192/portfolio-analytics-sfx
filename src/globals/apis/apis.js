@@ -31,4 +31,15 @@ const siginUp = async data => {
   }
 };
 
-export { createRequestDemo, siginIn, siginUp };
+const forgotPassword = async email => {
+  const forgotPasswordUrl =
+    serviceConfig.BASE_URL.USER_SERVICE_URL + serviceConfig.apiEndPoints.USER_API.FORGOT_PASSWORD;
+  try {
+    const response = await axiosInstance.post(forgotPasswordUrl, email);
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+};
+
+export { createRequestDemo, siginIn, siginUp, forgotPassword };

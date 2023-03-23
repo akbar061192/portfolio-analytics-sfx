@@ -15,6 +15,7 @@ import {
 } from '../../common/MuiComponents';
 import { Link } from 'react-router-dom';
 import CustomButton from '../CustomButton/CustomButton';
+import { forgotPassword } from '../../apis/apis';
 
 const CustomForgotLink = styled(Box)(() => {
   return {
@@ -26,7 +27,8 @@ const CustomForgotLink = styled(Box)(() => {
 });
 
 const ForgotPassword = props => {
-  const { openForgotPassword, handleCloseForgotPassword, setOpenLogin } = props;
+  const { openForgotPassword, handleCloseForgotPassword, setOpenLogin, setOpenSnackBar, setSnackBarMessage } =
+    props;
 
   const [userInputs, setUserInputs] = useState({
     email: '',
@@ -65,10 +67,25 @@ const ForgotPassword = props => {
     });
   };
 
-  const handleForgotPassword = event => {
+  const handleForgotPassword = async event => {
     event.preventDefault();
     if (formValidation()) {
-      console.log(userInputs);
+      const input = {
+        email_id: userInputs.email,
+      };
+      try {
+        const response = await forgotPassword(input);
+        if (response) {
+          setOpenSnackBar(true);
+          setSnackBarMessage('Reset Email Sent');
+          handleCloseForgotPassword();
+          setOpenLogin(false);
+        }
+      } catch (error) {
+        setOpenSnackBar(false);
+        setSnackBarMessage('');
+        return error;
+      }
     }
   };
 

@@ -107,6 +107,8 @@ const Login = props => {
           openForgotPassword={openForgotPassword}
           handleCloseForgotPassword={handleCloseForgotPassword}
           setOpenLogin={setOpenLogin}
+          setOpenSnackBar={setOpenSnackBar}
+          setSnackBarMessage={setSnackBarMessage}
         />
       ) : null}
 
