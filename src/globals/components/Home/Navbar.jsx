@@ -49,7 +49,7 @@ const CustomMenuIcon = styled(MenuIcon)(({ theme }) => ({
   cursor: 'pointer',
   display: 'none',
   color: 'black',
-  marginRight: theme.spacing(2),
+  marginleft: theme.spacing(2),
   [theme.breakpoints.down('lg')]: {
     display: 'block',
   },
@@ -58,13 +58,16 @@ const CustomMenuIcon = styled(MenuIcon)(({ theme }) => ({
 const NavbarLogo = styled('img')(({ theme }) => ({
   cursor: 'pointer',
   width: '250px',
+  [theme.breakpoints.down('sm')]: {
+    width: '150px',
+  },
 }));
 
 export const Navbar = props => {
   const { setOpenSnackBar, setSnackBarMessage, setOpenWelcomeModal } = props;
 
   const [mobileMenu, setMobileMenu] = useState({
-    right: false,
+    left: false,
   });
 
   const [openLogin, setOpenLogin] = useState(false);
@@ -170,10 +173,12 @@ export const Navbar = props => {
               gap: '2.5rem',
             }}
           >
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <Drawer anchor='right' open={mobileMenu['right']} onClose={toggleDrawer('right', false)}>
-                {list('right')}
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '20px' }}>
+              <Drawer anchor='left' open={mobileMenu['left']} onClose={toggleDrawer('left', false)}>
+                {list('left')}
               </Drawer>
+              <CustomMenuIcon onClick={toggleDrawer('left', true)} />
+
               <NavbarLogo src={fyinnoveaLogo} alt='logo' />
             </Box>
           </Box>
@@ -202,7 +207,6 @@ export const Navbar = props => {
               buttonText='Login'
               onBtnClick={handleLoginOpen}
             />
-            <CustomMenuIcon onClick={toggleDrawer('right', true)} />
           </Box>
         </NavbarContainer>
       </AppBar>
