@@ -46,9 +46,10 @@ const PortfolioAnalytics = () => {
               <Title variant='h1'>Portfolio Analytics</Title>
             </motion.div>
 
-            <Typography variant='h6'>
-              With FYINNOVEA, you get the best advice on investment. Understand your market, get answers to
-              your burning questions, and invest wisely, all at the same place.
+            <Typography variant='h6' style={{ textAlign: 'justify' }}>
+              With FYINNOVEA, you get the best research on investment. As the market changes, you may need to
+              make changes in your investment goals, allocation, diversification/concentration &amp; timely
+              monitoring your investments using high benchmarks &amp; decision based on data analytics
             </Typography>
             <Typography
               variant='body2'

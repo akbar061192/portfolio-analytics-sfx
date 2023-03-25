@@ -29,7 +29,14 @@ const CustomForgotLink = styled(Box)(() => {
 });
 
 const Login = props => {
-  const { openLogin, setOpenLogin, handleLoginClose, setOpenSnackBar, setSnackBarMessage } = props;
+  const {
+    openLogin,
+    setOpenLogin,
+    handleLoginClose,
+    setOpenSnackBar,
+    setSnackBarMessage,
+    setOpenWelcomeModal,
+  } = props;
 
   const [userInputs, setUserInputs] = useState({
     email: '',
@@ -119,6 +126,7 @@ const Login = props => {
           setOpenLogin={setOpenLogin}
           setOpenSnackBar={setOpenSnackBar}
           setSnackBarMessage={setSnackBarMessage}
+          setOpenWelcomeModal={setOpenWelcomeModal}
         />
       ) : null}
 
@@ -222,7 +230,7 @@ const Login = props => {
                 <Divider sx={{ mb: '1rem' }} />
                 <Box sx={{ textAlign: 'center', my: 2 }}>
                   <CustomButton
-                    backgroundColor='#36a420'
+                    backgroundColor='#1877f2'
                     color='#fff'
                     buttonText='Create new account'
                     getStartedBtn={false}

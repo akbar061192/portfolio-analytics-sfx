@@ -1,3 +1,14 @@
+import { ExpandMore } from '@mui/icons-material';
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
+  TextField,
+  Typography,
+} from '@mui/material';
 import { useState, useEffect } from 'react';
 import { siginUp } from '../../apis/apis';
 import {
@@ -25,6 +36,7 @@ const CreateNewAccount = props => {
     setOpenLogin,
     setOpenSnackBar,
     setSnackBarMessage,
+    setOpenWelcomeModal,
   } = props;
 
   const [newAccount, setNewAccount] = useState({
@@ -34,6 +46,8 @@ const CreateNewAccount = props => {
     mobile: '',
     password: '',
     confirmPassword: '',
+    investmentType: '',
+    aboutUs: '',
   });
 
   const [errors, setErrors] = useState({
@@ -43,10 +57,13 @@ const CreateNewAccount = props => {
     mobile: '',
     password: '',
     confirmPassword: '',
+    investmentType: '',
+    aboutUs: '',
   });
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [expandAccordion, setExpandAccordion] = useState(false);
 
   const handleInputChange = event => {
     const name = event.target.name;
@@ -74,6 +91,8 @@ const CreateNewAccount = props => {
       phone_number: newAccount.mobile,
       password: newAccount.password,
       confirm_Password: newAccount.confirmPassword,
+      investmentType: newAccount.investmentType,
+      aboutUs: newAccount.aboutUs,
     };
     if (validForm) {
       try {
@@ -83,10 +102,12 @@ const CreateNewAccount = props => {
           setSnackBarMessage('New Account created successfully');
           handleCloseCreateNewAccount();
           setOpenLogin(false);
+          setOpenWelcomeModal(true);
         }
       } catch (error) {
         setOpenSnackBar(false);
         setSnackBarMessage('');
+        setOpenWelcomeModal(false);
         return error;
       }
     }
@@ -111,6 +132,8 @@ const CreateNewAccount = props => {
     if ('password' in values) errObj.password = values.password ? '' : 'Required*';
     if ('mobile' in values) errObj.mobile = values.mobile ? '' : 'Required*';
     if ('confirmPassword' in values) errObj.confirmPassword = values.confirmPassword ? '' : 'Required*';
+    if ('investmentType' in values) errObj.investmentType = values.investmentType ? '' : 'Required*';
+    if ('aboutUs' in values) errObj.aboutUs = values.aboutUs ? '' : 'Required*';
 
     setErrors(prevState => {
       return {
@@ -122,6 +145,7 @@ const CreateNewAccount = props => {
     return Object.values(errObj).every(value => value === '');
   };
 
+  const isBorder = errors.investmentType ? true : false;
   return (
     <>
       <Dialog
@@ -147,10 +171,13 @@ const CreateNewAccount = props => {
           setOpenLogin(prev => !prev);
         }}
       >
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: '1.5rem' }}>
-          <DialogTitle sx={{ paddingTop: 0, fontSize: '24px', fontWeight: '580', mb: 0, pb: 0 }}>
-            Sign Up
-          </DialogTitle>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', mt: '1.2rem' }}>
+          <Box>
+            <DialogTitle sx={{ paddingTop: 0, fontSize: '24px', fontWeight: '580', mb: 0, pb: 0 }}>
+              Sign Up
+            </DialogTitle>
+            <DialogContent sx={{ m: 0, pt: 0 }}>It's quick and easy</DialogContent>
+          </Box>
 
           <Box
             sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 0, mr: '10px' }}
@@ -183,8 +210,7 @@ const CreateNewAccount = props => {
           </Box>
         </Box>
 
-        <DialogContent sx={{ m: 0, pt: 0 }}>It's quick and easy</DialogContent>
-        <Divider sx={{ mb: 1 }} />
+        <Divider sx={{ mb: 0.5 }} />
 
         <DialogContent sx={{ paddingTop: 0 }}>
           <Container component='main' maxWidth='xs'>
@@ -306,22 +332,70 @@ const CreateNewAccount = props => {
                   {errors.confirmPassword && errors.confirmPassword.includes('match') ? (
                     <FormHelperText sx={{ margin: 0 }}>{errors.confirmPassword}</FormHelperText>
                   ) : null}
-                </Box>
 
-                <Box sx={{ textAlign: 'center', my: 3 }}>
-                  <CustomButton
-                    backgroundColor='#1c9bef'
-                    color='#fff'
-                    buttonText='Sign up'
-                    getStartedBtn={false}
-                    fullWidth={true}
-                    onBtnClick={handleCreateNewAccount}
-                  />
+                  <Accordion
+                    expanded={expandAccordion}
+                    onChange={() => setExpandAccordion(true)}
+                    sx={{ width: '100%', border: isBorder ? '1px solid red' : 'none' }}
+                  >
+                    <AccordionSummary
+                      expandIcon={<ExpandMore />}
+                      aria-controls='panel1a-content'
+                      id='panel1a-header'
+                    >
+                      <Typography sx={{ width: '100%', flexShrink: 0 }}>
+                        Investment Expertise{' '}
+                        <span style={{ color: '#1c9bef' }}> {newAccount.investmentType.toUpperCase()}</span>
+                      </Typography>
+                    </AccordionSummary>
+                    <AccordionDetails style={{ overflow: 'scroll' }}>
+                      <FormControl error={errors.investmentType ? true : false}>
+                        <RadioGroup
+                          aria-labelledby='demo-controlled-radio-buttons-group'
+                          name='investmentType'
+                          value={newAccount.investmentType}
+                          onChange={e => {
+                            handleInputChange(e);
+                            setExpandAccordion(false);
+                          }}
+                        >
+                          <FormControlLabel value='novice' control={<Radio />} label='Novice' />
+                          <FormControlLabel value='intermediate' control={<Radio />} label='Intermediate' />
+                          <FormControlLabel value='advance' control={<Radio />} label='Advanced' />
+                          <FormControlLabel value='professional' control={<Radio />} label='Professional' />
+                        </RadioGroup>
+                      </FormControl>
+                    </AccordionDetails>
+                  </Accordion>
+
+                  <FormControl sx={{ width: '100%' }}>
+                    <Typography sx={{ margin: 0 }}>How did you come to know about us?</Typography>
+                    <TextField
+                      sx={{ fontSize: '1.2rem', p: 0 }}
+                      name='aboutUs'
+                      value={newAccount.aboutUs}
+                      onChange={handleInputChange}
+                      variant='filled'
+                      multiline
+                      error={errors.aboutUs ? true : false}
+                      helperText={newAccount.aboutUs.length > 50 ? 'Max 50 characters' : ''}
+                    />
+                  </FormControl>
                 </Box>
               </Box>
             </Box>
           </Container>
         </DialogContent>
+        <Box sx={{ textAlign: 'center', my: 3, width: '80%', mx: 'auto' }}>
+          <CustomButton
+            backgroundColor='#1c9bef'
+            color='#fff'
+            buttonText='Sign up'
+            getStartedBtn={false}
+            fullWidth={true}
+            onBtnClick={handleCreateNewAccount}
+          />
+        </Box>
       </Dialog>
     </>
   );

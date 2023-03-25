@@ -22,6 +22,7 @@ import {
 } from '../../common/MuiComponents';
 import { Container } from '@mui/system';
 import Login from '../Login/Login';
+import { Link } from 'react-router-dom';
 
 const NavLink = styled(Typography)(({ theme }) => ({
   fontSize: '16px',
@@ -38,7 +39,7 @@ const NavbarLinksBox = styled(Box)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  gap: theme.spacing(2),
+  gap: theme.spacing(3),
   [theme.breakpoints.down('lg')]: {
     display: 'none',
   },
@@ -60,7 +61,7 @@ const NavbarLogo = styled('img')(({ theme }) => ({
 }));
 
 export const Navbar = props => {
-  const { setOpenSnackBar, setSnackBarMessage } = props;
+  const { setOpenSnackBar, setSnackBarMessage, setOpenWelcomeModal } = props;
 
   const [mobileMenu, setMobileMenu] = useState({
     right: false,
@@ -92,20 +93,22 @@ export const Navbar = props => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['What we do', 'Solutions', 'Market Place', 'Partner with us', 'Connect us'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index === 0 && <HomeIcon />}
-                {index === 1 && <FeaturedPlayListIcon />}
-                {index === 2 && <MiscellaneousServicesIcon />}
-                {index === 3 && <ListAltIcon />}
-                {index === 4 && <ContactsIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        {['What we do', 'Research', 'Consulting', 'Market Place', 'Partner with us', 'Connect us'].map(
+          (text, index) => (
+            <ListItem key={text} disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  {index === 0 && <HomeIcon />}
+                  {index === 1 && <FeaturedPlayListIcon />}
+                  {index === 2 && <MiscellaneousServicesIcon />}
+                  {index === 3 && <ListAltIcon />}
+                  {index === 4 && <ContactsIcon />}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          )
+        )}
       </List>
     </Box>
   );
@@ -117,7 +120,7 @@ export const Navbar = props => {
     alignItems: 'center',
     justifyContent: 'space-between',
     background: 'white',
-    padding: `${scrolled ? theme.spacing(1) : theme.spacing(3)}`,
+    padding: `${scrolled ? theme.spacing(1) : theme.spacing(4)}`,
     [theme.breakpoints.down('md')]: {
       padding: theme.spacing(2),
     },
@@ -146,6 +149,7 @@ export const Navbar = props => {
           handleLoginClose={handleLoginClose}
           setOpenSnackBar={setOpenSnackBar}
           setSnackBarMessage={setSnackBarMessage}
+          setOpenWelcomeModal={setOpenWelcomeModal}
         />
       ) : null}
 
@@ -183,8 +187,11 @@ export const Navbar = props => {
             }}
           >
             <NavbarLinksBox>
-              <NavLink variant='body2'>What we do</NavLink>
-              <NavLink variant='body2'>Solutions</NavLink>
+              <Link to={'/whatWeDo'} style={{ textDecoration: 'none' }}>
+                <NavLink variant='body2'>What we do</NavLink>
+              </Link>
+              <NavLink variant='body2'>Research</NavLink>
+              <NavLink variant='body2'>Consulting</NavLink>
               <NavLink variant='body2'>Market Place</NavLink>
               <NavLink variant='body2'>Partner with us</NavLink>
               <NavLink variant='body2'>Connect us</NavLink>

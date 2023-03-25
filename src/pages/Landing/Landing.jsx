@@ -6,14 +6,20 @@ import HowWorks from '../../globals/components/Home/HowWorks';
 import InvestWisely from '../../globals/components/Home/InvestWisely';
 import Footer from '../../globals/components/Home/Footer';
 import { Navbar } from '../../globals/components/Home/Navbar';
+import WelcomeModal from '../../globals/components/WelcomeModal/WelcomeModal';
 
 const Landing = () => {
   const [openSnackBar, setOpenSnackBar] = useState(false);
   const [snackBarMessage, setSnackBarMessage] = useState('');
+  const [openWelcomeModal, setOpenWelcomeModal] = useState(false);
 
   return (
     <>
-      <Navbar setOpenSnackBar={setOpenSnackBar} setSnackBarMessage={setSnackBarMessage} />
+      <Navbar
+        setOpenSnackBar={setOpenSnackBar}
+        setSnackBarMessage={setSnackBarMessage}
+        setOpenWelcomeModal={setOpenWelcomeModal}
+      />
       <motion.div
         initial={{ y: '100%' }}
         animate={{ y: 0 }}
@@ -32,6 +38,10 @@ const Landing = () => {
           handleCloseSnackBar={() => setOpenSnackBar(false)}
           snackBarMessage={snackBarMessage}
         />
+      ) : null}
+
+      {openWelcomeModal ? (
+        <WelcomeModal openModal={openWelcomeModal} handleCloseModal={() => setOpenWelcomeModal(false)} />
       ) : null}
     </>
   );

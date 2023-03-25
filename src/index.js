@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import axios from 'axios';
 import { Backdrop, CircularProgress } from '@mui/material';
 import ErrorDialog from './globals/components/ErrorDialog/ErrorDialog';
@@ -73,8 +73,8 @@ const GobalLoader = () => {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  <BrowserRouter basename=''>
+  <HashRouter basename=''>
     <GobalLoader />
     <App />
-  </BrowserRouter>
+  </HashRouter>
 );
