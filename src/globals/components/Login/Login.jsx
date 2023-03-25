@@ -51,7 +51,7 @@ const Login = props => {
   const [openForgotPassword, setOpenForgotPassword] = useState(false);
   const [openCreateNewAccount, setOpenCreateNewAccount] = useState(false);
 
-  const [loginSuccess, setLoginSuccess] = useState('');
+  const [loginSuccess, setLoginSuccess] = useState({});
 
   const formValidation = (values = userInputs) => {
     let errObj = {};
@@ -101,7 +101,15 @@ const Login = props => {
       try {
         const response = await siginIn(inputPayload);
         setLoginSuccess(response);
+        if (response.code === 200) {
+          const userEmail = response.token.email;
+          setOpenSnackBar(true);
+          setSnackBarMessage(`Login Successful. Welcome ${userEmail}`);
+          handleLoginClose();
+        }
       } catch (error) {
+        setOpenSnackBar(false);
+        setSnackBarMessage('');
         return error;
       }
     }
@@ -196,7 +204,6 @@ const Login = props => {
                     />
                   </FormControl>
                 </Box>
-
                 <Box sx={{ textAlign: 'center', my: 2 }}>
                   <CustomButton
                     backgroundColor='#1c9bef'
@@ -206,16 +213,16 @@ const Login = props => {
                     onBtnClick={handleLoginUser}
                   />
                 </Box>
-
-                {loginSuccess && (
-                  <Box sx={{ display: 'flex', alignItems: 'center', mb: '1rem' }}>
-                    <ReportProblem style={{ color: 'red', marginRight: '5px' }} />
-                    <Typography style={{ color: 'red' }} variant='subtitle2'>
-                      Invalid email or password
-                    </Typography>
-                  </Box>
-                )}
-
+                {Object.entries(loginSuccess).length
+                  ? loginSuccess.code !== 200 && (
+                      <Box sx={{ display: 'flex', alignItems: 'center', mb: '1rem' }}>
+                        <ReportProblem style={{ color: 'red', marginRight: '5px' }} />
+                        <Typography style={{ color: 'red' }} variant='subtitle2'>
+                          Invalid email or password
+                        </Typography>
+                      </Box>
+                    )
+                  : null}
                 <CustomForgotLink sx={{ textAlign: 'center', mb: '1rem' }}>
                   <Link
                     style={{ textDecoration: 'none', color: '#1877f2', fontWeight: '500' }}
