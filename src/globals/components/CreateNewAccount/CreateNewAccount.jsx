@@ -335,16 +335,16 @@ const CreateNewAccount = props => {
 
                   <Accordion
                     expanded={expandAccordion}
-                    onChange={() => setExpandAccordion(true)}
                     sx={{ width: '100%', border: isBorder ? '1px solid red' : 'none' }}
                   >
                     <AccordionSummary
+                      onClick={() => setExpandAccordion(prev => !prev)}
                       expandIcon={<ExpandMore />}
                       aria-controls='panel1a-content'
                       id='panel1a-header'
                     >
                       <Typography sx={{ width: '100%', flexShrink: 0 }}>
-                        Investment Expertise{' '}
+                        Investment Expertise
                         <span style={{ color: '#1c9bef' }}> {newAccount.investmentType.toUpperCase()}</span>
                       </Typography>
                     </AccordionSummary>
@@ -361,7 +361,7 @@ const CreateNewAccount = props => {
                         >
                           <FormControlLabel value='novice' control={<Radio />} label='Novice' />
                           <FormControlLabel value='intermediate' control={<Radio />} label='Intermediate' />
-                          <FormControlLabel value='advance' control={<Radio />} label='Advanced' />
+                          <FormControlLabel value='advanced' control={<Radio />} label='Advanced' />
                           <FormControlLabel value='professional' control={<Radio />} label='Professional' />
                         </RadioGroup>
                       </FormControl>
