@@ -94,10 +94,13 @@ const RequestDemo = props => {
   return (
     <>
       <Dialog open={openRequestDemo}>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: '1.5rem' }}>
-          <DialogTitle sx={{ paddingTop: 0, fontSize: '24px', fontWeight: '580', mb: 0, pb: 0 }}>
-            Request Demo
-          </DialogTitle>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mt: '1.2rem' }}>
+          <Box>
+            <DialogTitle sx={{ paddingTop: 0, fontSize: '24px', fontWeight: '580', mb: 0, pb: 0 }}>
+              Request Demo
+            </DialogTitle>
+            <DialogContent sx={{ m: 0, pt: 0 }}>Just one click away!</DialogContent>
+          </Box>
 
           <Box
             sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 0, mr: '10px' }}
@@ -126,7 +129,6 @@ const RequestDemo = props => {
           </Box>
         </Box>
 
-        <DialogContent sx={{ m: 0, pt: 0 }}>Just one click away!</DialogContent>
         <Divider sx={{ mb: 1 }} />
 
         <DialogContent sx={{ paddingTop: 0 }}>
@@ -194,21 +196,20 @@ const RequestDemo = props => {
                     />
                   </FormControl>
                 </Box>
-
-                <Box sx={{ textAlign: 'center', my: 3 }}>
-                  <CustomButton
-                    backgroundColor='#1c9bef'
-                    color='#fff'
-                    buttonText='Submit'
-                    getStartedBtn={false}
-                    fullWidth={true}
-                    onBtnClick={handleSubmitDemo}
-                  />
-                </Box>
               </Box>
             </Box>
           </Container>
         </DialogContent>
+        <Box sx={{ textAlign: 'center', my: 3, width: '80%', mx: 'auto' }}>
+          <CustomButton
+            backgroundColor='#1c9bef'
+            color='#fff'
+            buttonText='Submit'
+            getStartedBtn={false}
+            fullWidth={true}
+            onBtnClick={handleSubmitDemo}
+          />
+        </Box>
       </Dialog>
     </>
   );

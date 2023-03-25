@@ -7,8 +7,6 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 450,
   bgcolor: 'background.paper',
-  // border: '2px solid #000',
-  // boxShadow: 24,
   p: 4,
 };
 
@@ -21,7 +19,12 @@ const WelcomeModal = ({ openModal, handleCloseModal }) => {
       aria-describedby='modal-modal-description'
     >
       <Box sx={style}>
-        <Typography id='modal-modal-title' variant='h6' component='h2' sx={{ textAlign: 'center' }}>
+        <Typography
+          id='modal-modal-title'
+          variant='h6'
+          component='h2'
+          sx={{ textAlign: 'center', color: '#1c9bef' }}
+        >
           Congratulations and Welcome to FYINNOVEA Family!
         </Typography>
         <Divider sx={{ mt: 2 }} />
