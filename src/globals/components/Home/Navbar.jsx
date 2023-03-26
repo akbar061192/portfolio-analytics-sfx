@@ -101,18 +101,20 @@ export const Navbar = props => {
       <List>
         {['What we do', 'Research', 'Consulting', 'Market Place', 'Partner with us', 'Connect us'].map(
           (text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index === 0 && <HomeIcon />}
-                  {index === 1 && <FeaturedPlayListIcon />}
-                  {index === 2 && <MiscellaneousServicesIcon />}
-                  {index === 3 && <ListAltIcon />}
-                  {index === 4 && <ContactsIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
+            <Link to={'/whatWeDo'} style={{ textDecoration: 'none' }} key={text}>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    {index === 0 && <HomeIcon />}
+                    {index === 1 && <FeaturedPlayListIcon />}
+                    {index === 2 && <MiscellaneousServicesIcon />}
+                    {index === 3 && <ListAltIcon />}
+                    {index === 4 && <ContactsIcon />}
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </ListItem>
+            </Link>
           )
         )}
       </List>
