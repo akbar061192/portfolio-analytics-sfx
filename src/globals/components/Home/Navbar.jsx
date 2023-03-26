@@ -59,7 +59,10 @@ const NavbarLogo = styled('img')(({ theme }) => ({
   cursor: 'pointer',
   width: '250px',
   [theme.breakpoints.down('sm')]: {
-    width: '150px',
+    width: '200px',
+  },
+  [theme.breakpoints.between('250', '300')]: {
+    width: '100px',
   },
 }));
 
@@ -123,9 +126,15 @@ export const Navbar = props => {
     alignItems: 'center',
     justifyContent: 'space-between',
     background: 'white',
-    padding: `${scrolled ? theme.spacing(1) : theme.spacing(4)}`,
+    paddingLeft: '30px',
+    paddingRight: '30px',
+    boxShadow: `${scrolled ? '0 5px 15px 0 rgba(0,0,0,0.5)' : ''}`,
+    padding: `${scrolled ? theme.spacing(2) : theme.spacing(3)}`,
+    borderRadius: '12px',
+    marginTop: `${scrolled ? '1rem' : 0}`,
     [theme.breakpoints.down('md')]: {
-      padding: theme.spacing(2),
+      padding: theme.spacing(1),
+      boxShadow: `0 0 0 0`,
     },
   }));
 
@@ -162,7 +171,7 @@ export const Navbar = props => {
           top: 0,
           background: 'white',
         }}
-        elevation={scrolled ? 3 : 0}
+        elevation={0}
       >
         <NavbarContainer>
           <Box
