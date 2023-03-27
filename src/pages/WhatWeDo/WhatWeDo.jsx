@@ -6,7 +6,7 @@ import BiotechIcon from '@mui/icons-material/Biotech';
 import GroupIcon from '@mui/icons-material/Group';
 import Footer from '../../globals/components/Home/Footer';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const Title = styled(Typography)(({ theme }) => ({
@@ -56,43 +56,44 @@ const IconBox = styled(Box)(({ theme }) => {
   };
 });
 
-const WhatWeDo = () => {
-  const NavbarLogo = styled('img')(({ theme }) => ({
+const NavbarLogo = styled('img')(({ theme }) => ({
+  cursor: 'pointer',
+  width: '250px',
+  [theme.breakpoints.down('sm')]: {
+    display: 'none',
+  },
+}));
+
+const CustomBtn = styled(Button)(({ theme }) => {
+  return {
+    px: 2,
+    py: 1,
+    color: '#00008B',
+    background: 'white',
+    fontSize: '16px',
+    fontWeight: '700',
     cursor: 'pointer',
-    width: '250px',
-    [theme.breakpoints.down('sm')]: {
-      display: 'none',
+    padding: '0.5rem 1.25rem',
+    borderRadius: '7px',
+    textTransform: 'none',
+    border: '2px solid transparent',
+    transition: 'all .6s ease-in-out',
+    '&:hover': {
+      backgroundColor: '#00008B',
+      color: 'white',
+      borderColor: '#00008B',
+      transform: 'scale(1.1)',
     },
-  }));
+    [theme.breakpoints.down('md')]: {
+      width: '100%',
+      padding: '4px',
+      borderRadius: '3px',
+    },
+  };
+});
 
-  const CustomBtn = styled(Button)(({ theme }) => {
-    return {
-      px: 2,
-      py: 1,
-      color: '#00008B',
-      background: 'white',
-      fontSize: '16px',
-      fontWeight: '700',
-      cursor: 'pointer',
-      padding: '0.5rem 1.25rem',
-      borderRadius: '7px',
-      textTransform: 'none',
-      border: '2px solid transparent',
-      transition: 'all .6s ease-in-out',
-      '&:hover': {
-        backgroundColor: '#00008B',
-        color: 'white',
-        borderColor: '#00008B',
-        transform: 'scale(1.1)',
-      },
-      [theme.breakpoints.down('md')]: {
-        width: '100%',
-        padding: '4px',
-        borderRadius: '3px',
-      },
-    };
-  });
-
+const WhatWeDo = () => {
+  const navigate = useNavigate();
   return (
     <>
       <motion.div
@@ -106,20 +107,22 @@ const WhatWeDo = () => {
           <div className='hero-nav'>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <Tooltip title='Back to home'>
-                <Link to={'/'}>
-                  <IconButton>
-                    <ArrowBackIcon
-                      style={{
-                        color: 'white',
-                        fontSize: '45px',
-                        marginLeft: '20px',
-                        border: '2px solid white',
-                        borderRadius: '50%',
-                        padding: '4px',
-                      }}
-                    />
-                  </IconButton>
-                </Link>
+                <IconButton
+                  onClick={() => {
+                    navigate('/', { replace: true });
+                  }}
+                >
+                  <ArrowBackIcon
+                    style={{
+                      color: 'white',
+                      fontSize: '45px',
+                      marginLeft: '20px',
+                      border: '2px solid white',
+                      borderRadius: '50%',
+                      padding: '4px',
+                    }}
+                  />
+                </IconButton>
               </Tooltip>
 
               <NavbarLogo src={fyinnoveaLogo} alt='logo' />
