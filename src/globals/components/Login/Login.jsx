@@ -115,6 +115,7 @@ const Login = props => {
     }
   };
 
+  console.log(loginSuccess);
   return (
     <>
       {openForgotPassword ? (
@@ -213,7 +214,7 @@ const Login = props => {
                     onBtnClick={handleLoginUser}
                   />
                 </Box>
-                {Object.entries(loginSuccess).length
+                {loginSuccess && Object.entries(loginSuccess).length
                   ? loginSuccess.code !== 200 && (
                       <Box sx={{ display: 'flex', alignItems: 'center', mb: '1rem' }}>
                         <ReportProblem style={{ color: 'red', marginRight: '5px' }} />
