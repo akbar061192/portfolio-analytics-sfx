@@ -32,18 +32,22 @@ const PortfolioDialog = ({ openDialog, handleCloseDialog }) => {
       ) : null}
       <Dialog maxWidth open={openDialog} onClose={handleCloseDialog} TransitionComponent={Transition}>
         <AppBar sx={{ position: 'relative' }}>
-          <Toolbar>
-            <IconButton edge='start' onClick={handleCloseDialog} aria-label='close'>
-              <CloseIcon style={{ color: 'white' }} />
-            </IconButton>
+          <Toolbar sx={{ justifyContent: 'space-between' }}>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
               <Typography sx={{ ml: 2, flex: 1 }} variant='h5' component='div'>
                 Create Portfolio
               </Typography>
-              <Typography sx={{ ml: 2, flex: 1, fontSize: '0.8rem' }} variant='p' component='div'>
+              <Typography
+                sx={{ ml: 2, flex: 1, fontSize: '0.72rem', color: 'yellow' }}
+                variant='p'
+                component='div'
+              >
                 No Portfolio's found. Please create one to get started.
               </Typography>
             </Box>
+            <IconButton edge='end' onClick={handleCloseDialog} aria-label='close'>
+              <CloseIcon style={{ color: 'white' }} />
+            </IconButton>
           </Toolbar>
         </AppBar>
         <List sx={{ padding: '2rem' }}>
@@ -57,7 +61,7 @@ const PortfolioDialog = ({ openDialog, handleCloseDialog }) => {
             </IconButton>
           </ListItem>
           <Divider />
-          <ListItem button onClick={() => setNewPortfolio(true)}>
+          <ListItem button onClick={() => setNewPortfolio(true)} disabled>
             <ListItemText
               primary='Import holdings from file'
               secondary='Import a brokerage export file from your computer. Most positional data in .csv, .txt, .xls, .xlsx format are supported'

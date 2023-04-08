@@ -17,6 +17,7 @@ import {
   DialogContent,
 } from '../../globals/common/MuiComponents';
 import CustomButton from '../../globals/components/CustomButton/CustomButton';
+import { styled } from '@mui/material';
 
 const NewPortfolio = props => {
   const { openNewPortfolio, handleCloseNewPortfolio } = props;
@@ -76,6 +77,13 @@ const NewPortfolio = props => {
 
     return Object.values(errObj).every(value => value === '');
   };
+
+  const MarginBox = styled(Box)(({ theme }) => ({
+    borderRight: `${newPortfolio.sgPortfolio && newPortfolio.portfolioType ? '1px solid gray' : 'none'}`,
+    [theme.breakpoints.down('sm')]: {
+      borderRight: 'none',
+    },
+  }));
 
   return (
     <>
@@ -185,29 +193,26 @@ const NewPortfolio = props => {
                   </FormControl>
                   <br />
 
-                  <FormControl
-                    style={{
-                      borderRight: `${
-                        newPortfolio.sgPortfolio && newPortfolio.portfolioType ? '1px solid black' : 'none'
-                      }`,
-                    }}
-                    error={errors.portfolioType ? true : false}
-                    disabled={!newPortfolio.sgPortfolio}
-                  >
-                    <FormLabel id='demo-controlled-radio-buttons-group1'>
-                      {`Type${errors.portfolioType ? '*' : ''}`}
-                    </FormLabel>
-                    <RadioGroup
-                      row
-                      aria-labelledby='demo-controlled-radio-buttons-group1'
-                      name='portfolioType'
-                      value={newPortfolio.portfolioType}
-                      onChange={handleInputChange}
+                  <MarginBox>
+                    <FormControl
+                      error={errors.portfolioType ? true : false}
+                      disabled={!newPortfolio.sgPortfolio}
                     >
-                      <FormControlLabel value='strategy' control={<Radio />} label='Strategy' />
-                      <FormControlLabel value='goal' control={<Radio />} label='Goal' />
-                    </RadioGroup>
-                  </FormControl>
+                      <FormLabel id='demo-controlled-radio-buttons-group1'>
+                        {`Type${errors.portfolioType ? '*' : ''}`}
+                      </FormLabel>
+                      <RadioGroup
+                        row
+                        aria-labelledby='demo-controlled-radio-buttons-group1'
+                        name='portfolioType'
+                        value={newPortfolio.portfolioType}
+                        onChange={handleInputChange}
+                      >
+                        <FormControlLabel value='strategy' control={<Radio />} label='Strategy' />
+                        <FormControlLabel value='goal' control={<Radio />} label='Goal' />
+                      </RadioGroup>
+                    </FormControl>
+                  </MarginBox>
 
                   {newPortfolio.portfolioType && newPortfolio.sgPortfolio ? (
                     <FormControl error={errors.portfolioSubType ? true : false}>

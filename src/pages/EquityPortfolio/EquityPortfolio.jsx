@@ -139,6 +139,7 @@ const EquityPortfolio = () => {
           justifyContent: 'center',
           alignItems: 'center',
           paddingTop: '20px',
+          pb: 2,
         }}
       >
         <div
@@ -150,7 +151,10 @@ const EquityPortfolio = () => {
           }}
         ></div>
 
-        <Typography variant='h3' sx={{ fontSize: '35px', fontWeight: 'bold', color: '#000339', my: 3 }}>
+        <Typography
+          variant='h3'
+          sx={{ fontSize: '35px', fontWeight: 'bold', color: '#000339', my: 3, textAlign: 'center', mx: 2 }}
+        >
           Equity Portfolio Analytics
         </Typography>
 
