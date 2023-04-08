@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import fyinnoveaLogo from '../../media/fyinnoveaLogo.png';
 import { Link } from 'react-router-dom';
 import CustomButton from '../../globals/components/CustomButton/CustomButton';
+import PortfolioDialog from './PortfolioDialog';
 
 const EquityPortfolio = () => {
   const CustomBox = styled(Box)(({ theme }) => ({
@@ -89,8 +90,16 @@ const EquityPortfolio = () => {
     },
   }));
 
+  const [openPortfolioDialog, setOpenPortfolioDialog] = useState(false);
+
   return (
     <>
+      {openPortfolioDialog ? (
+        <PortfolioDialog
+          openDialog={openPortfolioDialog}
+          handleCloseDialog={() => setOpenPortfolioDialog(false)}
+        />
+      ) : null}
       <Box>
         <AppBar
           style={{
@@ -205,9 +214,15 @@ const EquityPortfolio = () => {
             </Typography>
           </GuideBox>
         </GuidesBox>
-        <Link to={'/equityPortfolio'} style={{ textDecoration: 'none' }}>
-          <CustomButton backgroundColor='#1c9bef' color='#fff' buttonText='Get Started' />
-        </Link>
+
+        <CustomButton
+          backgroundColor='#1c9bef'
+          color='#fff'
+          buttonText='Get Started'
+          onBtnClick={() => {
+            setOpenPortfolioDialog(true);
+          }}
+        />
       </Box>
     </>
   );
