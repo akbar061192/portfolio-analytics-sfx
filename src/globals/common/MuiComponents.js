@@ -29,6 +29,11 @@ import {
   Divider,
   InputAdornment,
   FormHelperText,
+  FormLabel,
+  Checkbox,
+  FormControlLabel,
+  RadioGroup,
+  Radio,
 } from '@mui/material';
 
 import MenuIcon from '@mui/icons-material/Menu';
@@ -99,4 +104,9 @@ export {
   VisibilityOff,
   InputAdornment,
   FormHelperText,
+  FormLabel,
+  Checkbox,
+  FormControlLabel,
+  RadioGroup,
+  Radio,
 };
