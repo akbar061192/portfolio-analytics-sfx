@@ -19,11 +19,11 @@ const Transition = forwardRef(function Transition(props, ref) {
 const PortfolioDialog = ({ openDialog, handleCloseDialog }) => {
   return (
     <>
-      <Dialog fullScreen open={openDialog} onClose={handleCloseDialog} TransitionComponent={Transition}>
+      <Dialog maxWidth open={openDialog} onClose={handleCloseDialog} TransitionComponent={Transition}>
         <AppBar sx={{ position: 'relative' }}>
           <Toolbar>
             <IconButton edge='start' onClick={handleCloseDialog} aria-label='close'>
-              <CloseIcon />
+              <CloseIcon style={{ color: 'white' }} />
             </IconButton>
             <Typography sx={{ ml: 2, flex: 1 }} variant='h5' component='div'>
               Create Portfolio
