@@ -6,6 +6,7 @@ import {
   FormControlLabel,
   Radio,
   RadioGroup,
+  Switch,
   TextField,
   Typography,
 } from '@mui/material';
@@ -48,6 +49,7 @@ const CreateNewAccount = props => {
     confirmPassword: '',
     investmentType: '',
     aboutUs: '',
+    referredBy: '',
   });
 
   const [errors, setErrors] = useState({
@@ -59,7 +61,14 @@ const CreateNewAccount = props => {
     confirmPassword: '',
     investmentType: '',
     aboutUs: '',
+    referredBy: '',
   });
+
+  const [checked, setChecked] = useState(true);
+
+  const handleChange = event => {
+    setChecked(event.target.checked);
+  };
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -93,6 +102,7 @@ const CreateNewAccount = props => {
       confirm_Password: newAccount.confirmPassword,
       investmentType: newAccount.investmentType,
       aboutUs: newAccount.aboutUs,
+      referredBy: newAccount.referredBy,
     };
     if (validForm) {
       try {
@@ -133,7 +143,8 @@ const CreateNewAccount = props => {
     if ('mobile' in values) errObj.mobile = values.mobile ? '' : 'Required*';
     if ('confirmPassword' in values) errObj.confirmPassword = values.confirmPassword ? '' : 'Required*';
     if ('investmentType' in values) errObj.investmentType = values.investmentType ? '' : 'Required*';
-    if ('aboutUs' in values) errObj.aboutUs = values.aboutUs ? '' : 'Required*';
+    if ('aboutUs' in values && !checked) errObj.aboutUs = values.aboutUs ? '' : 'Required*';
+    if ('referredBy' in values && checked) errObj.referredBy = values.referredBy ? '' : 'Required*';
 
     setErrors(prevState => {
       return {
@@ -368,19 +379,49 @@ const CreateNewAccount = props => {
                     </AccordionDetails>
                   </Accordion>
 
-                  <FormControl sx={{ width: '100%' }}>
-                    <Typography sx={{ margin: 0 }}>How did you come to know about us?</Typography>
-                    <TextField
-                      sx={{ fontSize: '1.2rem', p: 0 }}
-                      name='aboutUs'
-                      value={newAccount.aboutUs}
-                      onChange={handleInputChange}
-                      variant='filled'
-                      multiline
-                      error={errors.aboutUs ? true : false}
-                      helperText={newAccount.aboutUs.length > 50 ? 'Max 50 characters' : ''}
+                  <FormControl
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      gap: '2rem',
+                    }}
+                  >
+                    <Typography>Referal</Typography>
+                    <Switch
+                      checked={checked}
+                      onChange={handleChange}
+                      inputProps={{ 'aria-label': 'controlled' }}
                     />
+                    {checked ? (
+                      <TextField
+                        sx={{ fontSize: '1.5rem', p: 2 }}
+                        name='referredBy'
+                        variant='standard'
+                        placeholder='Referred by..'
+                        value={newAccount.referredBy}
+                        onChange={handleInputChange}
+                        error={errors.referredBy ? true : false}
+                      />
+                    ) : null}
                   </FormControl>
+
+                  {!checked ? (
+                    <FormControl sx={{ width: '100%' }}>
+                      <Typography sx={{ margin: 0 }}>How did you come to know about us?</Typography>
+                      <TextField
+                        sx={{ fontSize: '1.2rem', p: 0 }}
+                        name='aboutUs'
+                        value={newAccount.aboutUs}
+                        onChange={handleInputChange}
+                        variant='filled'
+                        multiline
+                        error={errors.aboutUs ? true : false}
+                        helperText={newAccount.aboutUs.length > 50 ? 'Max 50 characters' : ''}
+                      />
+                    </FormControl>
+                  ) : null}
                 </Box>
               </Box>
             </Box>
