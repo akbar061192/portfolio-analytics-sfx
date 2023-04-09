@@ -20,7 +20,7 @@ const EquityPortfolio = () => {
     display: 'flex',
     justifyContent: 'space-around',
     width: '70%',
-    marginTop: theme.spacing(5),
+    marginTop: theme.spacing(6),
     marginBottom: theme.spacing(5),
     [theme.breakpoints.down('md')]: {
       width: '100%',
@@ -35,7 +35,7 @@ const EquityPortfolio = () => {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    marginTop: theme.spacing(5),
+    marginTop: theme.spacing(6),
     [theme.breakpoints.down('sm')]: {
       margin: theme.spacing(2, 0, 2, 0),
     },
@@ -46,7 +46,7 @@ const EquityPortfolio = () => {
   }));
 
   const [scrolled, setScrolled] = useState(false);
-
+  console.log(scrolled);
   const NavbarContainer = styled(Container)(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
@@ -54,10 +54,10 @@ const EquityPortfolio = () => {
     background: 'white',
     paddingLeft: '30px',
     paddingRight: '30px',
-    boxShadow: `${scrolled ? '0 5px 15px 0 rgba(0,0,0,0.5)' : ''}`,
-    padding: `${scrolled ? theme.spacing(2) : theme.spacing(3)}`,
+    boxShadow: '0 5px 15px 0 rgba(0,0,0,0.5)',
+    padding: theme.spacing(1),
     borderRadius: '12px',
-    marginTop: `${scrolled ? '1rem' : 0}`,
+    marginTop: `1rem`,
     [theme.breakpoints.down('md')]: {
       padding: theme.spacing(1),
       boxShadow: `0 0 0 0`,
@@ -130,7 +130,6 @@ const EquityPortfolio = () => {
         </AppBar>
         <Toolbar />
       </Box>
-
       <Box
         sx={{
           marginTop: '6rem',
@@ -188,6 +187,7 @@ const EquityPortfolio = () => {
             </Typography>
           </GuideBox>
 
+          <hr />
           <GuideBox>
             <img src={swot} alt='dashboard' width={'40%'} style={{ background: 'white' }} />
             <Typography
@@ -202,6 +202,7 @@ const EquityPortfolio = () => {
               SWOT Analysis
             </Typography>
           </GuideBox>
+          <hr />
 
           <GuideBox>
             <img src={insights} alt='tech' width={'40%'} />
