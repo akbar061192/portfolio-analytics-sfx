@@ -113,9 +113,6 @@ const NewPortfolio = props => {
     return Object.values(errObj).every(value => value === '');
   };
 
-  console.log(errors);
-  console.log(newPortfolio);
-
   return (
     <>
       <Dialog
@@ -199,7 +196,7 @@ const NewPortfolio = props => {
                       flexDirection: 'row',
                       alignItems: 'center',
                     }}
-                    error={errors.sgPortfolio ? true : false}
+                    // error={errors.sgPortfolio ? true : false}
                   >
                     <FormLabel id='demo-controlled-radio-buttons-group1'>
                       {`Strategy/Goal Portfolio*`}
@@ -215,6 +212,9 @@ const NewPortfolio = props => {
                                 ...prev,
                                 sgPortfolio: event.target.checked,
                               };
+                            });
+                            formValidation({
+                              [event.target.name]: event.target.checked,
                             });
                           }}
                         />
@@ -270,14 +270,17 @@ const NewPortfolio = props => {
                             type='number'
                             name='goal'
                             value={newPortfolio.goal}
-                            onChange={event =>
+                            onChange={event => {
                               setNewPortfolio(prev => {
                                 return {
                                   ...prev,
                                   goal: +event.target.value,
                                 };
-                              })
-                            }
+                              });
+                              formValidation({
+                                [event.target.name]: event.target.value,
+                              });
+                            }}
                             error={errors.goal ? true : false}
                           />
                         </FormControl>
