@@ -17,23 +17,58 @@ import {
   DialogContent,
 } from '../../globals/common/MuiComponents';
 import CustomButton from '../../globals/components/CustomButton/CustomButton';
-import { styled } from '@mui/material';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Typography from '@mui/material/Typography';
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role='tabpanel'
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ py: 2, px: 0 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
 
 const NewPortfolio = props => {
   const { openNewPortfolio, handleCloseNewPortfolio } = props;
 
+  const [value, setValue] = useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   const [newPortfolio, setNewPortfolio] = useState({
     pName: '',
     sgPortfolio: false,
-    portfolioType: '',
     portfolioSubType: '',
+    goal: 0,
   });
 
   const [errors, setErrors] = useState({
     pName: '',
     sgPortfolio: false,
-    portfolioType: '',
     portfolioSubType: '',
+    goal: 0,
   });
 
   const handleInputChange = event => {
@@ -65,8 +100,8 @@ const NewPortfolio = props => {
     let errObj = {};
     if ('pName' in values) errObj.pName = values.pName ? '' : 'Required*';
     if ('sgPortfolio' in values) errObj.sgPortfolio = values.sgPortfolio ? '' : 'Required*';
-    if ('portfolioType' in values) errObj.portfolioType = values.portfolioType ? '' : 'Required*';
     if ('portfolioSubType' in values) errObj.portfolioSubType = values.portfolioSubType ? '' : 'Required*';
+    if ('goal' in values) errObj.goal = values.goal ? '' : 'Required*';
 
     setErrors(prevState => {
       return {
@@ -78,12 +113,8 @@ const NewPortfolio = props => {
     return Object.values(errObj).every(value => value === '');
   };
 
-  const MarginBox = styled(Box)(({ theme }) => ({
-    borderRight: `${newPortfolio.sgPortfolio && newPortfolio.portfolioType ? '1px solid gray' : 'none'}`,
-    [theme.breakpoints.down('sm')]: {
-      borderRight: 'none',
-    },
-  }));
+  console.log(errors);
+  console.log(newPortfolio);
 
   return (
     <>
@@ -171,7 +202,7 @@ const NewPortfolio = props => {
                     error={errors.sgPortfolio ? true : false}
                   >
                     <FormLabel id='demo-controlled-radio-buttons-group1'>
-                      {`Strategy/Goal Portfolio${errors.portfolioType ? '*' : ''}`}
+                      {`Strategy/Goal Portfolio*`}
                     </FormLabel>
                     <FormControlLabel
                       style={{ marginLeft: 0 }}
@@ -193,46 +224,65 @@ const NewPortfolio = props => {
                   </FormControl>
                   <br />
 
-                  <MarginBox>
-                    <FormControl
-                      error={errors.portfolioType ? true : false}
-                      disabled={!newPortfolio.sgPortfolio}
-                    >
-                      <FormLabel id='demo-controlled-radio-buttons-group1'>
-                        {`Type${errors.portfolioType ? '*' : ''}`}
-                      </FormLabel>
-                      <RadioGroup
-                        row
-                        aria-labelledby='demo-controlled-radio-buttons-group1'
-                        name='portfolioType'
-                        value={newPortfolio.portfolioType}
-                        onChange={handleInputChange}
-                      >
-                        <FormControlLabel value='strategy' control={<Radio />} label='Strategy' />
-                        <FormControlLabel value='goal' control={<Radio />} label='Goal' />
-                      </RadioGroup>
-                    </FormControl>
-                  </MarginBox>
-
-                  {newPortfolio.portfolioType && newPortfolio.sgPortfolio ? (
-                    <FormControl error={errors.portfolioSubType ? true : false}>
-                      <FormLabel id='demo-controlled-radio-buttons-group2'>
-                        {`Sub Type${errors.portfolioSubType ? '*' : ''}`}
-                      </FormLabel>
-                      <RadioGroup
-                        column
-                        aria-labelledby='demo-controlled-radio-buttons-group2'
-                        name='portfolioSubType'
-                        value={newPortfolio.portfolioSubType}
-                        onChange={handleInputChange}
-                      >
-                        <FormControlLabel value='aggressive' control={<Radio />} label='Aggressive' />
-                        <br />
-                        <FormControlLabel value='moderate' control={<Radio />} label='Moderate' />
-                        <br />
-                        <FormControlLabel value='conservative' control={<Radio />} label='Conservative' />
-                      </RadioGroup>
-                    </FormControl>
+                  {newPortfolio.sgPortfolio ? (
+                    <Box sx={{ width: '100%' }}>
+                      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                        <Tabs
+                          variant='fullWidth'
+                          value={value}
+                          onChange={handleChange}
+                          aria-label='basic tabs example'
+                          centered
+                        >
+                          <Tab
+                            style={{ color: `${errors.portfolioSubType ? 'red' : ''}` }}
+                            label='Strategy'
+                            {...a11yProps(0)}
+                          />
+                          <Tab
+                            style={{ color: `${errors.goal ? 'red' : ''}` }}
+                            label='Goal'
+                            {...a11yProps(1)}
+                          />
+                        </Tabs>
+                      </Box>
+                      <TabPanel sx={{ width: '100%' }} value={value} index={0}>
+                        <FormControl sx={{ width: '100%' }} error={errors.portfolioSubType ? true : false}>
+                          <RadioGroup
+                            row
+                            sx={{ width: '100%' }}
+                            aria-labelledby='demo-controlled-radio-buttons-group2'
+                            name='portfolioSubType'
+                            value={newPortfolio.portfolioSubType}
+                            onChange={handleInputChange}
+                          >
+                            <FormControlLabel value='aggressive' control={<Radio />} label='Aggressive' />
+                            <FormControlLabel value='moderate' control={<Radio />} label='Moderate' />
+                            <FormControlLabel value='conservative' control={<Radio />} label='Conservative' />
+                          </RadioGroup>
+                        </FormControl>
+                      </TabPanel>
+                      <TabPanel value={value} index={1}>
+                        <FormControl sx={{ width: '100%' }}>
+                          <OutlinedInput
+                            sx={{ fontSize: '1.2rem' }}
+                            placeholder='Goal*'
+                            type='number'
+                            name='goal'
+                            value={newPortfolio.goal}
+                            onChange={event =>
+                              setNewPortfolio(prev => {
+                                return {
+                                  ...prev,
+                                  goal: +event.target.value,
+                                };
+                              })
+                            }
+                            error={errors.goal ? true : false}
+                          />
+                        </FormControl>
+                      </TabPanel>
+                    </Box>
                   ) : null}
                 </Box>
               </Box>
