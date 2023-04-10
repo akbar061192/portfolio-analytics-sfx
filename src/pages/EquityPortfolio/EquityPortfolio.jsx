@@ -52,11 +52,11 @@ const EquityPortfolio = () => {
     alignItems: 'center',
     justifyContent: 'space-between',
     background: 'white',
-    paddingLeft: '30px',
-    paddingRight: '30px',
+    paddingLeft: '20px',
+    paddingRight: '20px',
     boxShadow: '0 5px 15px 0 rgba(0,0,0,0.5)',
-    padding: theme.spacing(1),
-    borderRadius: '12px',
+    padding: theme.spacing(0.6),
+    borderRadius: '10px',
     marginTop: `1rem`,
     [theme.breakpoints.down('md')]: {
       padding: theme.spacing(1),
@@ -81,9 +81,9 @@ const EquityPortfolio = () => {
 
   const NavbarLogo = styled('img')(({ theme }) => ({
     cursor: 'pointer',
-    width: '250px',
+    width: '200px',
     [theme.breakpoints.down('sm')]: {
-      width: '200px',
+      width: '150px',
     },
     [theme.breakpoints.between('250', '300')]: {
       width: '100px',

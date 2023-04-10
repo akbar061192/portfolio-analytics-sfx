@@ -20,6 +20,7 @@ import CustomButton from '../../globals/components/CustomButton/CustomButton';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
+import Transactions from './Transactions';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -71,6 +72,8 @@ const NewPortfolio = props => {
     goal: 0,
   });
 
+  const [openTransactions, setOpenTransactions] = useState(false);
+
   const handleInputChange = event => {
     const name = event.target.name;
     const value = event.target.value;
@@ -93,6 +96,7 @@ const NewPortfolio = props => {
 
     if (validForm) {
       console.log('valid');
+      setOpenTransactions(true);
     }
   };
 
@@ -115,6 +119,13 @@ const NewPortfolio = props => {
 
   return (
     <>
+      {openTransactions ? (
+        <Transactions
+          openTransactions={openTransactions}
+          handleCloseTransactions={() => setOpenTransactions(false)}
+          handleCloseNewPortfolio={handleCloseNewPortfolio}
+        />
+      ) : null}
       <Dialog
         open={openNewPortfolio}
         onClose={() => {
