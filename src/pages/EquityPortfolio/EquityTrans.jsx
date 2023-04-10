@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import { IconButton } from '@mui/material';
+import NewTransaction from './NewTransaction';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -41,33 +42,47 @@ function a11yProps(index) {
 }
 
 const EquityTrans = () => {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
+  const [openNewTransaction, setOpenNewTransaction] = useState(false);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   return (
-    <Box sx={{ width: '100%', m: 2 }}>
-      <Box sx={{}}>
-        <Tabs textColor='secondary' indicatorColor='secondary' value={value} onChange={handleChange}>
-          <Tab label='Equity' {...a11yProps(0)} />
-        </Tabs>
-      </Box>
-      <TabPanel value={value} index={0}>
-        <IconButton sx={{ borderRadius: 2, background: 'lightgray' }}>
-          <Box
-            sx={{
-              display: 'flex',
-              gap: '10px',
+    <>
+      {openNewTransaction ? (
+        <NewTransaction
+          openNewTransaction={openNewTransaction}
+          handleCloseNewTransaction={() => setOpenNewTransaction(false)}
+        />
+      ) : null}
+      <Box sx={{ width: '100%', m: 2 }}>
+        <Box>
+          <Tabs textColor='secondary' indicatorColor='secondary' value={value} onChange={handleChange}>
+            <Tab label='Equity' {...a11yProps(0)} />
+          </Tabs>
+        </Box>
+        <TabPanel value={value} index={0}>
+          <IconButton
+            sx={{ borderRadius: 2, background: 'lightgray' }}
+            onClick={() => {
+              setOpenNewTransaction(true);
             }}
           >
-            <AddCircleOutlineOutlinedIcon color='primary' />
-            <Typography>Add a transaction</Typography>
-          </Box>
-        </IconButton>
-      </TabPanel>
-    </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                gap: '10px',
+              }}
+            >
+              <AddCircleOutlineOutlinedIcon color='primary' />
+              <Typography>Add a transaction</Typography>
+            </Box>
+          </IconButton>
+        </TabPanel>
+      </Box>
+    </>
   );
 };
 
