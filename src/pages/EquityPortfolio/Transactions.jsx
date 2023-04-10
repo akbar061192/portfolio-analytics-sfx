@@ -157,7 +157,6 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
             justifyContent: 'space-between',
             alignItems: 'center',
             p: 2,
-            background: 'whitesmoke',
             m: 2,
             gap: '10px',
           }}
@@ -296,7 +295,8 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
 
           <Box
             sx={{
-              background: '#B0C4DE',
+              // background: '#B0C4DE',
+              background: 'whitesmoke',
               flex: 4,
               opacity: '0.8',
               borderRadius: '10px',
