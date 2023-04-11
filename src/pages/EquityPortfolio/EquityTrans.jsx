@@ -129,7 +129,7 @@ const EquityTrans = ({ portfolio, handleAddEquiTrans }) => {
           handleCloseNewTransaction={() => setOpenNewTransaction(false)}
         />
       ) : null}
-      <Box sx={{ width: '100%', m: { xs: 0, md: 2 } }}>
+      <Box sx={{ width: '100%', m: { xs: 1, md: 2 } }}>
         <Box>
           <Tabs value={value} onChange={handleChange}>
             <Tab label='Equity' {...a11yProps(0)} />

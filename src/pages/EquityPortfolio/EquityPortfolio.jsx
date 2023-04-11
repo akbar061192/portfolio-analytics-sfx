@@ -1,4 +1,12 @@
-import { Box, Typography, AppBar, styled, Toolbar, Container } from '../../globals/common/MuiComponents';
+import {
+  Box,
+  Typography,
+  AppBar,
+  styled,
+  Toolbar,
+  Container,
+  Divider,
+} from '../../globals/common/MuiComponents';
 import importData from '../../media/import.gif';
 import swot from '../../media/swot.gif';
 import insights from '../../media/insights.gif';
@@ -7,6 +15,16 @@ import fyinnoveaLogo from '../../media/fyinnoveaLogo.png';
 import { Link } from 'react-router-dom';
 import CustomButton from '../../globals/components/CustomButton/CustomButton';
 import PortfolioDialog from './PortfolioDialog';
+
+function Copyright(props) {
+  return (
+    <Typography variant='body2' color='text.secondary' align='center' {...props}>
+      {'Copyright © '}
+      FYINNOVEA {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
 const EquityPortfolio = () => {
   const CustomBox = styled(Box)(({ theme }) => ({
@@ -100,134 +118,139 @@ const EquityPortfolio = () => {
           handleCloseDialog={() => setOpenPortfolioDialog(false)}
         />
       ) : null}
+
       <Box>
-        <AppBar
-          style={{
-            position: 'fixed',
-            top: 0,
-            background: 'white',
-          }}
-          elevation={0}
-        >
-          <NavbarContainer>
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '2.5rem',
-              }}
-            >
-              <Box
-                sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '20px' }}
-              >
-                <Link to='/'>
-                  <NavbarLogo src={fyinnoveaLogo} alt='logo' />
-                </Link>
-              </Box>
-            </Box>
-          </NavbarContainer>
-        </AppBar>
-        <Toolbar />
-      </Box>
-      <Box
-        sx={{
-          marginTop: '6rem',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          paddingTop: '20px',
-          pb: 2,
-        }}
-      >
-        <div
-          style={{
-            width: '5%',
-            height: '5px',
-            backgroundColor: '#000339',
-            margin: '0 auto',
-          }}
-        ></div>
-
-        <Typography
-          variant='h3'
-          sx={{ fontSize: '35px', fontWeight: 'bold', color: '#000339', my: 3, textAlign: 'center', mx: 2 }}
-        >
-          Equity Portfolio Analytics
-        </Typography>
-
-        <CustomBox>
-          <Typography
-            variant='body2'
-            sx={{
-              fontSize: '16px',
-              fontWeight: '500',
-              color: '#5A6473',
-              textAlign: 'center',
+        <Box>
+          <AppBar
+            style={{
+              position: 'fixed',
+              top: 0,
+              background: 'white',
             }}
+            elevation={0}
           >
-            Track all your investments - All in one place
-          </Typography>
-        </CustomBox>
-
-        <GuidesBox>
-          <GuideBox>
-            <img src={importData} alt='analysis' width='40%' />
-            <Typography
-              variant='body2'
-              sx={{
-                fontWeight: '500',
-                fontSize: '20px',
-                color: '#3B3c45',
-                my: 1,
-              }}
-            >
-              Import data from brokers
-            </Typography>
-          </GuideBox>
-
-          <hr />
-          <GuideBox>
-            <img src={swot} alt='dashboard' width={'40%'} style={{ background: 'white' }} />
-            <Typography
-              variant='body2'
-              sx={{
-                fontWeight: '500',
-                fontSize: '20px',
-                color: '#3B3c45',
-                my: 1,
-              }}
-            >
-              SWOT Analysis
-            </Typography>
-          </GuideBox>
-          <hr />
-
-          <GuideBox>
-            <img src={insights} alt='tech' width={'40%'} />
-            <Typography
-              variant='body2'
-              sx={{
-                fontWeight: '500',
-                fontSize: '20px',
-                color: '#3B3c45',
-                my: 1,
-              }}
-            >
-              Valuable insights & reports
-            </Typography>
-          </GuideBox>
-        </GuidesBox>
-
-        <CustomButton
-          backgroundColor='#1c9bef'
-          color='#fff'
-          buttonText='Get Started'
-          onBtnClick={() => {
-            setOpenPortfolioDialog(true);
+            <NavbarContainer>
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '2.5rem',
+                }}
+              >
+                <Box
+                  sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '20px' }}
+                >
+                  <Link to='/'>
+                    <NavbarLogo src={fyinnoveaLogo} alt='logo' />
+                  </Link>
+                </Box>
+              </Box>
+            </NavbarContainer>
+          </AppBar>
+          <Toolbar />
+        </Box>
+        <Box
+          sx={{
+            marginTop: '6rem',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            paddingTop: '20px',
+            pb: 2,
           }}
-        />
+        >
+          <div
+            style={{
+              width: '5%',
+              height: '5px',
+              backgroundColor: '#000339',
+              margin: '0 auto',
+            }}
+          ></div>
+
+          <Typography
+            variant='h3'
+            sx={{ fontSize: '35px', fontWeight: 'bold', color: '#000339', my: 3, textAlign: 'center', mx: 2 }}
+          >
+            Equity Portfolio Analytics
+          </Typography>
+
+          <CustomBox>
+            <Typography
+              variant='body2'
+              sx={{
+                fontSize: '16px',
+                fontWeight: '500',
+                color: '#5A6473',
+                textAlign: 'center',
+              }}
+            >
+              Track all your investments - All in one place
+            </Typography>
+          </CustomBox>
+
+          <GuidesBox>
+            <GuideBox>
+              <img src={importData} alt='analysis' width='40%' />
+              <Typography
+                variant='body2'
+                sx={{
+                  fontWeight: '500',
+                  fontSize: '20px',
+                  color: '#3B3c45',
+                  my: 1,
+                }}
+              >
+                Import data from brokers
+              </Typography>
+            </GuideBox>
+
+            <hr />
+            <GuideBox>
+              <img src={swot} alt='dashboard' width={'40%'} style={{ background: 'white' }} />
+              <Typography
+                variant='body2'
+                sx={{
+                  fontWeight: '500',
+                  fontSize: '20px',
+                  color: '#3B3c45',
+                  my: 1,
+                }}
+              >
+                SWOT Analysis
+              </Typography>
+            </GuideBox>
+            <hr />
+
+            <GuideBox>
+              <img src={insights} alt='tech' width={'40%'} />
+              <Typography
+                variant='body2'
+                sx={{
+                  fontWeight: '500',
+                  fontSize: '20px',
+                  color: '#3B3c45',
+                  my: 1,
+                }}
+              >
+                Valuable insights & reports
+              </Typography>
+            </GuideBox>
+          </GuidesBox>
+
+          <CustomButton
+            backgroundColor='#1c9bef'
+            color='#fff'
+            buttonText='Get Started'
+            onBtnClick={() => {
+              setOpenPortfolioDialog(true);
+            }}
+          />
+        </Box>
+        <Divider sx={{ mt: 20 }} />
+        <Copyright sx={{ mt: 2, mb: { xs: 2, md: 0 } }} />
       </Box>
     </>
   );

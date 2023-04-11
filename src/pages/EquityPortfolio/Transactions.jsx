@@ -37,6 +37,16 @@ const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction='up' ref={ref} {...props} />;
 });
 
+function Copyright(props) {
+  return (
+    <Typography variant='body2' color='text.secondary' align='center' {...props}>
+      {'Copyright © '}
+      FYINNOVEA {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
+
 const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNewPortfolio }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -144,7 +154,13 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
                 <CloseIcon color='primary' />
               </IconButton>
 
-              <img src={fyinnovea} style={{ width: '240px' }} alt='logo' />
+              <Box
+                sx={{
+                  width: { xs: '170px', md: '240px' },
+                }}
+              >
+                <img src={fyinnovea} style={{ width: '100%' }} alt='logo' />
+              </Box>
             </Box>
 
             <Box>
@@ -155,7 +171,7 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
                   alignItems: 'center',
                   gap: '10px',
                   p: 1.5,
-                  background: 'lightgray',
+                  // background: 'lightgray',
                   borderRadius: '10px',
                 }}
               >
@@ -168,17 +184,18 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
         <Box sx={{ background: 'white', p: 2 }}>
           <Box
             sx={{
-              display: 'flex',
+              display: { xs: 'block', md: 'flex' },
               justifyContent: 'space-between',
               alignItems: 'center',
               p: 2,
               m: 2,
               gap: '10px',
-              background: 'white',
+              // background: 'white',
             }}
           >
             <Box>
               <Button
+                sx={{ width: { xs: '100%' }, mb: { xs: 2 } }}
                 id='demo-customized-button'
                 aria-controls={open ? 'demo-customized-menu' : undefined}
                 aria-haspopup='true'
@@ -211,7 +228,7 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
               </StyledMenu>
             </Box>
 
-            <FormControl variant='outlined' sx={{ width: { xs: '250px', md: '400px' } }}>
+            <FormControl variant='outlined' sx={{ width: { xs: '100%', md: '400px' } }}>
               <OutlinedInput
                 placeholder='Search Portfolios...'
                 startAdornment={<InputAdornment position='start'>{<SearchIcon />}</InputAdornment>}
@@ -359,6 +376,8 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
             </Box>
           </Box>
         </Box>
+        <Divider sx={{ mt: 20 }} />
+        <Copyright sx={{ mt: 2, mb: { xs: 2, md: 0 } }} />
       </Dialog>
     </div>
   );
