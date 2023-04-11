@@ -15,32 +15,37 @@ const columns = [
   {
     field: 'company',
     headerName: 'Company Name',
-    width: 150,
+    // width: 150,
+    flex: 1.5,
     editable: true,
   },
   {
     field: 'transDate',
     headerName: 'Transaction Date',
-    width: 150,
+    // width: 150,
+    flex: 1.2,
     editable: true,
   },
   {
     field: 'transPrice',
     headerName: 'Transaction Price',
-    width: 150,
+    // width: 150,
+    flex: 1.2,
     editable: true,
   },
   {
     field: 'quantity',
     headerName: 'Quantity',
-    width: 120,
+    // width: 150,
+    flex: 1,
     editable: true,
     type: 'number',
   },
   {
     field: 'accounts',
     headerName: 'Accounts',
-    width: 150,
+    // width: 150,
+    flex: 1.5,
     editable: true,
     renderCell: params => {
       return (
@@ -59,7 +64,8 @@ const columns = [
   {
     field: 'icon',
     headerName: 'Action',
-    width: 100,
+    // width: 100,
+    flex: 1,
     renderCell: params => {
       return (
         <>

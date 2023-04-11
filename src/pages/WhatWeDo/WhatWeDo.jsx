@@ -47,6 +47,7 @@ const IconBox = styled(Box)(({ theme }) => {
   return {
     display: 'flex',
     justifyContent: 'center',
+    flex: 1,
     alignItems: 'center',
     flexDirection: 'column',
     borderRadius: '10px',
@@ -155,9 +156,18 @@ const WhatWeDo = () => {
               <BiotechIcon
                 sx={{ fontSize: '7rem', padding: '1rem', borderRadius: '50%', border: '3px solid #0000B9' }}
               />
-              <SubTitle sx={{ color: ' black' }}>RESEARCH</SubTitle>
+              <SubTitle sx={{ color: ' black', mb: 1 }}>RESEARCH</SubTitle>
               <SubTitle sx={{ color: ' black', textAlign: 'center', fontSize: '18px', m: 0 }}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, accusantium.{' '}
+                Proud owners of kimberlites, the diamonds
+              </SubTitle>
+              <SubTitle sx={{ color: ' black', textAlign: 'center', fontSize: '18px', m: 0 }}>
+                FYINNOVEA Research & Analytics bestows Direct Access to the Latest Insights by deeper analysis
+                of companies’ business models, innovative emerging companies & implementation of disruptive
+                technologies, effective corporate governance backed by exponential growth along with deeper
+                understanding of stability of financial markets, economy and institutions Accelerate your
+                investments, by investing in future unicorns & engaging with most innovative disruptors in the
+                market. We uncover kimberlites, the diamonds by engaging with early-stage companies &
+                connecting investor’s with entrepreneur community & start-ups ecosystem
               </SubTitle>
             </IconBox>
             <IconBox sx={{ background: 'whitesmoke', p: '2rem' }}>
@@ -166,7 +176,13 @@ const WhatWeDo = () => {
               />
               <SubTitle sx={{ color: ' black' }}>CONSULTING</SubTitle>
               <SubTitle sx={{ color: ' black', textAlign: 'center', fontSize: '18px', m: 0 }}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, accusantium.{' '}
+                Adopt Digital Technologies to Transform Your Business
+              </SubTitle>
+              <SubTitle sx={{ color: ' black', textAlign: 'center', fontSize: '18px', m: 0 }}>
+                We simplify your Rapid exponential growth by turning your data & business processes into
+                digital products and services to stay competitive utilizing digital platforms in capital
+                markets. Take full advantage of FYINNOVEA intelligent tech SAAS platforms, venture capital,
+                seed investors & get connected with key stakeholders in market
               </SubTitle>
             </IconBox>
           </CustomBox>

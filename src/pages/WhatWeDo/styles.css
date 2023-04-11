@@ -29,3 +29,60 @@
   width: 100%;
   text-align: center;
 }
+
+.notifications-container {
+  width: 320px;
+  height: auto;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+
+
+.flex {
+  display: flex;
+}
+
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+.success {
+  padding: 1rem;
+  border-radius: 0.375rem;
+  background-color: rgb(240 253 244);
+}
+
+.succes-svg {
+  color: rgb(74 222 128);
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.success-prompt-wrap {
+  margin-left: 0.75rem;
+}
+
+.success-prompt-heading {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: rgb(22 101 52);
+}
+
+.success-prompt-prompt {
+  margin-top: 0.5rem;
+  color: rgb(21 128 61);
+  font-size: 1rem;
+}
+
+.success-button-container {
+  display: flex;
+  margin-top: 0.875rem;
+  margin-bottom: -0.375rem;
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+}
+
