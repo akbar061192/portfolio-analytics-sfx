@@ -100,7 +100,12 @@ const What = () => {
               }}
             >
               <Box
-                sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '20px' }}
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: { xs: 'center', md: 'space-between' },
+                  gap: '20px',
+                }}
               >
                 <Link to='/'>
                   <NavbarLogo src={fyinnoveaLogo} alt='logo' />
@@ -113,9 +118,9 @@ const What = () => {
       </Box>
       <Box
         sx={{
-          display: 'flex',
+          display: { xs: 'block', md: 'flex' },
           m: 3,
-          mt: 6,
+          mt: 10,
         }}
       >
         <Box sx={{ background: 'white', flex: 2 }}>
@@ -131,13 +136,14 @@ const What = () => {
                   my: 3,
                   textAlign: 'center',
                   mx: 2,
+                  letterSpacing: '2.5px',
                 }}
               >
                 RESEARCH
               </Typography>
             </GuideBox>
 
-            <hr />
+            {/* <hr /> */}
             <GuideBox>
               <img src={consulting} alt='dashboard' width={'30%'} style={{ background: 'white' }} />
               <Typography
@@ -149,6 +155,7 @@ const What = () => {
                   my: 3,
                   textAlign: 'center',
                   mx: 2,
+                  letterSpacing: '2.5px',
                 }}
               >
                 CONSULTING
@@ -157,8 +164,8 @@ const What = () => {
           </GuidesBox>
         </Box>
 
-        <hr />
-        <Box sx={{ background: 'white', flex: 3 }}>
+        {/* <hr /> */}
+        <Box sx={{ background: 'whitesmoke', p: 6, pt: 0, flex: 3, borderRadius: '10px' }}>
           <Box
             sx={{
               marginTop: '6rem',
@@ -174,7 +181,8 @@ const What = () => {
               style={{
                 width: '13%',
                 height: '5px',
-                background: 'black',
+                // background: 'black',
+                background: 'rgb(74 222 128)',
               }}
             ></div>
 
@@ -197,8 +205,8 @@ const What = () => {
             sx={{
               fontSize: '32px',
               fontWeight: 'bold',
-              color: '#000339',
-              // my: 3,
+              color: 'rgb(74 222 128)',
+              // mb: 1,
               textAlign: 'center',
               // mx: 2,
             }}
@@ -206,12 +214,20 @@ const What = () => {
             We are the best in the city!
           </Typography>
 
-          <Box sx={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', mt: 10 }}>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-evenly',
+              alignItems: 'center',
+              mt: 10,
+              gap: '20px',
+            }}
+          >
             <Tooltip title='FYINNOVEA Research & Analytics bestows Direct Access to the Latest Insights by deeper analysis of companies’ business models, innovative emerging companies & implementation of disruptive technologies, effective corporate governance backed by exponential growth along with deeper understanding of stability of financial markets, economy and institutions.Accelerate your investments, by investing in future unicorns & engaging with most innovative disruptors in the market. We uncover kimberlites, the diamonds by engaging with early-stage companies & connecting investor’s with entrepreneur community & start-ups ecosystem'>
               <div class='notifications-container'>
                 <div class='success'>
                   <div class='flex'>
-                    <div class='flex-shrink-0'>
+                    <div style={{ marginTop: '3px' }} class='flex-shrink-0'>
                       <svg
                         class='succes-svg'
                         xmlns='http://www.w3.org/2000/svg'
@@ -250,7 +266,7 @@ const What = () => {
                 <div class='notifications-container'>
                   <div class='success'>
                     <div class='flex'>
-                      <div class='flex-shrink-0'>
+                      <div style={{ marginTop: '3px' }} class='flex-shrink-0'>
                         <svg
                           class='succes-svg'
                           xmlns='http://www.w3.org/2000/svg'
@@ -287,10 +303,10 @@ const What = () => {
           </Box>
         </Box>
 
-        {/* <Box sx={{ flex: 1 }}></Box> */}
+        <Box sx={{ flex: 1 }}></Box>
       </Box>
 
-      <Divider />
+      <Divider sx={{ mt: 20 }} />
       <Copyright sx={{ mt: 2, mb: { xs: 2, md: 0 } }} />
     </>
   );
