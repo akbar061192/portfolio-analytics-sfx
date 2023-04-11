@@ -69,7 +69,7 @@ const What = () => {
     paddingLeft: '20px',
     paddingRight: '20px',
     boxShadow: '0 5px 15px 0 rgba(0,0,0,0.5)',
-    padding: theme.spacing(0.6),
+    padding: theme.spacing(1),
     borderRadius: '10px',
     marginTop: `1rem`,
     [theme.breakpoints.down('md')]: {

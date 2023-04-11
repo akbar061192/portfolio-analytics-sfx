@@ -23,6 +23,7 @@ import {
 import { Container } from '@mui/system';
 import Login from '../Login/Login';
 import { Link } from 'react-router-dom';
+import { nanoid } from '@reduxjs/toolkit';
 
 const NavLink = styled(Typography)(({ theme }) => ({
   fontSize: '16px',
@@ -101,7 +102,7 @@ export const Navbar = props => {
       <List>
         {['What we do', 'Research', 'Consulting', 'Market Place', 'Partner with us', 'Connect us'].map(
           (text, index) => (
-            <Link to={'/whatWeDo'} style={{ textDecoration: 'none' }} key={text}>
+            <Link to={`whatWeDo/${nanoid()}`} style={{ textDecoration: 'none' }} key={text}>
               <ListItem disablePadding>
                 <ListItemButton>
                   <ListItemIcon>
@@ -203,7 +204,7 @@ export const Navbar = props => {
             }}
           >
             <NavbarLinksBox>
-              <Link to={'/whatWeDo'} style={{ textDecoration: 'none' }}>
+              <Link to={`whatWeDo/${nanoid()}`} style={{ textDecoration: 'none' }}>
                 <NavLink variant='body2'>What we do</NavLink>
               </Link>
               <NavLink variant='body2'>Research</NavLink>

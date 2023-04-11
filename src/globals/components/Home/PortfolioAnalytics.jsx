@@ -3,6 +3,7 @@ import CustomButton from '../CustomButton/CustomButton';
 import analyticsHero from '../../../media/analyticsHero.gif';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { nanoid } from '@reduxjs/toolkit';
 
 const PortfolioAnalytics = () => {
   const CustomBox = styled(Box)(({ theme }) => ({
@@ -58,7 +59,7 @@ const PortfolioAnalytics = () => {
             >
               A platform by FYINNOVEA
             </Typography>
-            <Link to={'/equityPortfolio'} style={{ textDecoration: 'none' }}>
+            <Link to={`/equityPortfolio/${nanoid()}`} style={{ textDecoration: 'none' }}>
               <CustomButton backgroundColor='#1c9bef' color='#fff' buttonText='Begin Now' heroBtn={true} />
             </Link>
           </CustomTitleBox>
