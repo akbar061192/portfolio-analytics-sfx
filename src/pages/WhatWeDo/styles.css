@@ -53,11 +53,11 @@
 .success {
   padding: 1rem;
   border-radius: 0.375rem;
-  background-color: rgb(240 253 244);
+  background-color: rgb(232, 246, 237);
 }
 
 .succes-svg {
-  color: rgb(74 222 128);
+  color: rgb(66, 150, 97);
   width: 1.25rem;
   height: 1.25rem;
 }

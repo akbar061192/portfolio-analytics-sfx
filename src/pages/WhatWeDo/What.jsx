@@ -137,6 +137,7 @@ const What = () => {
                   textAlign: 'center',
                   mx: 2,
                   letterSpacing: '2.5px',
+                  fontFamily: '"Poppins", sans-serif',
                 }}
               >
                 RESEARCH
@@ -156,6 +157,7 @@ const What = () => {
                   textAlign: 'center',
                   mx: 2,
                   letterSpacing: '2.5px',
+                  fontFamily: '"Poppins", sans-serif',
                 }}
               >
                 CONSULTING
@@ -165,7 +167,7 @@ const What = () => {
         </Box>
 
         {/* <hr /> */}
-        <Box sx={{ background: 'whitesmoke', p: 6, pt: 0, flex: 3, borderRadius: '10px' }}>
+        <Box sx={{ background: 'azure', p: 6, pt: 0, flex: 3, borderRadius: '15px' }}>
           <Box
             sx={{
               marginTop: '6rem',
@@ -195,6 +197,8 @@ const What = () => {
                 my: 3,
                 textAlign: 'center',
                 mx: 2,
+                fontFamily: '"Poppins", sans-serif',
+                letterSpacing: '3px',
               }}
             >
               WHAT WE DO
@@ -206,9 +210,8 @@ const What = () => {
               fontSize: '32px',
               fontWeight: 'bold',
               color: 'rgb(74 222 128)',
-              // mb: 1,
               textAlign: 'center',
-              // mx: 2,
+              letterSpacing: '1.2px',
             }}
           >
             We are the best in the city!
