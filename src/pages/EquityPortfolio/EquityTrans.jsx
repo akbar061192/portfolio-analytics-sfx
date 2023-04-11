@@ -15,19 +15,19 @@ const columns = [
   {
     field: 'company',
     headerName: 'Company Name',
-    width: 200,
+    width: 150,
     editable: true,
   },
   {
     field: 'transDate',
     headerName: 'Transaction Date',
-    width: 200,
+    width: 150,
     editable: true,
   },
   {
     field: 'transPrice',
     headerName: 'Transaction Price',
-    width: 200,
+    width: 150,
     editable: true,
   },
   {
@@ -40,7 +40,7 @@ const columns = [
   {
     field: 'accounts',
     headerName: 'Accounts',
-    width: 250,
+    width: 150,
     editable: true,
     renderCell: params => {
       return (
@@ -59,7 +59,7 @@ const columns = [
   {
     field: 'icon',
     headerName: 'Action',
-    width: 200,
+    width: 100,
     renderCell: params => {
       return (
         <>
@@ -129,7 +129,7 @@ const EquityTrans = ({ portfolio, handleAddEquiTrans }) => {
           handleCloseNewTransaction={() => setOpenNewTransaction(false)}
         />
       ) : null}
-      <Box sx={{ width: '100%', m: 2 }}>
+      <Box sx={{ width: '100%', m: { xs: 0, md: 2 } }}>
         <Box>
           <Tabs value={value} onChange={handleChange}>
             <Tab label='Equity' {...a11yProps(0)} />
@@ -138,26 +138,29 @@ const EquityTrans = ({ portfolio, handleAddEquiTrans }) => {
         <TabPanel value={value} index={0}>
           <Box
             sx={{
-              display: 'flex',
+              display: { xs: 'block', md: 'flex' },
               alignItems: 'center',
-              justifyContent: 'space-between',
+              justifyContent: { sx: 'center', lg: 'space-between' },
               mb: 2,
+              gap: 2,
+              textAlign: { xs: 'center' },
             }}
           >
             <Box
               sx={{
-                display: 'flex',
+                display: { xs: 'block', md: 'flex' },
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 gap: 2,
+                mb: { xs: 2, md: 0 },
               }}
             >
               <Typography>{portfolio}</Typography>
-              <Button sx={{ mr: 3 }} variant='outlined' startIcon={<AddCircleOutlineOutlinedIcon />}>
+              <Button variant='outlined' startIcon={<AddCircleOutlineOutlinedIcon />}>
                 ADD TRANSACTION
               </Button>
             </Box>
-            <Button sx={{ mr: 3 }} color='secondary' variant='contained' startIcon={<Save />}>
+            <Button color='primary' variant='contained' startIcon={<Save />}>
               SAVE TO PORTFOLIO
             </Button>
           </Box>

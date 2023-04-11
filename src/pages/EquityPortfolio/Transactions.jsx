@@ -187,7 +187,7 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
                 disableElevation
                 onClick={handleClick1}
                 endIcon={<KeyboardArrowDownIcon />}
-                color='secondary'
+                color='primary'
               >
                 SFX
               </Button>
@@ -222,6 +222,7 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
           <Box
             sx={{
               display: 'flex',
+              flexDirection: { xs: 'column', md: 'row' },
               justifyContent: 'space-between',
               gap: '1rem',
               mx: 3,
@@ -229,13 +230,15 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
           >
             <Box
               sx={{
-                flex: 0,
+                flex: 1,
                 gap: '0.8rem',
                 display: 'flex',
                 flexDirection: 'column',
                 borderRadius: '10px',
                 // background: '#F0FFFF',
                 background: 'whitesmoke',
+                // flex: 1,
+                width: { md: '100%', lg: '20%' },
                 p: 3,
               }}
             >
@@ -346,7 +349,8 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
               sx={{
                 // background: '#B0C4DE',
                 background: 'whitesmoke',
-                flex: 1,
+                // flex: 1,
+                width: { md: '100%', lg: '80%' },
                 opacity: '0.8',
                 borderRadius: '10px',
               }}
