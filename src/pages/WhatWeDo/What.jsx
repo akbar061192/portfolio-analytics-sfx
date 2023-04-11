@@ -214,7 +214,7 @@ const What = () => {
               letterSpacing: '1.2px',
             }}
           >
-            We are the best in the city!
+            Global Leaders in Capital Markets
           </Typography>
 
           <Box
