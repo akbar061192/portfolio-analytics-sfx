@@ -54,10 +54,7 @@ const PortfolioDialog = ({ openDialog, handleCloseDialog }) => {
         </AppBar>
         <List sx={{ padding: '2rem' }}>
           <ListItem button onClick={() => setNewPortfolio(true)}>
-            <ListItemText
-              primary='Enter Transactions'
-              secondary='Enter purchases and boost or transaction amount'
-            />
+            <ListItemText primary='Create New Portfolio' secondary='Portfolio to add transactions' />
             <IconButton onClick={() => setNewPortfolio(true)}>
               <AddIcon color='primary' fontSize='large' />
             </IconButton>

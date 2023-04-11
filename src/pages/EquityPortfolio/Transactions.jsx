@@ -116,7 +116,7 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
         onClose={handleCloseTransactions}
         TransitionComponent={Transition}
       >
-        <AppBar sx={{ position: 'relative', background: 'white' }}>
+        <AppBar sx={{ position: 'relative', background: 'whitesmoke' }}>
           <Toolbar
             sx={{
               display: 'flex',
@@ -165,7 +165,7 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
             </Box>
           </Toolbar>
         </AppBar>
-        <Box sx={{ background: 'whitesmoke', p: 2 }}>
+        <Box sx={{ background: 'white', p: 2 }}>
           <Box
             sx={{
               display: 'flex',
@@ -235,7 +235,7 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
                 flexDirection: 'column',
                 borderRadius: '10px',
                 // background: '#F0FFFF',
-                background: 'white',
+                background: 'whitesmoke',
                 p: 3,
               }}
             >
@@ -345,7 +345,7 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
             <Box
               sx={{
                 // background: '#B0C4DE',
-                background: 'white',
+                background: 'whitesmoke',
                 flex: 1,
                 opacity: '0.8',
                 borderRadius: '10px',

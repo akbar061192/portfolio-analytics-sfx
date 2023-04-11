@@ -5,8 +5,78 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import { IconButton } from '@mui/material';
 import NewTransaction from './NewTransaction';
+import { DataGrid } from '@mui/x-data-grid';
+import Button from '@mui/material/Button';
+import { Delete, Save } from '@mui/icons-material';
+import { FormControl, IconButton, MenuItem, Select } from '@mui/material';
+
+const columns = [
+  {
+    field: 'company',
+    headerName: 'Company Name',
+    width: 200,
+    editable: true,
+  },
+  {
+    field: 'transDate',
+    headerName: 'Transaction Date',
+    width: 200,
+    editable: true,
+  },
+  {
+    field: 'transPrice',
+    headerName: 'Transaction Price',
+    width: 200,
+    editable: true,
+  },
+  {
+    field: 'quantity',
+    headerName: 'Quantity',
+    width: 120,
+    editable: true,
+    type: 'number',
+  },
+  {
+    field: 'accounts',
+    headerName: 'Accounts',
+    width: 250,
+    editable: true,
+    renderCell: params => {
+      return (
+        <>
+          <FormControl fullWidth>
+            <Select labelId='demo-simple-select-label' id='demo-simple-select' label='Account'>
+              <MenuItem value={'sfx'}>SFX</MenuItem>
+              <MenuItem value={'raju'}>Raju</MenuItem>
+              <MenuItem value={'sfx_client'}>SFX_CLIENT</MenuItem>
+            </Select>
+          </FormControl>
+        </>
+      );
+    },
+  },
+  {
+    field: 'icon',
+    headerName: 'Action',
+    width: 200,
+    renderCell: params => {
+      return (
+        <>
+          <IconButton>
+            <Delete color='error' />
+          </IconButton>
+        </>
+      );
+    },
+  },
+];
+
+const rows = [
+  { id: 1, company: 'Infosys', transDate: '11-09-2022', transPrice: 1699.89, quantity: 1, accounts: 'SFX' },
+  { id: 2, company: 'Cognizant', transDate: '16-05-2021', transPrice: 3242.68, quantity: 3, accounts: 'SFX' },
+  { id: 3, company: 'Wipro', transDate: '11-02-2019', transPrice: 9567.38, quantity: 5, accounts: 'SFX' },
+];
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -66,23 +136,48 @@ const EquityTrans = ({ portfolio, handleAddEquiTrans }) => {
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
-          <Typography>{portfolio}</Typography>
-          <IconButton
-            sx={{ borderRadius: 2, background: 'lightgray' }}
-            onClick={() => {
-              setOpenNewTransaction(true);
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              mb: 2,
             }}
           >
             <Box
               sx={{
                 display: 'flex',
-                gap: '10px',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                gap: 2,
               }}
             >
-              <AddCircleOutlineOutlinedIcon color='primary' />
-              <Typography>Add a transaction</Typography>
+              <Typography>{portfolio}</Typography>
+              <Button sx={{ mr: 3 }} variant='outlined' startIcon={<AddCircleOutlineOutlinedIcon />}>
+                ADD TRANSACTION
+              </Button>
             </Box>
-          </IconButton>
+            <Button sx={{ mr: 3 }} color='secondary' variant='contained' startIcon={<Save />}>
+              SAVE TO PORTFOLIO
+            </Button>
+          </Box>
+
+          <Box
+            sx={{
+              background: 'white',
+              mr: 3,
+            }}
+          >
+            <DataGrid
+              rows={rows}
+              autoHeight
+              columns={columns}
+              hideFooter
+              hideFooterPagination
+              checkboxSelection
+              disableRowSelectionOnClick
+            />
+          </Box>
         </TabPanel>
       </Box>
     </>
