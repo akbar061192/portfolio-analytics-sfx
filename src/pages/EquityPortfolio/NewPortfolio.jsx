@@ -50,8 +50,8 @@ function a11yProps(index) {
 }
 
 const NewPortfolio = props => {
-  const { openNewPortfolio, handleCloseNewPortfolio } = props;
-
+  const { openNewPortfolio, handleCloseNewPortfolio, fromEquiTrans, handleAddEquiTrans } = props;
+  console.log(props);
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
@@ -94,9 +94,16 @@ const NewPortfolio = props => {
     event.preventDefault();
     const validForm = formValidation();
 
-    if (validForm) {
+    console.log(fromEquiTrans);
+    console.log(validForm);
+    if (validForm && fromEquiTrans === 'No') {
       console.log('valid');
       setOpenTransactions(true);
+    }
+
+    if (validForm && !fromEquiTrans) {
+      console.log('vadlid');
+      handleAddEquiTrans(newPortfolio.pName);
     }
   };
 

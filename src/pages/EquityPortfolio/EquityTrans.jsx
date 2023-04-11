@@ -41,7 +41,7 @@ function a11yProps(index) {
   };
 }
 
-const EquityTrans = () => {
+const EquityTrans = ({ portfolio, handleAddEquiTrans }) => {
   const [value, setValue] = useState(0);
   const [openNewTransaction, setOpenNewTransaction] = useState(false);
 
@@ -54,16 +54,19 @@ const EquityTrans = () => {
       {openNewTransaction ? (
         <NewTransaction
           openNewTransaction={openNewTransaction}
+          fromEquiTrans={'Yes'}
+          handleAddEquiTrans={handleAddEquiTrans}
           handleCloseNewTransaction={() => setOpenNewTransaction(false)}
         />
       ) : null}
       <Box sx={{ width: '100%', m: 2 }}>
         <Box>
-          <Tabs textColor='secondary' indicatorColor='secondary' value={value} onChange={handleChange}>
+          <Tabs value={value} onChange={handleChange}>
             <Tab label='Equity' {...a11yProps(0)} />
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
+          <Typography>{portfolio}</Typography>
           <IconButton
             sx={{ borderRadius: 2, background: 'lightgray' }}
             onClick={() => {

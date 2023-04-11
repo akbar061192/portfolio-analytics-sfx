@@ -28,6 +28,8 @@ const PortfolioDialog = ({ openDialog, handleCloseDialog }) => {
         <NewPortfolio
           openNewPortfolio={newPortfolio}
           handleCloseNewPortfolio={() => setNewPortfolio(false)}
+          fromEquiTrans='No'
+          handleAddEquiTrans={() => {}}
         />
       ) : null}
       <Dialog maxWidth open={openDialog} onClose={handleCloseDialog} TransitionComponent={Transition}>
