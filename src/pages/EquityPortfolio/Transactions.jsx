@@ -13,10 +13,10 @@ import {
   FormControl,
   Select,
   MenuItem,
-  InputLabel,
   Chip,
   OutlinedInput,
   InputAdornment,
+  Avatar,
 } from '@mui/material';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import PersonIcon from '@mui/icons-material/Person';
@@ -97,7 +97,7 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
 
   const userPortfolios = ['SFX', 'Raju', 'SFX_CLIENT'];
   const [portfolios, setPortfolios] = useState(userPortfolios);
-  const [portfolio, setPortfolio] = useState('');
+  const [portfolio, setPortfolio] = useState('Raju');
 
   const handlePortfolioClick = portfolio => {
     console.log(portfolio);
@@ -109,6 +109,12 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
       return [...prev, name];
     });
   };
+
+  const SyledChip = styled(Chip)(({ theme }) => ({
+    '&:hover': {
+      backgroundColor: 'lightyellow',
+    },
+  }));
 
   return (
     <div>
@@ -252,9 +258,7 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
                 display: 'flex',
                 flexDirection: 'column',
                 borderRadius: '10px',
-                // background: '#F0FFFF',
-                background: 'whitesmoke',
-                // flex: 1,
+                background: '#101010',
                 width: { md: '100%', lg: '20%' },
                 p: 3,
               }}
@@ -270,9 +274,16 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
                 >
                   <Stack
                     direction='column'
-                    sx={{ flex: 1, background: 'lightgray', p: 1.5, borderRadius: '10px' }}
+                    sx={{
+                      flex: 1,
+                      // background: 'lightgray',
+                      p: 1.5,
+                      borderRadius: '10px',
+                      backgroundColor: '#202020	',
+                      boxShadow: '0 0 10px 1px rgba(0, 0, 0, 0.25)',
+                    }}
                   >
-                    <Typography sx={{ color: 'black', fontSize: '1.3rem' }}>Sensex</Typography>
+                    <Typography sx={{ color: 'white', fontSize: '1.3rem' }}>Sensex</Typography>
                     <Typography sx={{ color: 'green' }}>35,88,234</Typography>
                     <Box sx={{ display: 'flex' }}>
                       <Typography sx={{ color: 'green' }}>+1.24%</Typography>
@@ -282,9 +293,18 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
                   <Divider />
                   <Stack
                     direction='column'
-                    sx={{ flex: 1, background: 'lightgray', p: 1.5, borderRadius: '10px' }}
+                    sx={{
+                      flex: 1,
+                      // background: 'lightgray',
+                      p: 1.5,
+                      borderRadius: '10px',
+                      // opacity: '0.3',
+                      backgroundColor: '#202020	',
+                      boxShadow: '0 0 10px 1px rgba(0, 0, 0, 0.25)',
+                      backdropFilter: 'blur(30px)',
+                    }}
                   >
-                    <Typography sx={{ color: 'black', fontSize: '1.3rem' }}>Nifty</Typography>
+                    <Typography sx={{ color: 'white', fontSize: '1.3rem' }}>Nifty</Typography>
                     <Typography sx={{ color: 'green' }}>97,68,467</Typography>
                     <Box sx={{ display: 'flex' }}>
                       <Typography sx={{ color: 'red' }}>-0.89%</Typography>
@@ -292,34 +312,16 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
                     </Box>
                   </Stack>
                 </Box>
-
-                {/* <Box sx={{ background: 'white', p: 1 }}>
-                <Stack direction='row' sx={{ justifyContent: 'space-between' }}>
-                  <Typography>62,28,787</Typography>
-                  <Typography sx={{ color: 'green' }}>+23.34%</Typography>
-                </Stack>
-              </Box>
-            </Box>
-            <Divider />
-            <Box>
-              <Box>
-                <Stack direction='row' sx={{ justifyContent: 'space-between' }}>
-                  <Typography sx={{ color: 'blue' }}>Nifty</Typography>
-                  <Typography sx={{ color: 'green' }}>+1.24%</Typography>
-                </Stack>
-              </Box>
-
-              <Box>
-                <Stack direction='row' sx={{ justifyContent: 'space-between' }}>
-                  <Typography>87,54,267</Typography>
-                  <Typography sx={{ color: 'green' }}>+45.34%</Typography>
-                </Stack>
-               </Box> */}
               </Box>
 
               <FormControl sx={{ m: 1 }} size='small'>
-                <InputLabel id='demo-select-small'>Filter</InputLabel>
-                <Select labelId='demo-select-small' id='demo-select-small' label='Filter' value={'all'}>
+                <Select
+                  sx={{ background: 'white' }}
+                  labelId='demo-select-small'
+                  id='demo-select-small'
+                  label='Filter'
+                  value={'all'}
+                >
                   <MenuItem value={'all'}>All</MenuItem>
                   <MenuItem value={'family'}>Family</MenuItem>
                 </Select>
@@ -330,43 +332,37 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center',
+                  color: 'white',
                 }}
               >
                 <Typography>Portfolios</Typography>
-                <IconButton onClick={() => setNewPortfolio(true)}>
-                  <AddCircleOutlineOutlinedIcon color='primary' />
+                <IconButton disabled={portfolios.length === 4} onClick={() => setNewPortfolio(true)}>
+                  {portfolios.length === 4 ? <></> : <AddCircleOutlineOutlinedIcon color='primary' />}
                 </IconButton>
               </Box>
               <Stack direction='column' spacing={1} sx={{ mx: { xs: '0rem', md: '1rem' } }}>
-                {portfolios.map(portfolio => {
+                {portfolios.map(port => {
                   return (
-                    <Chip
-                      key={portfolio}
-                      sx={{ p: 2.5, fontSize: '1.1rem' }}
-                      label={portfolio}
-                      onClick={() => handlePortfolioClick(portfolio)}
+                    <SyledChip
+                      key={port}
+                      avatar={<Avatar>{port[0].toUpperCase()}</Avatar>}
+                      sx={{
+                        p: 2.5,
+                        fontSize: '1.1rem',
+                        color: 'black',
+                        background: `${port === portfolio ? 'yellow' : 'azure'}`,
+                      }}
+                      label={port}
+                      onClick={() => handlePortfolioClick(port)}
                     />
                   );
                 })}
-
-                {/* <Chip sx={{ p: 3, fontSize: '1rem' }} label='SFX' onClick={handleClick} />
-              <Chip sx={{ p: 3, fontSize: '1rem' }} label='RAJU' variant='filled' onClick={handleClick} />
-              <Chip
-                sx={{ p: 3, fontSize: '1rem' }}
-                label='SFX_CLIENT'
-                variant='filled'
-                onClick={handleClick}
-              />
-              <Chip sx={{ p: 3, fontSize: '1rem' }} label='UMESH' variant='filled' onClick={handleClick} />
-              <Chip sx={{ p: 3, fontSize: '1rem' }} label='SFX_USER' variant='filled' onClick={handleClick} />  */}
               </Stack>
             </Box>
 
             <Box
               sx={{
-                // background: '#B0C4DE',
                 background: 'whitesmoke',
-                // flex: 1,
                 width: { md: '100%', lg: '80%' },
                 opacity: '0.8',
                 borderRadius: '10px',

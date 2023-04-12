@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -10,79 +10,12 @@ import { DataGrid } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 import { Delete, Save } from '@mui/icons-material';
 import { FormControl, IconButton, MenuItem, Select } from '@mui/material';
-
-const columns = [
-  {
-    field: 'company',
-    headerName: 'Company Name',
-    // width: 150,
-    flex: 1.5,
-    editable: true,
-  },
-  {
-    field: 'transDate',
-    headerName: 'Transaction Date',
-    // width: 150,
-    flex: 1.2,
-    editable: true,
-  },
-  {
-    field: 'transPrice',
-    headerName: 'Transaction Price',
-    // width: 150,
-    flex: 1.2,
-    editable: true,
-  },
-  {
-    field: 'quantity',
-    headerName: 'Quantity',
-    // width: 150,
-    flex: 1,
-    editable: true,
-    type: 'number',
-  },
-  {
-    field: 'accounts',
-    headerName: 'Accounts',
-    // width: 150,
-    flex: 1.5,
-    editable: true,
-    renderCell: params => {
-      return (
-        <>
-          <FormControl fullWidth>
-            <Select labelId='demo-simple-select-label' id='demo-simple-select' label='Account'>
-              <MenuItem value={'sfx'}>SFX</MenuItem>
-              <MenuItem value={'raju'}>Raju</MenuItem>
-              <MenuItem value={'sfx_client'}>SFX_CLIENT</MenuItem>
-            </Select>
-          </FormControl>
-        </>
-      );
-    },
-  },
-  {
-    field: 'icon',
-    headerName: 'Action',
-    // width: 100,
-    flex: 1,
-    renderCell: params => {
-      return (
-        <>
-          <IconButton>
-            <Delete color='error' />
-          </IconButton>
-        </>
-      );
-    },
-  },
-];
-
-const rows = [
-  { id: 1, company: 'Infosys', transDate: '11-09-2022', transPrice: 1699.89, quantity: 1, accounts: 'SFX' },
-  { id: 2, company: 'Cognizant', transDate: '16-05-2021', transPrice: 3242.68, quantity: 3, accounts: 'SFX' },
-  { id: 3, company: 'Wipro', transDate: '11-02-2019', transPrice: 9567.38, quantity: 5, accounts: 'SFX' },
-];
+import { axiosInstance } from '../../index';
+import dayjs from 'dayjs';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -121,9 +54,145 @@ const EquityTrans = ({ portfolio, handleAddEquiTrans }) => {
   const [value, setValue] = useState(0);
   const [openNewTransaction, setOpenNewTransaction] = useState(false);
 
+  const [users, setUsers] = useState([]);
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  useEffect(() => {
+    const apiCall = async () => {
+      try {
+        const response = await axiosInstance.get('https://jsonplaceholder.typicode.com/users');
+        setUsers(response.data.map(user => user.name));
+      } catch (error) {
+        return error;
+      }
+    };
+    apiCall();
+  }, []);
+
+  const columns = [
+    {
+      field: 'company1',
+      headerName: 'Company Name',
+      // width: 150,
+      flex: 2,
+      editable: true,
+      renderCell: params => {
+        return (
+          <>
+            <FormControl fullWidth>
+              <Select labelId='demo-simple-select-label1' id='demo-simple-select1' label='Company'>
+                {users.map(user => {
+                  return <MenuItem value={user}>{user}</MenuItem>;
+                })}
+              </Select>
+            </FormControl>
+          </>
+        );
+      },
+    },
+    {
+      field: 'transDate1',
+      headerName: 'Transaction Date',
+      // width: 350,
+      flex: 2,
+      // editable: true,
+      renderCell: params => {
+        return (
+          <>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DemoContainer components={['DatePicker', 'DatePicker']}>
+                <DatePicker
+                // label='Controlled picker'
+                // value={value}
+                // onChange={newValue => setValue(newValue)}
+                />
+              </DemoContainer>
+            </LocalizationProvider>
+          </>
+        );
+      },
+    },
+    {
+      field: 'transPrice',
+      headerName: 'Transaction Price',
+      // width: 150,
+      flex: 1.2,
+      editable: true,
+    },
+    {
+      field: 'quantity',
+      headerName: 'Quantity',
+      // width: 150,
+      flex: 1,
+      editable: true,
+      type: 'number',
+    },
+    {
+      field: 'accounts',
+      headerName: 'Accounts',
+      // width: 150,
+      flex: 1.5,
+      // editable: true,
+      renderCell: params => {
+        return (
+          <>
+            <FormControl fullWidth>
+              <Select labelId='demo-simple-select-label' id='demo-simple-select' label='Account'>
+                <MenuItem value={'sfx'}>SFX</MenuItem>
+                <MenuItem value={'raju'}>Raju</MenuItem>
+                <MenuItem value={'sfx_client'}>SFX_CLIENT</MenuItem>
+              </Select>
+            </FormControl>
+          </>
+        );
+      },
+    },
+    {
+      field: 'icon',
+      headerName: 'Action',
+      // width: 100,
+      flex: 1,
+      renderCell: params => {
+        return (
+          <>
+            <IconButton>
+              <Delete color='error' />
+            </IconButton>
+          </>
+        );
+      },
+    },
+  ];
+
+  const rows = [
+    {
+      id: 1,
+      company: 'Infosys',
+      transDate: dayjs('2022-04-17'),
+      transPrice: 1699.89,
+      quantity: 1,
+      accounts: 'SFX',
+    },
+    {
+      id: 2,
+      company: 'Cognizant',
+      transDate: dayjs('2022-04-17'),
+      transPrice: 3242.68,
+      quantity: 3,
+      accounts: 'SFX',
+    },
+    {
+      id: 3,
+      company: 'Wipro',
+      transDate: dayjs('2022-04-17'),
+      transPrice: 9567.38,
+      quantity: 5,
+      accounts: 'SFX',
+    },
+  ];
 
   return (
     <>
