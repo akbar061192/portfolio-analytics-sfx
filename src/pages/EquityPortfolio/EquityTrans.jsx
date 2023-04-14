@@ -8,7 +8,7 @@ import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOu
 import NewTransaction from './NewTransaction';
 import { DataGrid } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
-import { Save, Delete } from '@mui/icons-material';
+import { Delete } from '@mui/icons-material';
 import { axiosInstance } from '../../index';
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
@@ -52,6 +52,11 @@ const EquityTrans = ({ portfolio, handleAddEquiTrans }) => {
   const [openNewTransaction, setOpenNewTransaction] = useState(false);
 
   const [users, setUsers] = useState([]);
+
+  const [addTransaction, setAddTransaction] = useState(false);
+  const [newTran, setNewTran] = useState(false);
+  const [singleTran, setSingleTran] = useState({});
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -65,7 +70,7 @@ const EquityTrans = ({ portfolio, handleAddEquiTrans }) => {
             return {
               id: user.id,
               company: user.name,
-              transDate: new Date().toLocaleString().slice(0, 10),
+              transDate: new Date(),
               transPrice: (Math.random() * 10000).toFixed(3),
               quantity: (Math.random() * 10 + 1).toFixed(0),
               accounts: user.website,
@@ -101,36 +106,47 @@ const EquityTrans = ({ portfolio, handleAddEquiTrans }) => {
     {
       field: 'quantity',
       headerName: 'Quantity',
-      width: 150,
+      width: 100,
       type: 'number',
     },
     {
       field: 'accounts',
       headerName: 'Accounts',
-      width: 150,
+      width: 300,
       editable: false,
     },
     {
       field: 'icon',
-      headerName: 'Action',
+      headerName: '',
       width: 100,
       editable: false,
       renderCell: params => {
         return (
-          <>
-            <IconButton>
+          <Box>
+            <IconButton
+              onClick={() => {
+                const updatedUsers = users.filter(user => {
+                  return user.id !== params.row.id;
+                });
+                setUsers(updatedUsers);
+              }}
+            >
               <Delete color='error' />{' '}
             </IconButton>
-            <IconButton>
+            <IconButton
+              onClick={() => {
+                setSingleTran(params.row);
+                setAddTransaction(true);
+                setNewTran(false);
+              }}
+            >
               <EditIcon color='primary' />{' '}
             </IconButton>
-          </>
+          </Box>
         );
       },
     },
   ];
-
-  const [addTransaction, setAddTransaction] = useState(false);
 
   return (
     <>
@@ -143,11 +159,24 @@ const EquityTrans = ({ portfolio, handleAddEquiTrans }) => {
         />
       ) : null}
 
-      {addTransaction ? (
+      {addTransaction && newTran ? (
         <AddTransaction
           openAddNewTrans={addTransaction}
           handleCloseNewTrans={() => setAddTransaction(false)}
           setUsers={setUsers}
+          newTran={true}
+          users={users}
+        />
+      ) : null}
+
+      {addTransaction && !newTran ? (
+        <AddTransaction
+          openAddNewTrans={addTransaction}
+          handleCloseNewTrans={() => setAddTransaction(false)}
+          setUsers={setUsers}
+          newTran={false}
+          singleTran={singleTran}
+          users={users}
         />
       ) : null}
 
@@ -180,21 +209,24 @@ const EquityTrans = ({ portfolio, handleAddEquiTrans }) => {
               <Typography>{portfolio}</Typography>
               <Button
                 sx={{ width: { xs: '100%', md: '200px' }, fontSize: { xs: '0.6rem', md: '0.8rem' } }}
-                variant='outlined'
+                variant='contained'
                 startIcon={<AddCircleOutlineOutlinedIcon />}
-                onClick={() => setAddTransaction(true)}
+                onClick={() => {
+                  setAddTransaction(true);
+                  setNewTran(true);
+                }}
               >
                 ADD TRANSACTION
               </Button>
             </Box>
-            <Button
+            {/* <Button
               sx={{ width: { xs: '100%', md: '200px' }, fontSize: { xs: '0.6rem', md: '0.8rem' } }}
               color='primary'
               variant='contained'
               startIcon={<Save />}
             >
               SAVE TO PORTFOLIO
-            </Button>
+            </Button> */}
           </Box>
 
           <Box
@@ -207,9 +239,15 @@ const EquityTrans = ({ portfolio, handleAddEquiTrans }) => {
           >
             <DataGrid
               sx={{ color: 'black', background: 'snow' }}
-              rows={users}
+              rows={users.map(user => {
+                return {
+                  ...user,
+                  transDate: new Date(user.transDate).toLocaleString().slice(0, 10),
+                };
+              })}
               columns={columns}
               disableRowSelectionOnClick
+              density='compact'
             />
           </Box>
         </TabPanel>

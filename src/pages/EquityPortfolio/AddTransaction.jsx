@@ -21,7 +21,7 @@ import Button from '@mui/material/Button';
 import { axiosInstance } from '../../index';
 
 const AddTransaction = props => {
-  const { openAddNewTrans, handleCloseNewTrans, setUsers } = props;
+  const { openAddNewTrans, handleCloseNewTrans, setUsers, newTran, singleTran, users } = props;
 
   const [users1, setUsers1] = useState([]);
 
@@ -29,7 +29,7 @@ const AddTransaction = props => {
     const apiCall = async () => {
       try {
         const response = await axiosInstance.get('https://jsonplaceholder.typicode.com/users');
-        setUsers1(response.data.map(user => user.name));
+        setUsers1(response.data);
       } catch (error) {
         return error;
       }
@@ -38,11 +38,11 @@ const AddTransaction = props => {
   }, []);
 
   const [newTrans, setNewTrans] = useState({
-    company: '',
-    transDate: '',
-    transPrice: '',
-    quantity: '',
-    account: '',
+    company: newTran ? '' : singleTran.company,
+    transDate: newTran ? '' : dayjs('2023/04/15'),
+    transPrice: newTran ? '' : singleTran.transPrice,
+    quantity: newTran ? '' : singleTran.quantity,
+    account: newTran ? '' : singleTran.accounts,
   });
 
   const handleInputChange = event => {
@@ -58,19 +58,37 @@ const AddTransaction = props => {
   };
 
   const handleAddNewTrans = () => {
-    setUsers(prev => {
-      return [
-        {
-          id: Math.random(),
-          company: newTrans.company,
-          transDate: new Date(newTrans.transDate).toLocaleString().slice(0, 10),
-          transPrice: newTrans.transPrice,
-          quantity: newTrans.quantity,
-          accounts: newTrans.account.toUpperCase(),
-        },
-        ...prev,
-      ];
-    });
+    if (newTran) {
+      setUsers(prev => {
+        return [
+          {
+            id: Math.random(),
+            company: newTrans.company,
+            transDate: dayjs(new Date(newTrans.transDate)),
+            transPrice: newTrans.transPrice,
+            quantity: newTrans.quantity,
+            accounts: newTrans.account,
+          },
+          ...prev,
+        ];
+      });
+    } else {
+      const updatedUsers = users.map(user => {
+        if (user.id === singleTran.id) {
+          return {
+            id: user.id,
+            company: newTrans.company,
+            transDate: dayjs(new Date(newTrans.transDate)),
+            transPrice: newTrans.transPrice,
+            quantity: newTrans.quantity,
+            accounts: newTrans.account,
+          };
+        }
+        return user;
+      });
+      setUsers(updatedUsers);
+    }
+
     setNewTrans({
       company: '',
       transDate: '',
@@ -80,8 +98,6 @@ const AddTransaction = props => {
     });
     handleCloseNewTrans();
   };
-
-  console.log(newTrans);
 
   const requiredChk = Object.values(newTrans).every(val => val !== '');
 
@@ -103,9 +119,9 @@ const AddTransaction = props => {
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', mt: '1.2rem' }}>
           <Box>
             <DialogTitle sx={{ paddingTop: 0, fontSize: '24px', fontWeight: '580', mb: 0, pb: 0 }}>
-              Sign Up
+              {newTran ? 'New Transaction' : 'Edit Transaction'}
             </DialogTitle>
-            <DialogContent sx={{ m: 0, pt: 0 }}>It's quick and easy</DialogContent>
+            <DialogContent sx={{ m: 0, pt: 0 }}></DialogContent>
           </Box>
 
           <Box
@@ -156,14 +172,14 @@ const AddTransaction = props => {
                           };
                         });
                       }}
-                      options={users1}
+                      options={users1.map(user => user.name)}
                       renderInput={params => <TextField {...params} label='Company*' />}
                     />
                   </FormControl>
 
                   <Box
                     sx={{
-                      display: 'flex',
+                      display: { xs: 'block', md: 'flex' },
                       gap: '10px',
                       justifyContent: 'space-between',
                       alignItems: 'center',
@@ -233,9 +249,13 @@ const AddTransaction = props => {
                         onChange={handleInputChange}
                         error={!newTrans.account ? true : false}
                       >
-                        <MenuItem value={'sfx'}>SFX</MenuItem>
-                        <MenuItem value={'raju'}>Raju</MenuItem>
-                        <MenuItem value={'sfx_client'}>SFX_CLIENT</MenuItem>
+                        {users1.map(user => {
+                          return (
+                            <MenuItem key={user.id} value={user.website}>
+                              {user.website}
+                            </MenuItem>
+                          );
+                        })}
                       </Select>
                     </FormControl>
                   </Box>
@@ -252,7 +272,7 @@ const AddTransaction = props => {
             disabled={!requiredChk}
             onClick={handleAddNewTrans}
           >
-            Add
+            SAVE TO PORTFOLIO
           </Button>
         </Box>
       </Dialog>
