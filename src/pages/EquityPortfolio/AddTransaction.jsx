@@ -37,9 +37,12 @@ const AddTransaction = props => {
     apiCall();
   }, []);
 
+  const ff = !newTran && singleTran.transDate.split('/');
+  const dateFormat = `${ff[1]}/${ff[0]}/${ff[2]}`;
+
   const [newTrans, setNewTrans] = useState({
     company: newTran ? '' : singleTran.company,
-    transDate: newTran ? '' : dayjs('2023/04/15'),
+    transDate: newTran ? '' : dayjs(dateFormat),
     transPrice: newTran ? '' : singleTran.transPrice,
     quantity: newTran ? '' : singleTran.quantity,
     account: newTran ? '' : singleTran.accounts,
@@ -99,6 +102,7 @@ const AddTransaction = props => {
     handleCloseNewTrans();
   };
 
+  console.log(singleTran);
   const requiredChk = Object.values(newTrans).every(val => val !== '');
 
   return (
@@ -190,6 +194,7 @@ const AddTransaction = props => {
                       <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DemoContainer components={['DatePicker']}>
                           <DatePicker
+                            format='LL'
                             sx={{ width: '100%' }}
                             name='transDate'
                             value={dayjs(newTrans.transDate)}
