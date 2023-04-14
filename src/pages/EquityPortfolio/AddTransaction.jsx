@@ -1,0 +1,263 @@
+import { TextField, Autocomplete, Select, MenuItem, InputLabel } from '@mui/material';
+import { useState, useEffect } from 'react';
+import {
+  Divider,
+  IconButton,
+  OutlinedInput,
+  FormControl,
+  DialogTitle,
+  CloseIcon,
+  Container,
+  Box,
+  Dialog,
+  DialogContent,
+} from '../../globals/common/MuiComponents';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import dayjs from 'dayjs';
+import Button from '@mui/material/Button';
+import { axiosInstance } from '../../index';
+
+const AddTransaction = props => {
+  const { openAddNewTrans, handleCloseNewTrans, setUsers } = props;
+
+  const [users1, setUsers1] = useState([]);
+
+  useEffect(() => {
+    const apiCall = async () => {
+      try {
+        const response = await axiosInstance.get('https://jsonplaceholder.typicode.com/users');
+        setUsers1(response.data.map(user => user.name));
+      } catch (error) {
+        return error;
+      }
+    };
+    apiCall();
+  }, []);
+
+  const [newTrans, setNewTrans] = useState({
+    company: '',
+    transDate: '',
+    transPrice: '',
+    quantity: '',
+    account: '',
+  });
+
+  const handleInputChange = event => {
+    const name = event.target.name;
+    const value = event.target.value;
+
+    setNewTrans(prev => {
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
+  };
+
+  const handleAddNewTrans = () => {
+    setUsers(prev => {
+      return [
+        {
+          id: Math.random(),
+          company: newTrans.company,
+          transDate: new Date(newTrans.transDate).toLocaleString().slice(0, 10),
+          transPrice: newTrans.transPrice,
+          quantity: newTrans.quantity,
+          accounts: newTrans.account.toUpperCase(),
+        },
+        ...prev,
+      ];
+    });
+    setNewTrans({
+      company: '',
+      transDate: '',
+      transPrice: '',
+      quantity: '',
+      account: '',
+    });
+    handleCloseNewTrans();
+  };
+
+  console.log(newTrans);
+
+  const requiredChk = Object.values(newTrans).every(val => val !== '');
+
+  return (
+    <>
+      <Dialog
+        open={openAddNewTrans}
+        onClose={() => {
+          setNewTrans({
+            company: '',
+            transDate: '',
+            transPrice: '',
+            quantity: '',
+            account: '',
+          });
+          handleCloseNewTrans();
+        }}
+      >
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', mt: '1.2rem' }}>
+          <Box>
+            <DialogTitle sx={{ paddingTop: 0, fontSize: '24px', fontWeight: '580', mb: 0, pb: 0 }}>
+              Sign Up
+            </DialogTitle>
+            <DialogContent sx={{ m: 0, pt: 0 }}>It's quick and easy</DialogContent>
+          </Box>
+
+          <Box
+            sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 0, mr: '10px' }}
+          >
+            <IconButton
+              sx={{ color: '#1c9bef', background: 'whitesmoke' }}
+              onClick={() => {
+                setNewTrans({
+                  company: '',
+                  transDate: '',
+                  transPrice: '',
+                  quantity: 0,
+                  account: '',
+                });
+                handleCloseNewTrans();
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
+          </Box>
+        </Box>
+
+        <Divider sx={{ mb: 0.5 }} />
+
+        <DialogContent sx={{ paddingTop: 0 }}>
+          <Container>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
+              <Box component='form' noValidate sx={{ mt: 1 }}>
+                <Box sx={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                  <FormControl sx={{ width: '100%' }}>
+                    <Autocomplete
+                      fullWidth
+                      sx={{ border: newTrans.company ? '' : '1px solid red' }}
+                      name='company'
+                      value={newTrans.company}
+                      onChange={(event, newValue) => {
+                        setNewTrans(prev => {
+                          return {
+                            ...prev,
+                            company: newValue,
+                          };
+                        });
+                      }}
+                      options={users1}
+                      renderInput={params => <TextField {...params} label='Company*' />}
+                    />
+                  </FormControl>
+
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      gap: '10px',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      width: '100%',
+                    }}
+                  >
+                    <FormControl sx={{ width: '100%' }}>
+                      <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <DemoContainer components={['DatePicker']}>
+                          <DatePicker
+                            sx={{ width: '100%' }}
+                            name='transDate'
+                            value={dayjs(newTrans.transDate)}
+                            onChange={newValue =>
+                              setNewTrans(prev => {
+                                return {
+                                  ...prev,
+                                  transDate: newValue.format(),
+                                };
+                              })
+                            }
+                          />
+                        </DemoContainer>
+                      </LocalizationProvider>
+                    </FormControl>
+                    <FormControl sx={{ width: '100%', marginTop: '6px' }}>
+                      <OutlinedInput
+                        sx={{ fontSize: '1.2rem' }}
+                        name='transPrice'
+                        placeholder='Transaction Price*'
+                        value={newTrans.transPrice}
+                        onChange={handleInputChange}
+                        error={!newTrans.transPrice ? true : false}
+                      />
+                    </FormControl>
+                  </Box>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      gap: '10px',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      width: '100%',
+                    }}
+                  >
+                    <FormControl sx={{ width: '100%', marginTop: '6px' }}>
+                      <OutlinedInput
+                        fullWidth
+                        sx={{ width: '100%', fontSize: '1.2rem' }}
+                        name='quantity'
+                        placeholder='Quantity*'
+                        value={newTrans.quantity}
+                        onChange={handleInputChange}
+                        error={!newTrans.quantity ? true : false}
+                      />
+                    </FormControl>
+
+                    <FormControl sx={{ width: '100%', marginTop: '6px' }}>
+                      <InputLabel id='demo-simple-select-label'>Account</InputLabel>
+                      <Select
+                        sx={{ width: '100%' }}
+                        labelId='demo-simple-select-label'
+                        id='demo-simple-select'
+                        value={newTrans.account}
+                        label='Account'
+                        name='account'
+                        onChange={handleInputChange}
+                        error={!newTrans.account ? true : false}
+                      >
+                        <MenuItem value={'sfx'}>SFX</MenuItem>
+                        <MenuItem value={'raju'}>Raju</MenuItem>
+                        <MenuItem value={'sfx_client'}>SFX_CLIENT</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Box>
+                </Box>
+              </Box>
+            </Box>
+          </Container>
+        </DialogContent>
+        <Box sx={{ textAlign: 'center', my: 3, width: '80%', mx: 'auto' }}>
+          <Button
+            sx={{ p: 1 }}
+            fullWidth
+            variant='contained'
+            disabled={!requiredChk}
+            onClick={handleAddNewTrans}
+          >
+            Add
+          </Button>
+        </Box>
+      </Dialog>
+    </>
+  );
+};
+
+export default AddTransaction;

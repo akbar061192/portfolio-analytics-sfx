@@ -267,8 +267,8 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
                 <Box
                   sx={{
                     gap: '0.5rem',
-                    display: 'flex',
-                    justifyContent: 'space-between',
+                    display: { xs: 'block', md: 'flex' },
+                    justifyContent: 'center',
                     alignItems: 'center',
                   }}
                 >
@@ -276,8 +276,8 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
                     direction='column'
                     sx={{
                       flex: 1,
-                      // background: 'lightgray',
                       p: 1.5,
+                      mb: { xs: 2, md: 0 },
                       borderRadius: '10px',
                       backgroundColor: '#202020	',
                       boxShadow: '0 0 10px 1px rgba(0, 0, 0, 0.25)',
@@ -348,7 +348,7 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
                       avatar={<Avatar>{port[0].toUpperCase()}</Avatar>}
                       sx={{
                         p: 2.5,
-                        fontSize: '1.1rem',
+                        fontSize: { xs: '0.6rem', md: '1.1rem' },
                         color: 'black',
                         background: `${port === portfolio ? 'yellow' : 'azure'}`,
                       }}
