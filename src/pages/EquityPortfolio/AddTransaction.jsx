@@ -37,7 +37,7 @@ const AddTransaction = props => {
     apiCall();
   }, []);
 
-  const ff = !newTran && singleTran.transDate.split('/');
+  const ff = !newTran && new Date(singleTran.transDate).toLocaleDateString().split('/');
   const dateFormat = `${ff[1]}/${ff[0]}/${ff[2]}`;
 
   const [newTrans, setNewTrans] = useState({
@@ -102,7 +102,6 @@ const AddTransaction = props => {
     handleCloseNewTrans();
   };
 
-  console.log(singleTran);
   const requiredChk = Object.values(newTrans).every(val => val !== '');
 
   return (

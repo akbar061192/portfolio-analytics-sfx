@@ -242,7 +242,12 @@ const EquityTrans = ({ portfolio, handleAddEquiTrans }) => {
               rows={users.map(user => {
                 return {
                   ...user,
-                  transDate: new Date(user.transDate).toLocaleString().slice(0, 10),
+                  transDate: new Date(user.transDate).toLocaleDateString('en-us', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                  }),
                 };
               })}
               columns={columns}
