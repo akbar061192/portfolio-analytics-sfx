@@ -62,14 +62,14 @@ const NewPortfolio = props => {
     pName: '',
     sgPortfolio: false,
     portfolioSubType: '',
-    goal: 0,
+    goal: '',
   });
 
   const [errors, setErrors] = useState({
     pName: '',
     sgPortfolio: false,
     portfolioSubType: '',
-    goal: 0,
+    goal: '',
   });
 
   const [openTransactions, setOpenTransactions] = useState(false);
@@ -285,7 +285,7 @@ const NewPortfolio = props => {
                           <OutlinedInput
                             sx={{ fontSize: '1.2rem' }}
                             placeholder='Goal*'
-                            type='number'
+                            // type='number'
                             name='goal'
                             value={newPortfolio.goal}
                             onChange={event => {
@@ -312,7 +312,7 @@ const NewPortfolio = props => {
         </DialogContent>
         <Box sx={{ textAlign: 'center', my: 3, width: '80%', mx: 'auto' }}>
           <CustomButton
-            backgroundColor='#1c9bef'
+            backgroundColor='#002147'
             color='#fff'
             buttonText='Save'
             getStartedBtn={false}

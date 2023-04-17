@@ -270,7 +270,13 @@ const AddTransaction = props => {
         </DialogContent>
         <Box sx={{ textAlign: 'center', my: 3, width: '80%', mx: 'auto' }}>
           <Button
-            sx={{ p: 1 }}
+            sx={{
+              p: 1,
+              background: '#002147',
+              ':hover': {
+                background: '#002147',
+              },
+            }}
             fullWidth
             variant='contained'
             disabled={!requiredChk}

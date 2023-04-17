@@ -356,7 +356,7 @@ const CreateNewAccount = props => {
                     >
                       <Typography sx={{ width: '100%', flexShrink: 0 }}>
                         Investment Expertise
-                        <span style={{ color: '#1c9bef' }}> {newAccount.investmentType.toUpperCase()}</span>
+                        <span style={{ color: '#002147' }}> {newAccount.investmentType.toUpperCase()}</span>
                       </Typography>
                     </AccordionSummary>
                     <AccordionDetails style={{ overflow: 'scroll' }}>
@@ -429,7 +429,7 @@ const CreateNewAccount = props => {
         </DialogContent>
         <Box sx={{ textAlign: 'center', my: 3, width: '80%', mx: 'auto' }}>
           <CustomButton
-            backgroundColor='#1c9bef'
+            backgroundColor='#002147'
             color='#fff'
             buttonText='Sign up'
             getStartedBtn={false}

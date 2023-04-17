@@ -6,6 +6,7 @@ import {
   Toolbar,
   Container,
   Divider,
+  IconButton,
 } from '../../globals/common/MuiComponents';
 import importData from '../../media/import.gif';
 import swot from '../../media/swot.gif';
@@ -15,6 +16,11 @@ import fyinnoveaLogo from '../../media/fyinnoveaLogo.png';
 import { Link } from 'react-router-dom';
 import CustomButton from '../../globals/components/CustomButton/CustomButton';
 import PortfolioDialog from './PortfolioDialog';
+import { axiosInstance } from '../../index';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import Transactions from './Transactions';
 
 function Copyright(props) {
   return (
@@ -109,6 +115,21 @@ const EquityPortfolio = () => {
   }));
 
   const [openPortfolioDialog, setOpenPortfolioDialog] = useState(false);
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const apiCall = async () => {
+      try {
+        const response = await axiosInstance.get('https://jsonplaceholder.typicode.com/users');
+        setUsers(response.data);
+      } catch (error) {
+        return error;
+      }
+    };
+    apiCall();
+  }, []);
+
+  const [openTransactions, setOpenTransactions] = useState(false);
 
   return (
     <>
@@ -116,6 +137,14 @@ const EquityPortfolio = () => {
         <PortfolioDialog
           openDialog={openPortfolioDialog}
           handleCloseDialog={() => setOpenPortfolioDialog(false)}
+        />
+      ) : null}
+
+      {openTransactions ? (
+        <Transactions
+          openTransactions={openTransactions}
+          handleCloseTransactions={() => setOpenTransactions(false)}
+          handleCloseNewPortfolio={() => {}}
         />
       ) : null}
 
@@ -240,16 +269,44 @@ const EquityPortfolio = () => {
             </GuideBox>
           </GuidesBox>
 
-          <CustomButton
-            backgroundColor='#1c9bef'
-            color='#fff'
-            buttonText='Get Started'
-            onBtnClick={() => {
-              setOpenPortfolioDialog(true);
-            }}
-          />
+          {users.length ? (
+            <Alert
+              severity='info'
+              action={
+                <IconButton
+                  onClick={() => {
+                    setOpenPortfolioDialog(true);
+                  }}
+                >
+                  <AddCircleOutlineIcon fontSize='large' sx={{ color: '#002147' }} />
+                </IconButton>
+              }
+            >
+              <AlertTitle>
+                <strong>Welcome to Equity Portfolio Analytics</strong>
+              </AlertTitle>
+              No Portfolio's found please create a new one
+            </Alert>
+          ) : (
+            // <IconButton
+            //   sx={{
+            //     color: '#002147',
+            //   }}
+            // >
+            //   <ArrowCircleRightOutlinedIcon fontSize='large' />
+            // </IconButton>
+            <CustomButton
+              backgroundColor='#002147'
+              color='#fff'
+              buttonText='Equity Portfolio'
+              onBtnClick={() => {
+                setOpenTransactions(true);
+              }}
+            />
+          )}
         </Box>
-        <Divider sx={{ mt: 20 }} />
+
+        <Divider sx={{ mt: 10 }} />
         <Copyright sx={{ mt: 2, mb: { xs: 2, md: 0 } }} />
       </Box>
     </>

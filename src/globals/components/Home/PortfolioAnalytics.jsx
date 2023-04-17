@@ -60,7 +60,7 @@ const PortfolioAnalytics = () => {
               A platform by FYINNOVEA
             </Typography>
             <Link to={`/equityPortfolio/${nanoid()}`} style={{ textDecoration: 'none' }}>
-              <CustomButton backgroundColor='#1c9bef' color='#fff' buttonText='Begin Now' heroBtn={true} />
+              <CustomButton backgroundColor='#002147' color='#fff' buttonText='Begin Now' heroBtn={true} />
             </Link>
           </CustomTitleBox>
           <Box sx={{ flex: '1.25' }}>

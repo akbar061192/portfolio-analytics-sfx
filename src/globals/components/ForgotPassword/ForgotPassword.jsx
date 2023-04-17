@@ -125,7 +125,7 @@ const ForgotPassword = props => {
       </DialogContent>
       <DialogActions style={{ marginBottom: '1rem', marginRight: '1rem' }}>
         <CustomButton
-          backgroundColor='#1c9bef'
+          backgroundColor='#002147'
           color='#fff'
           buttonText='Reset Password'
           fullWidth={false}

@@ -14,6 +14,7 @@ import {
   Chip,
   OutlinedInput,
   InputAdornment,
+  Badge,
 } from '@mui/material';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import SearchIcon from '@mui/icons-material/Search';
@@ -91,9 +92,8 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
   }));
   const [newPortfolio, setNewPortfolio] = useState(false);
 
-  // const userPortfolios = ['SFX', 'Raju', 'SFX_CLIENT'];
-  const [portfolios, setPortfolios] = useState(['SFX', 'Raju', 'Patricia', 'Glenna']);
-  const [portfolio, setPortfolio] = useState('Raju');
+  const [portfolios, setPortfolios] = useState(['Nicholas', 'Clementina', 'Patricia', 'Glenna']);
+  const [portfolio, setPortfolio] = useState('Patricia');
 
   const handlePortfolioClick = portfolio => {
     console.log(portfolio);
@@ -108,7 +108,7 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
 
   const SyledChip = styled(Chip)(({ theme }) => ({
     '&:hover': {
-      backgroundColor: 'lightyellow',
+      backgroundColor: '#007791',
     },
   }));
 
@@ -203,7 +203,14 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
                 disableElevation
                 onClick={handleClick1}
                 endIcon={<KeyboardArrowDownIcon />}
-                sx={{ fontSize: { sx: '0.4rem' }, background: 'white', color: 'black' }}
+                sx={{
+                  fontSize: { sx: '0.4rem' },
+                  background: 'white',
+                  color: 'black',
+                  ':hover': {
+                    background: 'white',
+                  },
+                }}
               >
                 SFX USER
               </Button>
@@ -237,13 +244,20 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
               alignItems: 'flex-start',
               p: 2,
               pb: 0,
-              mx: 5,
+              mx: 6.5,
               // background: '#007791',
             }}
           >
             <Box>
               <Button
-                sx={{ width: { xs: '100%' }, mb: { xs: 2 }, background: '#002147' }}
+                sx={{
+                  width: { xs: '100%' },
+                  mb: { xs: 2 },
+                  background: '#002147',
+                  ':hover': {
+                    background: '#002147',
+                  },
+                }}
                 id='demo-customized-button'
                 aria-controls={open ? 'demo-customized-menu' : undefined}
                 aria-haspopup='true'
@@ -311,9 +325,9 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
                 // borderRadius: '10px',
                 background: '#002147',
                 // background: '#101010',
-                width: { md: '100%', lg: '13%' },
+                width: { md: '100%', lg: '12%' },
                 height: 'max-content',
-                p: 3,
+                p: 2,
               }}
             >
               <Box>
@@ -330,10 +344,11 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
                     direction='column'
                     sx={{
                       flex: 1,
-                      p: 1.5,
-                      borderRadius: '10px',
-                      backgroundColor: '#202020	',
-                      boxShadow: '0 0 10px 1px rgba(0, 0, 0, 0.25)',
+                      p: 1,
+                      borderRadius: '6px',
+                      // backgroundColor: '#202020	',
+                      border: '2px solid #007791',
+                      // boxShadow: '0 0 10px 1px rgba(0, 0, 0, 0.25)',
                       width: '100%',
                     }}
                   >
@@ -350,13 +365,15 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
                     sx={{
                       flex: 1,
                       // background: 'lightgray',
-                      p: 1.5,
-                      borderRadius: '10px',
                       // opacity: '0.3',
-                      backgroundColor: '#202020	',
-                      boxShadow: '0 0 10px 1px rgba(0, 0, 0, 0.25)',
+                      // backgroundColor: '#202020	',
+                      // boxShadow: '0 0 10px 1px rgba(0, 0, 0, 0.25)',
                       backdropFilter: 'blur(30px)',
                       width: '100%',
+                      p: 1,
+                      borderRadius: '6px',
+                      // backgroundColor: '#202020	',
+                      border: '2px solid #007791',
                     }}
                   >
                     <Typography sx={{ color: 'white', fontSize: '1.3rem' }}>Nifty</Typography>
@@ -394,7 +411,9 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
               >
                 <Typography sx={{ color: 'white', fontWeight: '900' }}>Add Portfolio</Typography>
                 <IconButton disabled={portfolios.length === 5} onClick={() => setNewPortfolio(true)}>
-                  {portfolios.length === 5 ? <></> : <AddCircleOutlineOutlinedIcon color='primary' />}
+                  <Badge badgeContent={portfolios.length} color='info'>
+                    {portfolios.length === 5 ? <></> : <AddCircleOutlineOutlinedIcon color='primary' />}
+                  </Badge>
                 </IconButton>
               </Box>
               <Stack
@@ -418,11 +437,12 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
                         width: '100%',
                         padding: '10px',
                         fontSize: { xs: '0.6rem', md: '0.9rem' },
-                        color: '#000044',
-                        background: `${port === portfolio ? 'yellow' : 'azure'}`,
+                        // color: '#000044',
+                        background: `${port === portfolio ? '#007791' : 'azure'}`,
                         borderRadius: '2px',
                         fontWeight: '500',
                         textAlign: 'left',
+                        color: `${port === portfolio ? 'white' : 'black'}`,
                       }}
                       label={port}
                       onClick={() => handlePortfolioClick(port)}

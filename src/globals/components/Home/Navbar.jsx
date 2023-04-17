@@ -31,7 +31,7 @@ const NavLink = styled(Typography)(({ theme }) => ({
   fontWeight: 'bold',
   cursor: 'pointer',
   '&:hover': {
-    color: '#0F1B4C',
+    color: '#002147',
     borderBottom: '2px solid green',
   },
 }));
@@ -214,7 +214,7 @@ export const Navbar = props => {
               <NavLink variant='body2'>Connect us</NavLink>
             </NavbarLinksBox>
             <CustomButton
-              backgroundColor='#1c9bef'
+              backgroundColor='#002147'
               color='#fff'
               buttonText='Login'
               onBtnClick={handleLoginOpen}

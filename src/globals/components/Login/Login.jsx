@@ -207,7 +207,7 @@ const Login = props => {
                 </Box>
                 <Box sx={{ textAlign: 'center', my: 2 }}>
                   <CustomButton
-                    backgroundColor='#1c9bef'
+                    backgroundColor='#002147'
                     color='#fff'
                     buttonText='Log in'
                     fullWidth={true}
@@ -226,7 +226,7 @@ const Login = props => {
                   : null}
                 <CustomForgotLink sx={{ textAlign: 'center', mb: '1rem' }}>
                   <Link
-                    style={{ textDecoration: 'none', color: '#1877f2', fontWeight: '500' }}
+                    style={{ textDecoration: 'none', color: '#002147', fontWeight: '500' }}
                     variant='body2'
                     onClick={() => {
                       setOpenForgotPassword(true);
@@ -238,7 +238,7 @@ const Login = props => {
                 <Divider sx={{ mb: '1rem' }} />
                 <Box sx={{ textAlign: 'center', my: 2 }}>
                   <CustomButton
-                    backgroundColor='#1877f2'
+                    backgroundColor='#002147'
                     color='#fff'
                     buttonText='Create new account'
                     getStartedBtn={false}
