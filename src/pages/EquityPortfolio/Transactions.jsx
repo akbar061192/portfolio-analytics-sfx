@@ -14,7 +14,6 @@ import {
   Chip,
   OutlinedInput,
   InputAdornment,
-  Container,
 } from '@mui/material';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import SearchIcon from '@mui/icons-material/Search';
@@ -231,13 +230,14 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
           </Toolbar>
         </AppBar>
         <Box sx={{ background: '#007791', p: 0, height: '100%' }}>
-          <Container
+          <Box
             sx={{
               display: { xs: 'block', md: 'flex' },
               justifyContent: 'space-between',
               alignItems: 'flex-start',
               p: 2,
               pb: 0,
+              mx: 5,
               // background: '#007791',
             }}
           >
@@ -252,7 +252,6 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
                 disableElevation
                 onClick={handleClick1}
                 endIcon={<KeyboardArrowDownIcon />}
-                // color='primary'
               >
                 SFX
               </Button>
@@ -276,14 +275,17 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
               </StyledMenu>
             </Box>
 
-            <FormControl variant='outlined' sx={{ width: { xs: '100%', md: '400px' } }}>
+            <FormControl
+              variant='outlined'
+              sx={{ width: { xs: '100%', md: '400px' }, mb: { xs: '10px', md: '0px' } }}
+            >
               <OutlinedInput
                 sx={{ height: '35px' }}
                 placeholder='Search Portfolios...'
                 startAdornment={<InputAdornment position='start'>{<SearchIcon />}</InputAdornment>}
               />
             </FormControl>
-          </Container>
+          </Box>
 
           <Box
             sx={{

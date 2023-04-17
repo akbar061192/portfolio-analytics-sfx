@@ -231,7 +231,7 @@ const EquityTrans = ({ portfolio, handleAddEquiTrans }) => {
                 return {
                   ...user,
                   transDate: new Date(user.transDate).toLocaleDateString('en-us', {
-                    weekday: 'long',
+                    weekday: 'short',
                     year: 'numeric',
                     month: 'short',
                     day: 'numeric',
