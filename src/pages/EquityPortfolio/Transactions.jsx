@@ -450,12 +450,11 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
               <EquityTrans portfolio={portfolio} handleAddEquiTrans={handleAddEquiTrans} />
             </Box>
           </Box>
+          <Box sx={{ background: '#002147' }}>
+            <Copyright sx={{ mt: 2, p: 2, color: 'white' }} />
+          </Box>
         </Box>
         {/* <Divider sx={{ mt: 2 }} /> */}
-
-        <Box sx={{ background: '#002147' }}>
-          <Copyright sx={{ mt: 2, mb: { xs: 2, md: 2 }, color: 'white' }} />
-        </Box>
       </Dialog>
     </div>
   );
