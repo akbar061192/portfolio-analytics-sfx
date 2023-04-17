@@ -1,7 +1,4 @@
 import { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
@@ -13,42 +10,9 @@ import { axiosInstance } from '../../index';
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
 import AddTransaction from './AddTransaction';
-
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role='tabpanel'
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-};
-
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
-}
+import { styled } from '@mui/material';
 
 const EquityTrans = ({ portfolio, handleAddEquiTrans }) => {
-  const [value, setValue] = useState(0);
   const [openNewTransaction, setOpenNewTransaction] = useState(false);
 
   const [users, setUsers] = useState([]);
@@ -56,10 +20,6 @@ const EquityTrans = ({ portfolio, handleAddEquiTrans }) => {
   const [addTransaction, setAddTransaction] = useState(false);
   const [newTran, setNewTran] = useState(false);
   const [singleTran, setSingleTran] = useState({});
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
 
   useEffect(() => {
     const apiCall = async () => {
@@ -88,37 +48,43 @@ const EquityTrans = ({ portfolio, handleAddEquiTrans }) => {
     {
       field: 'company',
       headerName: 'Company Name',
-      width: 250,
+      // width: 250,
+      flex: 1.5,
       editable: false,
     },
     {
       field: 'transDate',
       headerName: 'Transaction Date',
-      width: 250,
+      // width: 250,
+      flex: 1,
       editable: false,
     },
     {
       field: 'transPrice',
       headerName: 'Transaction Price',
-      width: 150,
+      // width: 150,
+      flex: 1,
       editable: false,
     },
     {
       field: 'quantity',
       headerName: 'Quantity',
-      width: 100,
+      // width: 100,
+      flex: 0,
       type: 'number',
     },
     {
       field: 'accounts',
       headerName: 'Accounts',
-      width: 300,
+      // width: 250,
+      flex: 2,
       editable: false,
     },
     {
       field: 'icon',
       headerName: '',
-      width: 100,
+      // width: 100,
+      flex: 1,
       editable: false,
       renderCell: params => {
         return (
@@ -148,6 +114,13 @@ const EquityTrans = ({ portfolio, handleAddEquiTrans }) => {
     },
   ];
 
+  const StyledButton = styled(Button)(({ theme }) => {
+    return {
+      '&:hover': {
+        background: '#001c3d',
+      },
+    };
+  });
   return (
     <>
       {openNewTransaction ? (
@@ -180,13 +153,13 @@ const EquityTrans = ({ portfolio, handleAddEquiTrans }) => {
         />
       ) : null}
 
-      <Box sx={{ width: '100%', m: { xs: 1, md: 2 } }}>
-        <Box>
+      <Box sx={{ width: '100%', m: { xs: 1, md: 0 }, p: 3 }}>
+        {/* <Box>
           <Tabs value={value} onChange={handleChange}>
             <Tab label='Equity' {...a11yProps(0)} />
           </Tabs>
-        </Box>
-        <TabPanel value={value} index={0}>
+        </Box> */}
+        <Box>
           <Box
             sx={{
               display: { xs: 'block', md: 'flex' },
@@ -194,21 +167,34 @@ const EquityTrans = ({ portfolio, handleAddEquiTrans }) => {
               justifyContent: { sx: 'center', lg: 'space-between' },
               mb: 2,
               gap: 2,
-              textAlign: { xs: 'center' },
+              textAlign: { xs: 'center', md: 'left' },
             }}
           >
             <Box
               sx={{
                 display: { xs: 'block', md: 'flex' },
-                alignItems: 'center',
                 justifyContent: 'space-between',
                 gap: 2,
                 mb: { xs: 2, md: 0 },
+                flexDirection: 'column',
               }}
             >
-              <Typography>{portfolio}</Typography>
-              <Button
-                sx={{ width: { xs: '100%', md: '200px' }, fontSize: { xs: '0.6rem', md: '0.8rem' } }}
+              <Typography
+                sx={{
+                  fontSize: '1.4rem',
+                  fontWeight: 'bold',
+                  fontFamily: 'Kanit, sans-serif',
+                  borderColor: '#002147',
+                }}
+              >
+                Portfolio: {portfolio}
+              </Typography>
+              <StyledButton
+                sx={{
+                  background: '#002147',
+                  width: { xs: '100%', md: '200px' },
+                  fontSize: { xs: '0.6rem', md: '0.8rem' },
+                }}
                 variant='contained'
                 startIcon={<AddCircleOutlineOutlinedIcon />}
                 onClick={() => {
@@ -217,7 +203,7 @@ const EquityTrans = ({ portfolio, handleAddEquiTrans }) => {
                 }}
               >
                 ADD TRANSACTION
-              </Button>
+              </StyledButton>
             </Box>
             {/* <Button
               sx={{ width: { xs: '100%', md: '200px' }, fontSize: { xs: '0.6rem', md: '0.8rem' } }}
@@ -232,12 +218,14 @@ const EquityTrans = ({ portfolio, handleAddEquiTrans }) => {
           <Box
             sx={{
               background: 'white',
-              mr: 3,
+              // mr: 3,
               width: '100%',
+              height: '500px',
             }}
-            style={{ height: `475px`, width: '100%' }}
+            // style={{ width: '100%' }}
           >
             <DataGrid
+              // autoHeight
               sx={{ color: 'black', background: 'snow' }}
               rows={users.map(user => {
                 return {
@@ -255,7 +243,7 @@ const EquityTrans = ({ portfolio, handleAddEquiTrans }) => {
               density='compact'
             />
           </Box>
-        </TabPanel>
+        </Box>
       </Box>
     </>
   );

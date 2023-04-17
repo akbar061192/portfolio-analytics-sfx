@@ -3,7 +3,6 @@ import Dialog from '@mui/material/Dialog';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
 import {
   Box,
@@ -11,16 +10,13 @@ import {
   Stack,
   Typography,
   FormControl,
-  Select,
   MenuItem,
   Chip,
   OutlinedInput,
   InputAdornment,
-  Avatar,
+  Container,
 } from '@mui/material';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import PersonIcon from '@mui/icons-material/Person';
-import fyinnovea from '../../media/fyinnoveaLogo.png';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 import Button from '@mui/material/Button';
@@ -32,6 +28,7 @@ import EquityTrans from './EquityTrans';
 import NewPortfolio from './NewPortfolio';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import { ArrowDropDown } from '@mui/icons-material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction='up' ref={ref} {...props} />;
@@ -132,7 +129,7 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
         onClose={handleCloseTransactions}
         TransitionComponent={Transition}
       >
-        <AppBar sx={{ position: 'relative', background: 'whitesmoke' }}>
+        <AppBar sx={{ position: 'relative', background: '#002147' }}>
           <Toolbar
             sx={{
               display: 'flex',
@@ -157,19 +154,31 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
                 }}
                 aria-label='close'
               >
-                <CloseIcon color='primary' />
+                <ArrowBackIcon sx={{ color: 'white' }} />
               </IconButton>
 
               <Box
-                sx={{
-                  width: { xs: '170px', md: '240px' },
-                }}
+                sx={
+                  {
+                    // width: { xs: '170px', md: '240px' },
+                  }
+                }
               >
-                <img src={fyinnovea} style={{ width: '100%' }} alt='logo' />
+                {/* <img src={fyinnovea} style={{ width: '100%', color: 'white' }} alt='logo' /> */}
+                <Typography
+                  sx={{
+                    height: '100%',
+                    fontSize: '2rem',
+                    fontWeight: '300',
+                    fontFamily: 'Kanit, sans-serif',
+                  }}
+                >
+                  FYINNOVEA
+                </Typography>
               </Box>
             </Box>
 
-            <Box>
+            {/* <Box>
               <MenuItem
                 sx={{
                   display: 'flex',
@@ -177,31 +186,16 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
                   alignItems: 'center',
                   gap: '10px',
                   p: 1.5,
-                  // background: 'lightgray',
+                  background: 'white',
                   borderRadius: '10px',
                 }}
               >
                 <PersonIcon sx={{ color: '#1c9bef' }} />
                 <Typography sx={{ color: '#1c9bef' }}>SFX USER</Typography>
               </MenuItem>
-            </Box>
-          </Toolbar>
-        </AppBar>
-        <Box sx={{ background: 'white', p: 2 }}>
-          <Box
-            sx={{
-              display: { xs: 'block', md: 'flex' },
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              p: 2,
-              m: 2,
-              gap: '10px',
-              // background: 'white',
-            }}
-          >
+            </Box> */}
             <Box>
               <Button
-                sx={{ width: { xs: '100%' }, mb: { xs: 2 } }}
                 id='demo-customized-button'
                 aria-controls={open ? 'demo-customized-menu' : undefined}
                 aria-haspopup='true'
@@ -210,7 +204,55 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
                 disableElevation
                 onClick={handleClick1}
                 endIcon={<KeyboardArrowDownIcon />}
-                color='primary'
+                sx={{ fontSize: { sx: '0.4rem' }, background: 'white', color: 'black' }}
+              >
+                SFX USER
+              </Button>
+              <StyledMenu
+                sx={{ padding: { xs: '10px' } }}
+                id='demo-customized-menu'
+                MenuListProps={{
+                  'aria-labelledby': 'demo-customized-button',
+                }}
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose} disableRipple>
+                  <EditIcon />
+                  Edit
+                </MenuItem>
+                <MenuItem onClick={handleClose} disableRipple>
+                  <FileCopyIcon />
+                  Duplicate
+                </MenuItem>
+              </StyledMenu>
+            </Box>
+          </Toolbar>
+        </AppBar>
+        <Box sx={{ background: '#007791', p: 0, height: '100%' }}>
+          <Container
+            sx={{
+              display: { xs: 'block', md: 'flex' },
+              justifyContent: 'space-between',
+              alignItems: 'flex-start',
+              p: 2,
+              pb: 0,
+              // background: '#007791',
+            }}
+          >
+            <Box>
+              <Button
+                sx={{ width: { xs: '100%' }, mb: { xs: 2 }, background: '#002147' }}
+                id='demo-customized-button'
+                aria-controls={open ? 'demo-customized-menu' : undefined}
+                aria-haspopup='true'
+                aria-expanded={open ? 'true' : undefined}
+                variant='contained'
+                disableElevation
+                onClick={handleClick1}
+                endIcon={<KeyboardArrowDownIcon />}
+                // color='primary'
               >
                 SFX
               </Button>
@@ -236,30 +278,33 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
 
             <FormControl variant='outlined' sx={{ width: { xs: '100%', md: '400px' } }}>
               <OutlinedInput
+                sx={{ height: '35px' }}
                 placeholder='Search Portfolios...'
                 startAdornment={<InputAdornment position='start'>{<SearchIcon />}</InputAdornment>}
               />
             </FormControl>
-          </Box>
+          </Container>
 
           <Box
             sx={{
               display: 'flex',
               flexDirection: { xs: 'column', md: 'row' },
-              justifyContent: 'space-between',
-              gap: '1rem',
-              mx: 3,
+              justifyContent: 'center',
+              // gap: '1rem',
+              // mx: 1,
             }}
           >
             <Box
               sx={{
-                flex: 1,
-                gap: '0.8rem',
+                // flex: 1,
+                // gap: '0.8rem',
                 display: 'flex',
                 flexDirection: 'column',
-                borderRadius: '10px',
-                background: '#101010',
-                width: { md: '100%', lg: '20%' },
+                // borderRadius: '10px',
+                background: '#002147',
+                // background: '#101010',
+                width: { md: '100%', lg: '13%' },
+                height: 'max-content',
                 p: 3,
               }}
             >
@@ -268,8 +313,9 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
                   sx={{
                     gap: '0.5rem',
                     display: { xs: 'block', md: 'flex' },
-                    justifyContent: 'center',
+                    justifyContent: 'left',
                     alignItems: 'center',
+                    flexDirection: 'column',
                   }}
                 >
                   <Stack
@@ -281,6 +327,7 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
                       borderRadius: '10px',
                       backgroundColor: '#202020	',
                       boxShadow: '0 0 10px 1px rgba(0, 0, 0, 0.25)',
+                      width: '100%',
                     }}
                   >
                     <Typography sx={{ color: 'white', fontSize: '1.3rem' }}>Sensex</Typography>
@@ -302,6 +349,7 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
                       backgroundColor: '#202020	',
                       boxShadow: '0 0 10px 1px rgba(0, 0, 0, 0.25)',
                       backdropFilter: 'blur(30px)',
+                      width: '100%',
                     }}
                   >
                     <Typography sx={{ color: 'white', fontSize: '1.3rem' }}>Nifty</Typography>
@@ -314,7 +362,7 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
                 </Box>
               </Box>
 
-              <FormControl sx={{ m: 1 }} size='small'>
+              {/* <FormControl sx={{ m: 1 }} size='small'>
                 <Select
                   sx={{ background: 'white' }}
                   labelId='demo-select-small'
@@ -325,32 +373,36 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
                   <MenuItem value={'all'}>All</MenuItem>
                   <MenuItem value={'family'}>Family</MenuItem>
                 </Select>
-              </FormControl>
+              </FormControl> */}
 
               <Box
                 sx={{
                   display: 'flex',
-                  justifyContent: 'space-between',
+                  justifyContent: 'center',
                   alignItems: 'center',
-                  color: 'white',
+                  color: 'black',
+                  mt: '1rem',
+                  textAlign: 'center',
                 }}
               >
-                <Typography>Portfolios</Typography>
-                <IconButton disabled={portfolios.length === 4} onClick={() => setNewPortfolio(true)}>
-                  {portfolios.length === 4 ? <></> : <AddCircleOutlineOutlinedIcon color='primary' />}
+                <Typography sx={{ color: 'white', fontWeight: '900' }}>Add Portfolio</Typography>
+                <IconButton disabled={portfolios.length === 5} onClick={() => setNewPortfolio(true)}>
+                  {portfolios.length === 5 ? <></> : <AddCircleOutlineOutlinedIcon color='primary' />}
                 </IconButton>
               </Box>
-              <Stack direction='column' spacing={1} sx={{ mx: { xs: '0rem', md: '1rem' } }}>
+              <Stack direction='column' spacing={1} sx={{ mx: { xs: '0rem', md: '0rem' } }}>
                 {portfolios.map(port => {
                   return (
                     <SyledChip
                       key={port}
-                      avatar={<Avatar>{port[0].toUpperCase()}</Avatar>}
                       sx={{
-                        p: 2.5,
-                        fontSize: { xs: '0.6rem', md: '1.1rem' },
-                        color: 'black',
+                        width: '100%',
+                        padding: '10px',
+                        fontSize: { xs: '0.6rem', md: '0.9rem' },
+                        color: '#000044',
                         background: `${port === portfolio ? 'yellow' : 'azure'}`,
+                        borderRadius: '2px',
+                        fontWeight: '500',
                       }}
                       label={port}
                       onClick={() => handlePortfolioClick(port)}
@@ -364,16 +416,16 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
               sx={{
                 background: 'whitesmoke',
                 width: { md: '100%', lg: '80%' },
-                opacity: '0.8',
-                borderRadius: '10px',
+                // opacity: '0.8',
+                // borderRadius: '10px',
               }}
             >
               <EquityTrans portfolio={portfolio} handleAddEquiTrans={handleAddEquiTrans} />
             </Box>
           </Box>
         </Box>
-        <Divider sx={{ mt: 20 }} />
-        <Copyright sx={{ mt: 2, mb: { xs: 2, md: 0 } }} />
+        {/* <Divider sx={{ mt: 2 }} /> */}
+        <Copyright sx={{ mt: 2, mb: { xs: 2, md: 2 } }} />
       </Dialog>
     </div>
   );
