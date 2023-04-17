@@ -91,7 +91,21 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
   }));
   const [newPortfolio, setNewPortfolio] = useState(false);
 
-  const userPortfolios = ['SFX', 'Raju', 'SFX_CLIENT'];
+  const userPortfolios = [
+    'SFX',
+    'Raju',
+    'SFX_CLIENT',
+    'Raju1',
+    'SFX_CLIENT1',
+    'Raju2',
+    'SFX_CLIENT2',
+    'Raju3',
+    'SFX_CLIENT3',
+    'Raju4',
+    'SFX_CLIENT4',
+    'Raju5',
+    'SFX_CLIENT5',
+  ];
   const [portfolios, setPortfolios] = useState(userPortfolios);
   const [portfolio, setPortfolio] = useState('Raju');
 
@@ -277,10 +291,16 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
 
             <FormControl
               variant='outlined'
-              sx={{ width: { xs: '100%', md: '400px' }, mb: { xs: '10px', md: '0px' } }}
+              sx={{
+                width: { xs: '100%', md: '400px' },
+                mb: { xs: '10px', md: '0px' },
+                background: 'white',
+                border: 'none',
+                borderRadius: '0px',
+              }}
             >
               <OutlinedInput
-                sx={{ height: '35px' }}
+                sx={{ height: '38px', border: 'none', borderRadius: '0px' }}
                 placeholder='Search Portfolios...'
                 startAdornment={<InputAdornment position='start'>{<SearchIcon />}</InputAdornment>}
               />
@@ -305,7 +325,7 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
                 // borderRadius: '10px',
                 background: '#002147',
                 // background: '#101010',
-                width: { md: '100%', lg: '13%' },
+                width: { md: '100%', lg: '14%' },
                 height: 'max-content',
                 p: 3,
               }}
@@ -392,7 +412,11 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
                   {portfolios.length === 5 ? <></> : <AddCircleOutlineOutlinedIcon color='primary' />}
                 </IconButton>
               </Box>
-              <Stack direction='column' spacing={1} sx={{ mx: { xs: '0rem', md: '0rem' } }}>
+              <Stack
+                direction='column'
+                spacing={1}
+                sx={{ mx: { xs: '0rem', md: '0rem', overflowY: 'scroll', height: '320px' }, p: 1 }}
+              >
                 {portfolios.map(port => {
                   return (
                     <SyledChip
@@ -405,6 +429,7 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
                         background: `${port === portfolio ? 'yellow' : 'azure'}`,
                         borderRadius: '2px',
                         fontWeight: '500',
+                        textAlign: 'left',
                       }}
                       label={port}
                       onClick={() => handlePortfolioClick(port)}
@@ -427,7 +452,10 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
           </Box>
         </Box>
         {/* <Divider sx={{ mt: 2 }} /> */}
-        <Copyright sx={{ mt: 2, mb: { xs: 2, md: 2 } }} />
+
+        <Box sx={{ background: '#002147' }}>
+          <Copyright sx={{ mt: 2, mb: { xs: 2, md: 2 }, color: 'white' }} />
+        </Box>
       </Dialog>
     </div>
   );
