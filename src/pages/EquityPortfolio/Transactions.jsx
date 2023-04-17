@@ -91,22 +91,8 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
   }));
   const [newPortfolio, setNewPortfolio] = useState(false);
 
-  const userPortfolios = [
-    'SFX',
-    'Raju',
-    'SFX_CLIENT',
-    'Raju1',
-    'SFX_CLIENT1',
-    'Raju2',
-    'SFX_CLIENT2',
-    'Raju3',
-    'SFX_CLIENT3',
-    'Raju4',
-    'SFX_CLIENT4',
-    'Raju5',
-    'SFX_CLIENT5',
-  ];
-  const [portfolios, setPortfolios] = useState(userPortfolios);
+  // const userPortfolios = ['SFX', 'Raju', 'SFX_CLIENT'];
+  const [portfolios, setPortfolios] = useState(['SFX', 'Raju', 'Patricia', 'Glenna']);
   const [portfolio, setPortfolio] = useState('Raju');
 
   const handlePortfolioClick = portfolio => {
@@ -325,7 +311,7 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
                 // borderRadius: '10px',
                 background: '#002147',
                 // background: '#101010',
-                width: { md: '100%', lg: '14%' },
+                width: { md: '100%', lg: '13%' },
                 height: 'max-content',
                 p: 3,
               }}
@@ -334,10 +320,10 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
                 <Box
                   sx={{
                     gap: '0.5rem',
-                    display: { xs: 'block', md: 'flex' },
+                    display: 'flex',
                     justifyContent: 'left',
                     alignItems: 'center',
-                    flexDirection: 'column',
+                    flexDirection: { xs: 'row', md: 'column' },
                   }}
                 >
                   <Stack
@@ -345,7 +331,6 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
                     sx={{
                       flex: 1,
                       p: 1.5,
-                      mb: { xs: 2, md: 0 },
                       borderRadius: '10px',
                       backgroundColor: '#202020	',
                       boxShadow: '0 0 10px 1px rgba(0, 0, 0, 0.25)',
@@ -415,7 +400,15 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
               <Stack
                 direction='column'
                 spacing={1}
-                sx={{ mx: { xs: '0rem', md: '0rem', overflowY: 'scroll', height: '320px' }, p: 1 }}
+                sx={{
+                  mx: {
+                    xs: '0rem',
+                    md: '0rem',
+                    overflowY: `${portfolios.length > 8 ? 'scroll' : ''}`,
+                    height: '320px',
+                  },
+                  p: 1,
+                }}
               >
                 {portfolios.map(port => {
                   return (
@@ -442,7 +435,7 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
             <Box
               sx={{
                 background: 'whitesmoke',
-                width: { md: '100%', lg: '80%' },
+                width: { xs: '100%', md: '80%' },
                 // opacity: '0.8',
                 // borderRadius: '10px',
               }}

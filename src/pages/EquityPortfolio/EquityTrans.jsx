@@ -42,7 +42,7 @@ const EquityTrans = ({ portfolio, handleAddEquiTrans }) => {
       }
     };
     apiCall();
-  }, []);
+  }, [portfolio]);
 
   const columns = [
     {
@@ -174,20 +174,21 @@ const EquityTrans = ({ portfolio, handleAddEquiTrans }) => {
               sx={{
                 display: { xs: 'block', md: 'flex' },
                 justifyContent: 'space-between',
-                gap: 2,
+                // gap: 2,
                 mb: { xs: 2, md: 0 },
-                flexDirection: 'column',
+                flexDirection: 'row',
               }}
             >
               <Typography
                 sx={{
-                  fontSize: '1.4rem',
+                  fontSize: '1.6rem',
                   fontWeight: 'bold',
                   fontFamily: 'Kanit, sans-serif',
-                  borderColor: '#002147',
+                  color: '#007791',
+                  width: { xs: '100%', md: '180px' },
                 }}
               >
-                Portfolio: {portfolio}
+                {portfolio}
               </Typography>
               <StyledButton
                 sx={{
