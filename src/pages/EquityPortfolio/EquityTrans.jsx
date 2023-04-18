@@ -26,16 +26,23 @@ const EquityTrans = ({ portfolio, handleAddEquiTrans }) => {
       try {
         const response = await axiosInstance.get('https://jsonplaceholder.typicode.com/users');
         setUsers(
-          response.data.map(user => {
-            return {
-              id: user.id,
-              company: user.name,
-              transDate: new Date(),
-              transPrice: (Math.random() * 10000).toFixed(3),
-              quantity: (Math.random() * 10 + 1).toFixed(0),
-              accounts: user.website,
-            };
-          })
+          response.data
+            .concat(response.data)
+            .concat(response.data)
+            .concat(response.data)
+            .concat(response.data)
+            .map(user => {
+              const maxDate = Date.now();
+              const date = Math.floor(Math.random() * maxDate);
+              return {
+                id: date,
+                company: user.name,
+                transDate: new Date(date),
+                transPrice: (Math.random() * 10000).toFixed(3),
+                quantity: (Math.random() * 10 + 1).toFixed(0),
+                accounts: user.website,
+              };
+            })
         );
       } catch (error) {
         return error;
@@ -154,11 +161,6 @@ const EquityTrans = ({ portfolio, handleAddEquiTrans }) => {
       ) : null}
 
       <Box sx={{ width: '100%', m: { xs: 1, md: 0 }, p: 3 }}>
-        {/* <Box>
-          <Tabs value={value} onChange={handleChange}>
-            <Tab label='Equity' {...a11yProps(0)} />
-          </Tabs>
-        </Box> */}
         <Box>
           <Box
             sx={{
@@ -174,7 +176,6 @@ const EquityTrans = ({ portfolio, handleAddEquiTrans }) => {
               sx={{
                 display: { xs: 'block', md: 'flex' },
                 justifyContent: 'space-between',
-                // gap: 2,
                 mb: { xs: 2, md: 0 },
                 flexDirection: 'row',
               }}
@@ -206,27 +207,16 @@ const EquityTrans = ({ portfolio, handleAddEquiTrans }) => {
                 ADD TRANSACTION
               </StyledButton>
             </Box>
-            {/* <Button
-              sx={{ width: { xs: '100%', md: '200px' }, fontSize: { xs: '0.6rem', md: '0.8rem' } }}
-              color='primary'
-              variant='contained'
-              startIcon={<Save />}
-            >
-              SAVE TO PORTFOLIO
-            </Button> */}
           </Box>
 
           <Box
             sx={{
               background: 'white',
-              // mr: 3,
               width: '100%',
               height: '500px',
             }}
-            // style={{ width: '100%' }}
           >
             <DataGrid
-              // autoHeight
               sx={{ color: 'black', background: 'snow' }}
               rows={users.map(user => {
                 return {
