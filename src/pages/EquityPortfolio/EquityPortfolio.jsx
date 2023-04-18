@@ -7,6 +7,7 @@ import {
   Container,
   Divider,
   IconButton,
+  Button,
 } from '../../globals/common/MuiComponents';
 import importData from '../../media/import.gif';
 import swot from '../../media/swot.gif';
@@ -14,13 +15,13 @@ import insights from '../../media/insights.gif';
 import { useEffect, useState } from 'react';
 import fyinnoveaLogo from '../../media/fyinnoveaLogo.png';
 import { Link } from 'react-router-dom';
-import CustomButton from '../../globals/components/CustomButton/CustomButton';
 import PortfolioDialog from './PortfolioDialog';
 import { axiosInstance } from '../../index';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import Transactions from './Transactions';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
 function Copyright(props) {
   return (
@@ -269,7 +270,7 @@ const EquityPortfolio = () => {
             </GuideBox>
           </GuidesBox>
 
-          {users.length ? (
+          {!users.length ? (
             <Alert
               severity='info'
               action={
@@ -295,14 +296,38 @@ const EquityPortfolio = () => {
             // >
             //   <ArrowCircleRightOutlinedIcon fontSize='large' />
             // </IconButton>
-            <CustomButton
-              backgroundColor='#002147'
-              color='#fff'
-              buttonText='Equity Portfolio'
-              onBtnClick={() => {
+            // <CustomButton
+            //   backgroundColor='#002147'
+            //   color='#fff'
+            //   buttonText='Equity Portfolio'
+            //   onBtnClick={() => {
+            //     setOpenTransactions(true);
+            //   }}
+            //   />
+
+            <Button
+              sx={{
+                background: '#002147',
+                color: '#fff',
+                p: 1.2,
+                fontSize: '1.2rem',
+                // fontWeight: '600',
+                // fontFamily: 'Kanit, sans-serif',
+                transition: 'all .6s ease-in-out',
+                ':hover': {
+                  p: 1.4,
+                  // background: '#007791',
+                  transform: 'scale(1.1)',
+                },
+              }}
+              variant='contained'
+              endIcon={<NavigateNextIcon fontSize='large' />}
+              onClick={() => {
                 setOpenTransactions(true);
               }}
-            />
+            >
+              Equity Portfolio
+            </Button>
           )}
         </Box>
 
