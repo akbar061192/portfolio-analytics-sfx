@@ -15,6 +15,7 @@ import {
   Box,
   Dialog,
   DialogContent,
+  FormHelperText,
 } from '../../globals/common/MuiComponents';
 import CustomButton from '../../globals/components/CustomButton/CustomButton';
 import Tabs from '@mui/material/Tabs';
@@ -302,6 +303,7 @@ const NewPortfolio = props => {
                             error={errors.goal ? true : false}
                           />
                         </FormControl>
+                        <FormHelperText>Only numeric values allowed</FormHelperText>
                       </TabPanel>
                     </Box>
                   ) : null}
