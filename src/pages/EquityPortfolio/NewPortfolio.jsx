@@ -285,14 +285,14 @@ const NewPortfolio = props => {
                           <OutlinedInput
                             sx={{ fontSize: '1.2rem' }}
                             placeholder='Goal*'
-                            // type='number'
+                            type='number'
                             name='goal'
                             value={newPortfolio.goal}
                             onChange={event => {
                               setNewPortfolio(prev => {
                                 return {
                                   ...prev,
-                                  goal: +event.target.value,
+                                  goal: event.target.value,
                                 };
                               });
                               formValidation({
