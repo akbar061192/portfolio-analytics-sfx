@@ -34,7 +34,7 @@ const PortfolioDialog = ({ openDialog, handleCloseDialog }) => {
       <Dialog maxWidth open={openDialog} onClose={handleCloseDialog} TransitionComponent={Transition}>
         <AppBar sx={{ position: 'relative', background: '#002147' }}>
           <Toolbar sx={{ justifyContent: 'space-between' }}>
-            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+            <Box>
               <Typography sx={{ ml: 2, flex: 1 }} variant='h5' component='div'>
                 Create Portfolio
               </Typography>
@@ -51,11 +51,19 @@ const PortfolioDialog = ({ openDialog, handleCloseDialog }) => {
             </IconButton>
           </Toolbar>
         </AppBar>
-        <List sx={{ height: '300px', padding: '2rem', display: 'flex', flexDirection: 'row', gap: '1rem' }}>
+        <List
+          sx={{
+            height: { xs: '', md: '280px' },
+            padding: '2rem',
+            display: 'flex',
+            flexDirection: { xs: 'column', md: 'row' },
+            gap: '1rem',
+          }}
+        >
           <ListItem>
             <ListItemText primary='Create New Portfolio' secondary='Portfolio to add transactions' />
             <IconButton onClick={() => setNewPortfolio(true)}>
-              <AddIcon sx={{ fontSize: '5rem', color: '#002147' }} />
+              <AddIcon sx={{ fontSize: { xs: '2.3rem', md: '5rem' }, color: '#002147' }} />
             </IconButton>
           </ListItem>
           <hr />
@@ -65,7 +73,7 @@ const PortfolioDialog = ({ openDialog, handleCloseDialog }) => {
               secondary='Import a brokerage export file from your computer. Most positional data in .csv, .txt, .xls, .xlsx format are supported'
             />
             <IconButton disabled>
-              <PublishIcon sx={{ fontSize: '5rem', color: '#002147' }} />
+              <PublishIcon sx={{ fontSize: { xs: '2.3rem', md: '5rem' }, color: '#002147' }} />
             </IconButton>
           </ListItem>
         </List>

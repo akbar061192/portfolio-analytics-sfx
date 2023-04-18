@@ -338,6 +338,7 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
                     justifyContent: 'left',
                     alignItems: 'center',
                     flexDirection: { xs: 'row', md: 'column' },
+                    height: '100%',
                   }}
                 >
                   <Stack
