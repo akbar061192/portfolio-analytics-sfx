@@ -106,7 +106,7 @@ const RequestDemo = props => {
             sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 0, mr: '10px' }}
           >
             <IconButton
-              sx={{ color: '#1c9bef', background: 'whitesmoke' }}
+              sx={{ color: '#002147', background: 'whitesmoke' }}
               onClick={() => {
                 setUserInputs({
                   name: '',
@@ -202,7 +202,7 @@ const RequestDemo = props => {
         </DialogContent>
         <Box sx={{ textAlign: 'center', my: 3, width: '80%', mx: 'auto' }}>
           <CustomButton
-            backgroundColor='#1c9bef'
+            backgroundColor='#002147'
             color='#fff'
             buttonText='Submit'
             getStartedBtn={false}

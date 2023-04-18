@@ -144,7 +144,7 @@ const ForgotPassword = props => {
           setOpenLogin(true);
         }}
       >
-        <Link style={{ textDecoration: 'none', color: '#1877f2', fontWeight: '500' }} variant='body2'>
+        <Link style={{ textDecoration: 'none', color: '#002147', fontWeight: '500' }} variant='body2'>
           Remember your password?
         </Link>
       </CustomForgotLink>
