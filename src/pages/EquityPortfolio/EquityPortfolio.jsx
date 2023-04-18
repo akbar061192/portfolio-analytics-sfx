@@ -117,11 +117,13 @@ const EquityPortfolio = () => {
 
   const [openPortfolioDialog, setOpenPortfolioDialog] = useState(false);
   const [users, setUsers] = useState([]);
+  const [showPort, setShowPort] = useState(false);
 
   useEffect(() => {
     const apiCall = async () => {
       try {
         const response = await axiosInstance.get('https://jsonplaceholder.typicode.com/users');
+        setShowPort(true);
         setUsers(response.data);
       } catch (error) {
         return error;
@@ -270,65 +272,51 @@ const EquityPortfolio = () => {
             </GuideBox>
           </GuidesBox>
 
-          {!users.length ? (
-            <Alert
-              severity='info'
-              action={
-                <IconButton
-                  onClick={() => {
-                    setOpenPortfolioDialog(true);
-                  }}
-                >
-                  <AddCircleOutlineIcon fontSize='large' sx={{ color: '#002147' }} />
-                </IconButton>
-              }
-            >
-              <AlertTitle>
-                <strong>Welcome to Equity Portfolio Analytics</strong>
-              </AlertTitle>
-              No Portfolio's found please create a new one
-            </Alert>
-          ) : (
-            // <IconButton
-            //   sx={{
-            //     color: '#002147',
-            //   }}
-            // >
-            //   <ArrowCircleRightOutlinedIcon fontSize='large' />
-            // </IconButton>
-            // <CustomButton
-            //   backgroundColor='#002147'
-            //   color='#fff'
-            //   buttonText='Equity Portfolio'
-            //   onBtnClick={() => {
-            //     setOpenTransactions(true);
-            //   }}
-            //   />
-
-            <Button
-              sx={{
-                background: '#002147',
-                color: '#fff',
-                p: 1.2,
-                fontSize: '1.2rem',
-                // fontWeight: '600',
-                // fontFamily: 'Kanit, sans-serif',
-                transition: 'all .6s ease-in-out',
-                ':hover': {
-                  p: 1.4,
-                  // background: '#007791',
-                  transform: 'scale(1.1)',
-                },
-              }}
-              variant='contained'
-              endIcon={<NavigateNextIcon fontSize='large' />}
-              onClick={() => {
-                setOpenTransactions(true);
-              }}
-            >
-              Equity Portfolio
-            </Button>
-          )}
+          <Box sx={{ display: `${showPort ? '' : 'none'}` }}>
+            {!users.length ? (
+              <Alert
+                severity='info'
+                action={
+                  <IconButton
+                    onClick={() => {
+                      setOpenPortfolioDialog(true);
+                    }}
+                  >
+                    <AddCircleOutlineIcon fontSize='large' sx={{ color: '#002147' }} />
+                  </IconButton>
+                }
+              >
+                <AlertTitle>
+                  <strong>Welcome to Equity Portfolio Analytics</strong>
+                </AlertTitle>
+                No Portfolio's found please create a new one
+              </Alert>
+            ) : (
+              <Button
+                sx={{
+                  background: '#002147',
+                  color: '#fff',
+                  p: 1.2,
+                  fontSize: '1.2rem',
+                  // fontWeight: '600',
+                  // fontFamily: 'Kanit, sans-serif',
+                  transition: 'all .6s ease-in-out',
+                  ':hover': {
+                    p: 1.4,
+                    // background: '#007791',
+                    transform: 'scale(1.1)',
+                  },
+                }}
+                variant='contained'
+                endIcon={<NavigateNextIcon fontSize='large' />}
+                onClick={() => {
+                  setOpenTransactions(true);
+                }}
+              >
+                Equity Portfolio
+              </Button>
+            )}
+          </Box>
         </Box>
 
         <Divider sx={{ mt: 10 }} />
