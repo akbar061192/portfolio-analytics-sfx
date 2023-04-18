@@ -244,7 +244,7 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
               alignItems: 'flex-start',
               p: 2,
               pb: 0,
-              mx: 6.5,
+              // mx: 6.5,
               // background: '#007791',
             }}
           >
@@ -311,18 +311,16 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
             sx={{
               display: 'flex',
               flexDirection: { xs: 'column', md: 'row' },
-              justifyContent: 'center',
+              // justifyContent: 'center',
               // gap: '1rem',
-              // mx: 1,
+              mx: 2,
             }}
           >
             <Box
               sx={{
-                // flex: 1,
-                // gap: '0.8rem',
+                gap: '0.8rem',
                 display: 'flex',
                 flexDirection: 'column',
-                // borderRadius: '10px',
                 background: '#002147',
                 // background: '#101010',
                 width: { md: '100%', lg: '12%' },
@@ -456,7 +454,7 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
             <Box
               sx={{
                 background: 'whitesmoke',
-                width: { xs: '100%', md: '80%' },
+                width: { xs: '100%', md: '88%' },
                 // opacity: '0.8',
                 // borderRadius: '10px',
               }}
