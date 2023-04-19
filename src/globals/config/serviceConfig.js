@@ -1,7 +1,8 @@
 export const serviceConfig = {
   BASE_URL: {
-    USER_SERVICE_URL: 'https://3.6.127.243:9090/',
-    EMAIL_SERVICE_URL: 'https://3.6.127.243:9090/',
+    USER_SERVICE_URL: 'https://13.127.32.123:9090/',
+    EMAIL_SERVICE_URL: 'https://13.127.32.123:9090/',
+    PORTFOLIO_SERVICE_URL: 'https://13.127.32.123:9090/',
   },
   apiEndPoints: {
     USER_API: {

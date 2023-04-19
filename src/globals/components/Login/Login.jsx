@@ -18,6 +18,7 @@ import ForgotPassword from '../ForgotPassword/ForgotPassword';
 import CreateNewAccount from '../CreateNewAccount/CreateNewAccount';
 import { siginIn } from '../../apis/apis';
 import { ReportProblem } from '@mui/icons-material';
+import { parseJwt } from '../../common/UserDetailsJwt';
 
 const CustomForgotLink = styled(Box)(() => {
   return {
@@ -101,13 +102,16 @@ const Login = props => {
       try {
         const response = await siginIn(inputPayload);
         setLoginSuccess(response);
+        console.log(response);
         if (response.code === 200) {
-          const userEmail = response.token.email;
+          const { email } = parseJwt(response.token);
+          localStorage.setItem('sfx-token', response.token);
           setOpenSnackBar(true);
-          setSnackBarMessage(`Login Successful. Welcome ${userEmail}`);
+          setSnackBarMessage(`Login Successful. Welcome ${email}`);
           handleLoginClose();
         }
       } catch (error) {
+        console.log(error);
         setOpenSnackBar(false);
         setSnackBarMessage('');
         return error;
@@ -115,7 +119,6 @@ const Login = props => {
     }
   };
 
-  console.log(loginSuccess);
   return (
     <>
       {openForgotPassword ? (
