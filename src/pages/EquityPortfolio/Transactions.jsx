@@ -125,7 +125,7 @@ const Transactions = ({ openTransactions, handleCloseTransactions, handleCloseNe
       <Dialog
         fullScreen
         open={openTransactions}
-        onClose={handleCloseTransactions}
+        // onClose={handleCloseTransactions}
         TransitionComponent={Transition}
       >
         <AppBar sx={{ position: 'relative', background: '#002147' }}>

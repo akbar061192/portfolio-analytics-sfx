@@ -8,6 +8,7 @@
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.13",
     "@mui/x-data-grid": "^6.1.0",
+    "@mui/x-data-grid-generator": "^6.2.0",
     "@mui/x-date-pickers": "^6.1.0",
     "@reduxjs/toolkit": "^1.9.3",
     "@testing-library/jest-dom": "^5.16.5",
